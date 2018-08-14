@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1060.0" prefHeight="690.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaCadCarroController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1060.0" prefHeight="690.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaGerenciaCarroController">
    <children>
       <HBox prefHeight="25.0" prefWidth="1202.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
          <children>
@@ -69,8 +69,8 @@
                         <Label layoutX="55.0" layoutY="130.0" text="Placa" />
                         <Label layoutX="57.0" layoutY="222.0" text="Ano " />
                         <TextField layoutX="421.0" layoutY="218.0" prefHeight="25.0" prefWidth="205.0" />
-                        <Button layoutX="144.0" layoutY="417.0" minWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Salvar" />
-                        <Button layoutX="449.0" layoutY="417.0" minWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Cancelar" />
+                        <Button fx:id="insereCarro" layoutX="58.0" layoutY="405.0" minWidth="90.0" mnemonicParsing="false" onAction="#insereCarro" prefHeight="25.0" prefWidth="122.0" text="Inserir" />
+                        <Button fx:id="voltar" layoutX="499.0" layoutY="405.0" minWidth="100.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="122.0" text="Voltar" />
                         <Separator layoutX="699.0" layoutY="1.0" orientation="VERTICAL" prefHeight="666.0" prefWidth="16.0" />
                         <Label layoutX="350.0" layoutY="267.0" text="Quilomentragem" />
                         <TextField layoutX="451.0" layoutY="263.0" prefHeight="25.0" prefWidth="177.0" />
@@ -83,6 +83,8 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
+                        <Button fx:id="editaCarro" layoutX="204.0" layoutY="405.0" mnemonicParsing="false" onAction="#editaCarro" prefHeight="25.0" prefWidth="122.0" text="Editar" />
+                        <Button fx:id="removeCarro" layoutX="354.0" layoutY="405.0" mnemonicParsing="false" onAction="#removeCarro" prefHeight="25.0" prefWidth="122.0" text="Remover" />
                      </children>
                   </Pane>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">

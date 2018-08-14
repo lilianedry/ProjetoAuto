@@ -53,51 +53,26 @@
                <children>
                   <Pane minWidth="300.0" prefHeight="477.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="insereCli" layoutX="117.0" layoutY="107.0" mnemonicParsing="false" onAction="#insereCli" prefHeight="110.0" prefWidth="131.0" />
-                        <ImageView disable="true" fitHeight="88.0" fitWidth="88.0" layoutX="142.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="gerenciarCli" layoutX="120.0" layoutY="244.0" mnemonicParsing="false" onAction="#gerenciarCli" prefHeight="139.0" prefWidth="185.0" />
+                        <ImageView disable="true" fitHeight="95.0" fitWidth="119.0" layoutX="165.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/clienteAdd.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="editaCli" layoutX="293.0" layoutY="107.0" mnemonicParsing="false" onAction="#editaCli" prefHeight="110.0" prefWidth="131.0" />
-                        <ImageView disable="true" fitHeight="88.0" fitWidth="91.0" layoutX="313.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/clienteEdit.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="removeCli" layoutX="476.0" layoutY="106.0" mnemonicParsing="false" onAction="#removeCli" prefHeight="110.0" prefWidth="131.0" />
-                        <ImageView disable="true" fitHeight="88.0" fitWidth="110.0" layoutX="497.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/excluir_cli.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="insereCarro" layoutX="117.0" layoutY="462.0" mnemonicParsing="false" onAction="#insereCarro" prefHeight="96.0" prefWidth="131.0" />
-                        <Button fx:id="removeCarro" layoutX="476.0" layoutY="462.0" mnemonicParsing="false" onAction="#removeCarro" prefHeight="96.0" prefWidth="131.0" />
-                        <Button fx:id="editaCarro" layoutX="293.0" layoutY="462.0" mnemonicParsing="false" onAction="#editaCarro" prefHeight="96.0" prefWidth="131.0" />
-                        <Separator layoutX="1.0" layoutY="332.0" prefHeight="0.0" prefWidth="698.0" />
-                        <Label layoutX="273.0" layoutY="373.0" prefHeight="21.0" prefWidth="154.0" text="Gerenciar Veiculos">
+                        <Button fx:id="gerenciarCarro" layoutX="401.0" layoutY="243.0" mnemonicParsing="false" onAction="#gerenciarCarro" prefHeight="139.0" prefWidth="185.0" />
+                        <Label layoutX="426.0" layoutY="395.0" prefHeight="21.0" prefWidth="131.0" text="Gerenciar Veiculos">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="289.0" layoutY="25.0" text="Gerenciar Clientes">
+                        <Label layoutX="147.0" layoutY="393.0" text="Gerenciar Clientes">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="78.0" fitWidth="99.0" layoutX="145.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="95.0" fitWidth="101.0" layoutX="450.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/cadVeiculo.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="78.0" fitWidth="74.0" layoutX="313.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/editVeiculomais.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="74.0" fitWidth="78.0" layoutX="505.0" layoutY="479.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/excluiVe.png" />
                            </image>
                         </ImageView>
                      </children>

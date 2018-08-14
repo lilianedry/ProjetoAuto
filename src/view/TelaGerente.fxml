@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -15,6 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1060.0" prefHeight="690.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaGerenteController">
    <children>
@@ -59,30 +61,50 @@
                <children>
                   <Pane minWidth="300.0" prefHeight="477.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="insereFunc" layoutX="94.0" layoutY="87.0" mnemonicParsing="false" onAction="#insereFunc" prefHeight="166.0" prefWidth="203.0" />
-                        <ImageView disable="true" fitHeight="122.0" fitWidth="122.0" layoutX="137.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/clienteAdd.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="editaFunc" layoutX="400.0" layoutY="88.0" mnemonicParsing="false" onAction="#editaFunc" prefHeight="166.0" prefWidth="203.0" />
-                        <ImageView disable="true" fitHeight="122.0" fitWidth="134.0" layoutX="441.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/clienteEdit.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="removeFunc" layoutX="92.0" layoutY="342.0" mnemonicParsing="false" onAction="#removeFunc" prefHeight="166.0" prefWidth="203.0" />
-                        <ImageView disable="true" fitHeight="122.0" fitWidth="142.0" layoutX="133.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/excluir_cli.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="gerarRelatorio" layoutX="399.0" layoutY="342.0" mnemonicParsing="false" onAction="#geraRelatorio" prefHeight="166.0" prefWidth="203.0" />
-                        <ImageView fitHeight="122.0" fitWidth="122.0" layoutX="437.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="gerenciaFunc" layoutX="115.0" layoutY="139.0" mnemonicParsing="false" onAction="#gerenciaFunc" prefHeight="166.0" prefWidth="203.0" />
+                        <Button fx:id="gerarRelatorio" layoutX="397.0" layoutY="394.0" mnemonicParsing="false" onAction="#geraRelatorio" prefHeight="166.0" prefWidth="203.0" />
+                        <ImageView fitHeight="122.0" fitWidth="122.0" layoutX="437.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/relatorio_icon.png" />
                            </image>
                         </ImageView>
+                        <Label layoutX="144.0" layoutY="316.0" prefHeight="17.0" prefWidth="147.0" text="Gerenciar Funcionário">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="gerenciaCarro" layoutX="397.0" layoutY="139.0" mnemonicParsing="false" onAction="#gerenciaCarro" prefHeight="166.0" prefWidth="203.0" />
+                        <Button fx:id="gerenciaCli" layoutX="116.0" layoutY="392.0" mnemonicParsing="false" onAction="#gerenciaCli" prefHeight="166.0" prefWidth="203.0" />
+                        <Label layoutX="456.0" layoutY="572.0" prefHeight="17.0" prefWidth="110.0" text="Gerar Relatório">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="108.0" fitWidth="122.0" layoutX="163.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/cliente.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="91.0" fitWidth="110.0" layoutX="444.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/cadVeiculo.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="438.0" layoutY="316.0" prefHeight="17.0" prefWidth="122.0" text="Gerenciar Veículo">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="108.0" fitWidth="122.0" layoutX="164.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/clienteAdd.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="168.0" layoutY="569.0" text="Gerenciar Cliente">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                   <Separator orientation="VERTICAL" prefHeight="666.0" prefWidth="6.0" />

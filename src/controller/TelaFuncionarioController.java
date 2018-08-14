@@ -17,17 +17,17 @@ import model.Especificacoes;
 public class TelaFuncionarioController implements Initializable {
 
     @FXML
-    private Button insereCli;
+    private Button gerenciarCli;
     @FXML
-    private Button editaCli;
+    private Button gerenciarCarro;
     @FXML
-    private Button removeCli;
+    private TextField campoPesquisa;
     @FXML
-    private Button insereCarro;
+    private TableView<?> listaCli;
     @FXML
-    private Button removeCarro;
+    private TableColumn<?, ?> colunaNome;
     @FXML
-    private Button editaCarro;
+    private TableColumn<?, ?> colunaCPF;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -35,51 +35,18 @@ public class TelaFuncionarioController implements Initializable {
     }    
 
     @FXML
-    private void insereCli(ActionEvent event) throws Exception {
+    private void gerenciarCli(ActionEvent event) throws Exception {
         ChangeScreen change = new ChangeScreen();
 
-        Stage mainStage = change.change(event, Caminho.telaCadCli, Especificacoes.getSoftwareNome(), true);
+        Stage mainStage = change.change(event, Caminho.telaGerCli, Especificacoes.getSoftwareNome(), true);
         mainStage.show();
     }
 
     @FXML
-    private void editaCli(ActionEvent event) throws Exception {
+    private void gerenciarCarro(ActionEvent event) throws Exception {
         ChangeScreen change = new ChangeScreen();
 
-            Stage mainStage = change.change(event, Caminho.telaEditaCli, Especificacoes.getSoftwareNome(), true);
+            Stage mainStage = change.change(event, Caminho.telaGerCarro, Especificacoes.getSoftwareNome(), true);
             mainStage.show();
     }
-
-    @FXML
-    private void removeCli(ActionEvent event) throws Exception {
-        ChangeScreen change = new ChangeScreen();
-
-            Stage mainStage = change.change(event, Caminho.telaRemoveCli, Especificacoes.getSoftwareNome(), true);
-            mainStage.show();
-    }
-
-    @FXML
-    private void insereCarro(ActionEvent event) throws Exception {
-        ChangeScreen change = new ChangeScreen();
-
-            Stage mainStage = change.change(event, Caminho.telaCadCarro, Especificacoes.getSoftwareNome(), true);
-            mainStage.show();
-    }
-
-    @FXML
-    private void removeCarro(ActionEvent event) throws Exception {
-        ChangeScreen change = new ChangeScreen();
-
-            Stage mainStage = change.change(event, Caminho.telaRemoveCarro, Especificacoes.getSoftwareNome(), true);
-            mainStage.show();
-    }
-
-    @FXML
-    private void editaCarro(ActionEvent event) throws Exception {
-        ChangeScreen change = new ChangeScreen();
-
-            Stage mainStage = change.change(event, Caminho.telaCadCarro, Especificacoes.getSoftwareNome(), true);
-            mainStage.show();
-    }
-    
 }
