@@ -1,0 +1,70 @@
+/* ESTILOS PARA TELAS VARIÁVEIS */
+
+.menu-padrao {
+	
+	-fx-padding: 0;
+	-fx-background-color: #ffffff;
+	
+}
+
+.botao-voltar {
+	
+	-fx-padding: 10 15;
+	-fx-background-color: #ff3333;
+	-fx-background-radius: 20;
+	
+}
+
+.botao-seguir {
+	
+	-fx-padding: 10 15;
+	-fx-background-color: #33cc33;
+	-fx-background-radius: 20;
+	
+}
+
+
+/* ESTILOS DA TELA DE LOGIN */
+
+.alerta {
+	
+	-fx-color: rgb(255, 51, 51);
+	-fx-padding: 10 15;
+	-fx-border-color: rgb(255, 51, 51);
+	
+}
+
+
+/* ESTILOS DA TELA PRINCIPAL */
+
+.botao-principal {
+	
+	-fx-background-color: transparent;
+	-fx-background-radius: 0;
+	
+}
+
+.botao-principal:hover {
+	
+	-fx-background-color: rgb(210,210,210);
+	
+}
+
+/* ESTILOS TELA DE ALUNO OPÇÕES */
+
+.botao-pesquisa {
+	
+	-fx-background-color: rgb(50,72,231);
+	-fx-background-radius: 20;
+	
+}
+
+/* ESTILOS DA TELA DE ALUNOS CADASTROS */
+
+.proximo {
+	
+	-fx-padding: 10 15;
+	-fx-background-color: rgb(50,72,231);
+	-fx-background-radius: 40;
+	
+}
