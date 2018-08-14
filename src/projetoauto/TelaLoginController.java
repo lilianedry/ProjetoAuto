@@ -5,10 +5,6 @@
  */
 package projetoauto;
 
-/**
- *
- * @author lilia
- */
 public class TelaLoginController {
     
 }
