@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainController extends Application {
-//teste
     @Override
     public void start (Stage primaryStage) throws Exception
     {
