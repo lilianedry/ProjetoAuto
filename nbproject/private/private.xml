@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/model/entidades/Carro.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/model/entidades/Cliente.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/JDBC/HibernateUtil.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/JDBC/TesteJDBC.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/model/entidades/Pessoa.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/model/entidades/Funcionario.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
