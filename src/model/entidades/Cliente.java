@@ -20,7 +20,7 @@ public class Cliente extends Pessoa {
     private String cnh;
 
     public Cliente() {
-        
+
     }
 
     public Cliente(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, int numCasa,
