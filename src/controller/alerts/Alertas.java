@@ -1,4 +1,4 @@
-package controller.alertas;
+package controller.alerts;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -6,7 +6,7 @@ import javafx.scene.control.Alert.AlertType;
 public class Alertas {
 	public static void mostraAlertaInfo(String cabecalho, String conteudo) {
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Informação");
+		alert.setTitle("Informaï¿½ï¿½o");
 		alert.setHeaderText(cabecalho);
 		alert.setContentText(conteudo);
 
@@ -15,7 +15,7 @@ public class Alertas {
 
 	public static void mostraAlertaConf(String cabecalho, String conteudo) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmação");
+		alert.setTitle("Confirmaï¿½ï¿½o");
 		alert.setHeaderText(cabecalho);
 		alert.setContentText(conteudo);
 

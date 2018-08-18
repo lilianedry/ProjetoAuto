@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JDBC;
+package database;
 
 import java.io.File;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 /**
@@ -24,7 +25,8 @@ public class HibernateUtil {
             String path = System.getProperty("user.home");
             path += "\\hibernate.cfg.xml";
             File f = new File(path);
-            sessionFactory = new Configuration().configure(f).buildSessionFactory();
+            Configuration con = new Configuration().configure(f);
+            StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().applySettings(con.getProperties());            sessionFactory = con.buildSessionFactory(build.build());
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
             // config file.
         } catch (Throwable ex) {

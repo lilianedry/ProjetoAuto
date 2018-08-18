@@ -2,13 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/JDBC/HibernateUtil.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/JDBC/TesteJDBC.java</file>
+            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/database/DAOs/PessoaDAO.java</file>
+            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/database/DAOs/CarroDAO.java</file>
+            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/database/DAOs/FuncionarioDAO.java</file>
+            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/database/HibernateUtil.java</file>
+            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/database/DAOs/ClienteDAO.java</file>
         </group>
-=======
-        <group/>
->>>>>>> e62b75fd9209bbcad4f818814dbcd7f9e51b9f75
     </open-files>
 </project-private>
