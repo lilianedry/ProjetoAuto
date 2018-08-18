@@ -1,9 +1,8 @@
 package model.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +18,24 @@ public class Cliente extends Pessoa {
     @Column(name = "CNH")
     private String cnh;
 
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "Solicita",
+            joinColumns = {
+                @JoinColumn(name = "IDPessoa")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "IDCarro")}
+    )
+    private Collection<Carro> carros = new ArrayList<>();
+
+    public Collection<Carro> getCarros() {
+        return carros;
+    }
+
+    public void setCarros(Collection<Carro> carros) {
+        this.carros = carros;
+    }
+
     public Cliente() {
 
     }
@@ -28,16 +45,6 @@ public class Cliente extends Pessoa {
         super(nome, cpf, rg, sexo, dataNascimento, rua, numCasa, bairro, cidade, estado, telefone);
         this.cnh = cnh;
     }
-
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "SolicitaCarro",
-            joinColumns = {
-                @JoinColumn(name = "IDPessoaCliente")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "IDCarro")}
-    )
-    Set<Carro> Carros = new HashSet<>();
 
     public String getCnh() {
         return cnh;
