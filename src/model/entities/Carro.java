@@ -1,17 +1,17 @@
 package model.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import model.entities.relationships.SolicitaCarro;
 
 @Entity
 @Table(name = "Carro")
@@ -49,8 +49,8 @@ public class Carro implements Serializable {
     @Column(name = "Opcionais")
     private String opcionais;
 
-    @ManyToMany(mappedBy = "carros")
-    private Collection<Cliente> clientesSolicitantes = new ArrayList<>();
+    
+    private Collection<SolicitaCarro> solicitaCarro = new HashSet<>();
     
     @ManyToOne
     @JoinColumn(name = "IDPessoa")
@@ -73,12 +73,12 @@ public class Carro implements Serializable {
         this.opcionais = opcionais;
     }
 
-    public Collection<Cliente> getClientesSolicitantes() {
-        return clientesSolicitantes;
+    public Collection<SolicitaCarro> getSolicitaCarro() {
+        return solicitaCarro;
     }
 
-    public void setClientesSolicitantes(Collection<Cliente> clientesSolicitantes) {
-        this.clientesSolicitantes = clientesSolicitantes;
+    public void setSolicitaCarro(Collection<SolicitaCarro> solicitaCarro) {
+        this.solicitaCarro = solicitaCarro;
     }
 
     public Cliente getCliente() {

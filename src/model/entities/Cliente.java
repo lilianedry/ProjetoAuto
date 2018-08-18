@@ -3,15 +3,14 @@ package model.entities;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import model.entities.relationships.SolicitaCarro;
 
 @Entity
 @Table(name = "Cliente")
@@ -20,19 +19,13 @@ public class Cliente extends Pessoa {
     @Column(name = "CNH")
     private String cnh;
     
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "Solicita",
-            joinColumns = {
-                @JoinColumn(name = "IDPessoa")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "IDCarro")}
-    )
-    private Collection<Carro> carrosSolicitados = new ArrayList<>();
+    @OneToMany(mappedBy = "pk.Cliente", 
+               fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    private Collection<SolicitaCarro> solicitaCarro = new ArrayList<>();
 
     @OneToMany(mappedBy = "Cliente", targetEntity = Carro.class, 
                fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<Carro> carrosCedidos = new ArrayList<>();
+    private Collection<Carro> carrosCedidos = new HashSet<>();
 
     public Cliente() {
 
@@ -44,12 +37,12 @@ public class Cliente extends Pessoa {
         this.cnh = cnh;
     }
     
-    public Collection<Carro> getCarrosSolicitados() {
-        return carrosSolicitados;
+    public Collection<SolicitaCarro> getSolicitaCarro() {
+        return solicitaCarro;
     }
 
-    public void setCarrosSolicitados(Collection<Carro> carrosSolicitados) {
-        this.carrosSolicitados = carrosSolicitados;
+    public void setSolicitaCarro(Collection<SolicitaCarro> solicitaCarro) {
+        this.solicitaCarro = solicitaCarro;
     }
 
     public Collection<Carro> getCarrosCedidos() {
@@ -58,14 +51,6 @@ public class Cliente extends Pessoa {
 
     public void setCarrosCedidos(Collection<Carro> carrosCedidos) {
         this.carrosCedidos = carrosCedidos;
-    }
-
-    public Collection<Carro> getCarros() {
-        return carrosSolicitados;
-    }
-
-    public void setCarros(Collection<Carro> carrosSolicitados) {
-        this.carrosSolicitados = carrosSolicitados;
     }
 
     public String getCnh() {
