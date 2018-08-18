@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -47,6 +49,13 @@ public class Carro implements Serializable {
     @Column(name = "Opcionais")
     private String opcionais;
 
+    @ManyToMany(mappedBy = "carros")
+    private Collection<Cliente> clientesSolicitantes = new ArrayList<>();
+    
+    @ManyToOne
+    @JoinColumn(name = "IDPessoa")
+    private Cliente cliente;
+
     public Carro() {
 
     }
@@ -64,17 +73,22 @@ public class Carro implements Serializable {
         this.opcionais = opcionais;
     }
 
-    @ManyToMany(mappedBy = "carros")
-    private Collection<Cliente> clientes = new ArrayList<>();
+    public Collection<Cliente> getClientesSolicitantes() {
+        return clientesSolicitantes;
+    }
 
-    public Collection<Cliente> getClientes() {
-        return clientes;
+    public void setClientesSolicitantes(Collection<Cliente> clientesSolicitantes) {
+        this.clientesSolicitantes = clientesSolicitantes;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
-    public void setClientes(Collection<Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
     public String getPlaca() {
         return placa;
     }
