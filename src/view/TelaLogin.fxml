@@ -10,32 +10,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaLoginController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaLoginController">
   <children>
-      <AnchorPane prefHeight="566.0" prefWidth="413.0" style="-fx-background-color: #F5DEB3;">
+      <AnchorPane prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <AnchorPane layoutX="15.0" layoutY="175.0" prefHeight="374.0" prefWidth="381.0" style="-fx-background-color: #A52A2A;">
-               <children>
-                  <TextField fx:id="campoLogin" focusTraversable="false" layoutX="64.0" layoutY="131.0" prefHeight="27.0" prefWidth="254.0" promptText="Login" />
-                  <PasswordField fx:id="campoSenha" layoutX="64.0" layoutY="187.0" prefHeight="27.0" prefWidth="254.0" promptText="Senha" style="-fx-background-color: #FFF5EE;">
-                     <effect>
-                        <Reflection topOpacity="0.05" />
-                     </effect>
-                  </PasswordField>
-                  <Button defaultButton="true" layoutX="64.0" layoutY="272.0" mnemonicParsing="false" onAction="#cliqueBotaoEntrar" prefHeight="27.0" prefWidth="254.0" style="-fx-background-color: #FF6347;" text="Entrar" textAlignment="CENTER" textFill="WHITE" />
-                  <Label layoutX="158.0" layoutY="53.0" prefHeight="17.0" prefWidth="65.0" text="Sign in" textFill="#fcf7f7">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="mensagemErro" layoutX="64.0" layoutY="327.0" prefHeight="27.0" prefWidth="254.0" />
-               </children>
-            </AnchorPane>
-            <ImageView fitHeight="126.0" fitWidth="217.0" layoutX="98.0" layoutY="14.0" opacity="0.81">
+            <ImageView fitHeight="152.0" fitWidth="242.0" layoutX="29.0" layoutY="39.0" opacity="0.81">
                <image>
                   <Image url="@Images/Logo.png" />
                </image>
             </ImageView>
+            <AnchorPane cache="true" layoutX="25.0" layoutY="208.0" prefHeight="265.0" prefWidth="250.0" style="-fx-background-color: D81624;">
+               <children>
+                  <Label layoutX="94.0" layoutY="25.0" prefHeight="17.0" prefWidth="65.0" text="SIGN IN" textFill="#fcf7f7">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="campoLogin" focusTraversable="false" layoutX="10.0" layoutY="69.0" prefHeight="30.0" prefWidth="230.0" promptText="Login" />
+                  <PasswordField fx:id="campoSenha" layoutX="10.0" layoutY="115.0" prefHeight="30.0" prefWidth="230.0" promptText="Senha" style="-fx-background-color: #FFF5EE;">
+                     <effect>
+                        <Reflection topOpacity="0.05" />
+                     </effect>
+                  </PasswordField>
+                  <Button defaultButton="true" layoutX="10.0" layoutY="181.0" mnemonicParsing="false" onAction="#cliqueBotaoEntrar" prefHeight="30.0" prefWidth="230.0" style="-fx-background-color: #FFFFFF;" text="Entrar" textAlignment="CENTER" />
+                  <Label fx:id="mensagemErro" layoutX="10.0" layoutY="226.0" prefHeight="27.0" prefWidth="230.0" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
