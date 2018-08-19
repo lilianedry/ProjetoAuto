@@ -11,23 +11,16 @@ import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "Funcionario")
-@PrimaryKeyJoinColumn(name = "IDPessoa")
+@PrimaryKeyJoinColumn(name = "IDPessoa") //Herança Pessoa -> Funcionario
 public class Funcionario extends Pessoa implements Serializable {
-
-    @Column(name = "Cargo")
+    
     private String cargo;
-
-    @Column(name = "CargaHorSem")
     private byte cargaHorSem;
-
-    @Column(name = "Salario")
     private float salario;
-
-    @Column(name = "DataEntrada")
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataEntrada;
 
     public Funcionario() {
+        
     }
 
     public Funcionario(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, int numCasa,
@@ -40,6 +33,7 @@ public class Funcionario extends Pessoa implements Serializable {
         this.dataEntrada = dataEntrada;
     }
 
+    @Column(name = "Cargo")
     public String getCargo() {
         return cargo;
     }
@@ -48,6 +42,7 @@ public class Funcionario extends Pessoa implements Serializable {
         this.cargo = cargo;
     }
 
+    @Column(name = "CargaHorSem")
     public byte getCargaHorSem() {
         return cargaHorSem;
     }
@@ -56,6 +51,7 @@ public class Funcionario extends Pessoa implements Serializable {
         this.cargaHorSem = cargaHorSem;
     }
 
+    @Column(name = "Salario")
     public float getSalario() {
         return salario;
     }
@@ -64,6 +60,8 @@ public class Funcionario extends Pessoa implements Serializable {
         this.salario = salario;
     }
 
+    @Column(name = "DataEntrada")
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getDataEntrada() {
         return dataEntrada;
     }
@@ -74,7 +72,9 @@ public class Funcionario extends Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "Funcionario [idPessoaFunc=" + idPessoa + ", cargo=" + cargo + ", cargaHorSem=" + cargaHorSem
+        return "Funcionario [idPessoa=" + idPessoa + ", nome=" + getNome() + ", cpf=" + getCpf() + ", rg=" + getRg() + ", sexo=" + getSexo()
+                + ", dataNascimento=" + getDataNascimento() + ", rua=" + getRua() + ", numCasa=" + getNumCasa() + ", bairro=" + getBairro()
+                + ", cidade=" + getCidade() + ", estado=" + getEstado() + ", telefone=" + getTelefone() + ", cargo=" + cargo + ", cargaHorSem=" + cargaHorSem
                 + ", salario=" + salario + ", dataEntrada=" + dataEntrada + "]";
     }
 

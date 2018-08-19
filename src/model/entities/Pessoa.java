@@ -15,46 +15,20 @@ import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "Pessoa")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED) //Tabela própria para a super classe
 public abstract class Pessoa implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IDPessoa")
     protected int idPessoa;
-
-    @Column(name = "Nome")
     private String nome;
-
-    @Column(name = "CPF")
     private String cpf;
-
-    @Column(name = "RG")
     private String rg;
-
-    @Column(name = "Sexo")
     private String sexo;
-
-    @Column(name = "DataNasc")
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
-
-    @Column(name = "Rua")
     private String rua;
-
-    @Column(name = "NumCasa")
     private int numCasa;
-
-    @Column(name = "Bairro")
     private String bairro;
-
-    @Column(name = "Cidade")
     private String cidade;
-
-    @Column(name = "Estado")
     private String estado;
-
-    @Column(name = "Telefone")
     private String telefone;
 
     public Pessoa() {
@@ -75,6 +49,18 @@ public abstract class Pessoa implements Serializable {
         this.telefone = telefone;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IDPessoa")
+    public int getIdPessoa() {
+        return idPessoa;
+    }
+
+    public void setIdPessoa(int idPessoa) {
+        this.idPessoa = idPessoa;
+    }
+
+    @Column(name = "Nome")
     public String getNome() {
         return nome;
     }
@@ -83,6 +69,7 @@ public abstract class Pessoa implements Serializable {
         this.nome = nome;
     }
 
+    @Column(name = "CPF")
     public String getCpf() {
         return cpf;
     }
@@ -91,6 +78,7 @@ public abstract class Pessoa implements Serializable {
         this.cpf = cpf;
     }
 
+    @Column(name = "RG")
     public String getRg() {
         return rg;
     }
@@ -99,6 +87,7 @@ public abstract class Pessoa implements Serializable {
         this.rg = rg;
     }
 
+    @Column(name = "Sexo")
     public String getSexo() {
         return sexo;
     }
@@ -107,6 +96,8 @@ public abstract class Pessoa implements Serializable {
         this.sexo = sexo;
     }
 
+    @Column(name = "DataNasc")
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getDataNascimento() {
         return dataNascimento;
     }
@@ -115,6 +106,7 @@ public abstract class Pessoa implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
+    @Column(name = "Rua")
     public String getRua() {
         return rua;
     }
@@ -123,6 +115,7 @@ public abstract class Pessoa implements Serializable {
         this.rua = rua;
     }
 
+    @Column(name = "NumCasa")
     public int getNumCasa() {
         return numCasa;
     }
@@ -131,6 +124,7 @@ public abstract class Pessoa implements Serializable {
         this.numCasa = numCasa;
     }
 
+    @Column(name = "Bairro")
     public String getBairro() {
         return bairro;
     }
@@ -139,6 +133,7 @@ public abstract class Pessoa implements Serializable {
         this.bairro = bairro;
     }
 
+    @Column(name = "Cidade")
     public String getCidade() {
         return cidade;
     }
@@ -147,6 +142,7 @@ public abstract class Pessoa implements Serializable {
         this.cidade = cidade;
     }
 
+    @Column(name = "Estado")
     public String getEstado() {
         return estado;
     }
@@ -155,6 +151,7 @@ public abstract class Pessoa implements Serializable {
         this.estado = estado;
     }
 
+    @Column(name = "Telefone")
     public String getTelefone() {
         return telefone;
     }

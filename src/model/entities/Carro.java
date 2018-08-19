@@ -19,46 +19,18 @@ import model.entities.relationships.SolicitaCarro;
 @Table(name = "Carro")
 public class Carro implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCarro")
     private int idCarro;
-
-    @Column(name = "Placa")
     private String placa;
-
-    @Column(name = "TipoCambio")
     private byte tipoCambio;
-
-    @Column(name = "Modelo")
     private String modelo;
-
-    @Column(name = "Cor")
     private String cor;
-
-    @Column(name = "AnoModelo")
     private int anoModelo;
-
-    @Column(name = "Chassi")
     private String chassi;
-
-    @Column(name = "Combustivel")
     private String combustivel;
-
-    @Column(name = "Quilometragem")
     private double quilometragem;
-
-    @Column(name = "Opcionais")
     private String opcionais;
-    
-    //RELACINAMENTO N:N SolicitaCarro
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Carro")
-    private Collection<SolicitaCarro> solicitaCarro = new HashSet<>();
-    
-    //RELACIONAMENTO 1:N CedeCarro
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IDCliente", nullable = false)
-    private Cliente cliente;
+    private Collection<SolicitaCarro> solicitaCarro = new HashSet<>(); //RELACINAMENTO N:N SolicitaCarro
+    private Cliente cliente; //RELACIONAMENTO 1:N CedeCarro
 
     public Carro() {
 
@@ -77,6 +49,7 @@ public class Carro implements Serializable {
         this.opcionais = opcionais;
     }
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Carro")
     public Collection<SolicitaCarro> getSolicitaCarro() {
         return solicitaCarro;
     }
@@ -85,6 +58,8 @@ public class Carro implements Serializable {
         this.solicitaCarro = solicitaCarro;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IDCliente", nullable = false)
     public Cliente getCliente() {
         return cliente;
     }
@@ -92,7 +67,19 @@ public class Carro implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IDCarro")
+    public int getIdCarro() {
+        return idCarro;
+    }
+
+    public void setIdCarro(int idCarro) {
+        this.idCarro = idCarro;
+    }
+
+    @Column(name = "Placa")
     public String getPlaca() {
         return placa;
     }
@@ -101,6 +88,7 @@ public class Carro implements Serializable {
         this.placa = placa;
     }
 
+    @Column(name = "TipoCambio")
     public byte getTipoCambio() {
         return tipoCambio;
     }
@@ -109,6 +97,7 @@ public class Carro implements Serializable {
         this.tipoCambio = tipoCambio;
     }
 
+    @Column(name = "Modelo")
     public String getModelo() {
         return modelo;
     }
@@ -117,6 +106,7 @@ public class Carro implements Serializable {
         this.modelo = modelo;
     }
 
+    @Column(name = "Cor")
     public String getCor() {
         return cor;
     }
@@ -125,6 +115,7 @@ public class Carro implements Serializable {
         this.cor = cor;
     }
 
+    @Column(name = "AnoModelo")
     public int getAnoModelo() {
         return anoModelo;
     }
@@ -133,6 +124,7 @@ public class Carro implements Serializable {
         this.anoModelo = anoModelo;
     }
 
+    @Column(name = "Chassi")
     public String getChassi() {
         return chassi;
     }
@@ -141,6 +133,7 @@ public class Carro implements Serializable {
         this.chassi = chassi;
     }
 
+    @Column(name = "Combustivel")
     public String getCombustivel() {
         return combustivel;
     }
@@ -149,6 +142,7 @@ public class Carro implements Serializable {
         this.combustivel = combustivel;
     }
 
+    @Column(name = "Quilometragem")
     public double getQuilometragem() {
         return quilometragem;
     }
@@ -157,6 +151,7 @@ public class Carro implements Serializable {
         this.quilometragem = quilometragem;
     }
 
+    @Column(name = "Opcionais")
     public String getOpcionais() {
         return opcionais;
     }
