@@ -26,10 +26,10 @@ import model.entities.Pessoa;
 @Entity
 @Table(name = "SolicitaCarro")
 @AssociationOverrides({
-    @AssociationOverride(name = "pk.Cliente",
+    @AssociationOverride(name = "Cliente",
             joinColumns = @JoinColumn(name = "IDPessoa"))
     ,
-		@AssociationOverride(name = "pk.Carro",
+		@AssociationOverride(name = "Carro",
             joinColumns = @JoinColumn(name = "IDCarro"))})
 public class SolicitaCarro implements java.io.Serializable {
 

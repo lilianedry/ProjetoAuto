@@ -5,11 +5,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "Funcionario")
+@PrimaryKeyJoinColumn(name = "IDPessoa")
 public class Funcionario extends Pessoa implements Serializable {
 
     @Column(name = "Cargo")

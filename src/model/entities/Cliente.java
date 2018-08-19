@@ -9,20 +9,24 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import model.entities.relationships.SolicitaCarro;
 
 @Entity
 @Table(name = "Cliente")
+@PrimaryKeyJoinColumn(name = "IDPessoa")
 public class Cliente extends Pessoa {
 
     @Column(name = "CNH")
     private String cnh;
     
-    @OneToMany(mappedBy = "pk.Cliente", 
+    //RELACIONAMENTO N:N SolicitaCarro
+    @OneToMany(mappedBy = "Cliente", 
                fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private Collection<SolicitaCarro> solicitaCarro = new ArrayList<>();
 
+    //RELACIONAMENTO 1:N CedeCarro
     @OneToMany(mappedBy = "Cliente", targetEntity = Carro.class, 
                fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Carro> carrosCedidos = new HashSet<>();

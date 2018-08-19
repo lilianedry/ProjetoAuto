@@ -5,11 +5,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import model.entities.relationships.SolicitaCarro;
 
@@ -48,12 +50,14 @@ public class Carro implements Serializable {
 
     @Column(name = "Opcionais")
     private String opcionais;
-
     
+    //RELACINAMENTO N:N SolicitaCarro
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Carro")
     private Collection<SolicitaCarro> solicitaCarro = new HashSet<>();
     
-    @ManyToOne
-    @JoinColumn(name = "IDPessoa")
+    //RELACIONAMENTO 1:N CedeCarro
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IDCliente", nullable = false)
     private Cliente cliente;
 
     public Carro() {
