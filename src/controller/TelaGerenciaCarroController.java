@@ -20,11 +20,11 @@ public class TelaGerenciaCarroController {
     @FXML
     private TextField campoPesquisa;
     @FXML
-    private TableView<?> listaAlunos;
+    private TableColumn<?, ?> colunaModelo;
     @FXML
-    private TableColumn<?, ?> colunaNome;
+    private TableColumn<?, ?> colunaPlaca;
     @FXML
-    private TableColumn<?, ?> colunaCPF;
+    private TableView<?> listaVeiculos;
 
     @FXML
     private void insereCarro(ActionEvent event) {

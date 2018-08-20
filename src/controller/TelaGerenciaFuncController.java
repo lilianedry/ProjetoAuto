@@ -19,31 +19,27 @@ import javafx.stage.Stage;
 public class TelaGerenciaFuncController implements Initializable {
    
     @FXML
-    private Button salvaFunc;
-    @FXML
     private Button editaFunc;
     @FXML
     private Button removeFunc;
     @FXML
-    private Button Voltar;
-    @FXML
     private TextField campoPesquisa;
-    @FXML
-    private TableView<?> listaAlunos;
     @FXML
     private TableColumn<?, ?> colunaNome;
     @FXML
     private TableColumn<?, ?> colunaCPF;
+    @FXML
+    private Button insereFunc;
+    @FXML
+    private Button voltar;
+    @FXML
+    private TableView<?> listaFunc;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void salvaFunc(ActionEvent event) {
-    }
-
+    
     @FXML
     private void editaFunc(ActionEvent event) {
     }
@@ -51,9 +47,13 @@ public class TelaGerenciaFuncController implements Initializable {
     @FXML
     private void removeFunc(ActionEvent event) {
     }
-    
+ 
     @FXML
-    private void voltarTela(ActionEvent event) {
+    private void insereFunc(ActionEvent event) {
+    }
+
+    @FXML
+    private void voltar(ActionEvent event) {
         System.out.println("Voltando de Cadastro para Login");
         Stage stage = new Stage();  
             try{
@@ -65,7 +65,7 @@ public class TelaGerenciaFuncController implements Initializable {
             }catch(IOException e){
                 e.printStackTrace();
             }finally{
-                stage = (Stage) Voltar.getScene().getWindow();
+                stage = (Stage) voltar.getScene().getWindow();
                 stage.close(); //fecha a pagina atual antes de sair
             }
     }

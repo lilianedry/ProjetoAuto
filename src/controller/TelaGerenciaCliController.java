@@ -20,8 +20,6 @@ public class TelaGerenciaCliController implements Initializable {
     @FXML
     private TextField campoPesquisa;
     @FXML
-    private TableView<?> listaAlunos;
-    @FXML
     private TableColumn<?, ?> colunaNome;
     @FXML
     private TableColumn<?, ?> colunaCPF;
@@ -33,6 +31,8 @@ public class TelaGerenciaCliController implements Initializable {
     private Button removeCli;
     @FXML
     private Button insereCli;
+    @FXML
+    private TableView<?> listaClientes;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

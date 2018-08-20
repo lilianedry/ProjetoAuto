@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
@@ -20,8 +19,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1060.0" prefHeight="690.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaGerenciaFuncController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1060.0" prefHeight="690.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaGerenciaFuncController">
    <children>
       <HBox prefHeight="25.0" prefWidth="1202.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
          <children>
@@ -60,101 +60,87 @@
                <children>
                   <Pane minWidth="300.0" prefHeight="666.0" prefWidth="321.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label layoutX="274.0" layoutY="357.0" text="Estado" />
-                        <Label layoutX="55.0" layoutY="121.0" text="RG" />
-                        <Label layoutX="283.0" layoutY="121.0" text="CPF" />
-                        <Label layoutX="279.0" layoutY="166.0" text="Sexo" />
+                        <Label layoutX="300.0" layoutY="429.0" text="Estado:" />
+                        <Label layoutX="78.0" layoutY="193.0" text="RG:" />
+                        <Label layoutX="311.0" layoutY="193.0" text="CPF:" />
+                        <Label layoutX="302.0" layoutY="238.0" text="Sexo:" />
                         <Label layoutX="55.0" layoutY="197.0" />
-                        <Label layoutX="54.0" layoutY="165.0" text="Telefone" />
-                        <RadioButton layoutX="313.0" layoutY="165.0" mnemonicParsing="false" text="Masculino" />
-                        <RadioButton layoutX="394.0" layoutY="165.0" mnemonicParsing="false" text="Feminino" />
-                        <Label layoutX="50.0" layoutY="204.0" text="Data Nasc" />
-                        <TextField layoutX="107.0" layoutY="77.0" prefHeight="25.0" prefWidth="357.0" />
-                        <TextField layoutX="107.0" layoutY="117.0" />
-                        <TextField layoutX="315.0" layoutY="117.0" />
-                        <TextField layoutX="108.0" layoutY="161.0" prefHeight="25.0" prefWidth="149.0" />
-                        <Label layoutX="53.0" layoutY="279.0" text="Rua" />
-                        <Label layoutX="49.0" layoutY="356.0" text="Cidade" />
-                        <TextField layoutX="107.0" layoutY="275.0" minWidth="190.0" prefHeight="25.0" prefWidth="260.0" />
-                        <TextField layoutX="394.0" layoutY="275.0" prefHeight="25.0" prefWidth="70.0" />
-                        <Label layoutX="374.0" layoutY="279.0" text="Nº" />
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="515.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+                        <Label layoutX="77.0" layoutY="237.0" text="Telefone:" />
+                        <RadioButton layoutX="338.0" layoutY="237.0" mnemonicParsing="false" text="Masculino" />
+                        <RadioButton layoutX="417.0" layoutY="237.0" mnemonicParsing="false" text="Feminino" />
+                        <Label layoutX="75.0" layoutY="276.0" text="Data Nasc.:" />
+                        <TextField layoutX="135.0" layoutY="149.0" prefHeight="25.0" prefWidth="357.0" promptText="Maria da Silva" />
+                        <TextField layoutX="135.0" layoutY="189.0" promptText="000.000.000" />
+                        <TextField layoutX="342.0" layoutY="188.0" promptText="000.000.000-00" />
+                        <TextField layoutX="136.0" layoutY="233.0" prefHeight="25.0" prefWidth="149.0" promptText="(99) 99999-9999" />
+                        <Label layoutX="76.0" layoutY="351.0" text="Rua:" />
+                        <Label layoutX="76.0" layoutY="428.0" text="Cidade:" />
+                        <TextField layoutX="135.0" layoutY="347.0" minWidth="190.0" prefHeight="25.0" prefWidth="258.0" promptText="Rua dos Bobos" />
+                        <TextField layoutX="421.0" layoutY="346.0" prefHeight="25.0" prefWidth="70.0" promptText="0" />
+                        <Label layoutX="403.0" layoutY="351.0" text="Nº:" />
+                        <ImageView fitHeight="123.0" fitWidth="164.0" layoutX="532.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/cliente.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="55.0" layoutY="81.0" text="Nome" />
-                        <MenuButton layoutX="108.0" layoutY="351.0" minWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Cidades">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
-                        <MenuButton layoutX="315.0" layoutY="352.0" minWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Estados">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Action 1" />
-                              <MenuItem mnemonicParsing="false" text="Action 2" />
-                           </items>
-                        </MenuButton>
-                        <Button layoutX="507.0" layoutY="228.0" minWidth="80.0" mnemonicParsing="false" text="Editar" />
-                        <Button layoutX="601.0" layoutY="228.0" minWidth="80.0" mnemonicParsing="false" text="Remover" />
-                        <Label layoutX="52.0" layoutY="245.0" text="Email" />
-                        <TextField layoutX="108.0" layoutY="241.0" prefHeight="25.0" prefWidth="357.0" />
-                        <Button fx:id="salvaFunc" alignment="CENTER" layoutX="50.0" layoutY="531.0" minWidth="96.0" mnemonicParsing="false" onAction="#salvaFunc" prefHeight="25.0" prefWidth="96.0">
-                           <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/salvar.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <DatePicker layoutX="108.0" layoutY="202.0" prefHeight="25.0" prefWidth="149.0" />
+                        <Label layoutX="78.0" layoutY="153.0" text="Nome:" />
+                        <Button layoutX="521.0" layoutY="272.0" minWidth="70.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="70.0" text="Editar" />
+                        <Button layoutX="614.0" layoutY="273.0" minWidth="70.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="70.0" text="Remover" />
+                        <Label layoutX="75.0" layoutY="317.0" text="Email:" />
+                        <TextField layoutX="136.0" layoutY="313.0" prefHeight="25.0" prefWidth="357.0" promptText="exemplo@hotmail.com" />
+                        <DatePicker layoutX="135.0" layoutY="274.0" prefHeight="25.0" prefWidth="149.0" promptText="00/00/0000" />
                         <Separator layoutX="699.0" layoutY="1.0" orientation="VERTICAL" prefHeight="666.0" prefWidth="16.0" />
-                        <Label layoutX="51.0" layoutY="316.0" text="Bairro" />
-                        <TextField layoutX="108.0" layoutY="312.0" prefHeight="25.0" prefWidth="357.0" />
-                        <TextField layoutX="107.0" layoutY="386.0" />
-                        <TextField layoutX="315.0" layoutY="386.0" />
-                        <DatePicker layoutX="140.0" layoutY="424.0" prefHeight="25.0" prefWidth="150.0" />
-                        <TextField layoutX="140.0" layoutY="460.0" />
-                        <Label layoutX="49.0" layoutY="390.0" text="Cargo" />
-                        <Label layoutX="275.0" layoutY="390.0" text="Salario" />
-                        <Label layoutX="49.0" layoutY="428.0" text="Data de Entrada" />
-                        <Label layoutX="49.0" layoutY="462.0" text="CarHor Semanal" />
-                        <Button fx:id="Voltar" layoutX="417.0" layoutY="531.0" mnemonicParsing="false" onAction="#voltarTela" prefHeight="25.0" prefWidth="96.0">
-                           <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/voltar.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="editaFunc" layoutX="174.0" layoutY="531.0" mnemonicParsing="false" onAction="#editaFunc" prefHeight="25.0" prefWidth="96.0">
-                           <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/edit-validated_40458.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="removeFunc" layoutX="298.0" layoutY="531.0" mnemonicParsing="false" onAction="#removeFunc" prefHeight="25.0" prefWidth="96.0">
-                           <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/excluir.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Label layoutX="76.0" layoutY="596.0" text="Salvar" />
-                        <Label layoutX="207.0" layoutY="596.0" text="Editar" />
-                        <Label layoutX="329.0" layoutY="596.0" text="Excluir" />
-                        <Label layoutX="450.0" layoutY="596.0" text="Voltar" />
+                        <Label layoutX="75.0" layoutY="388.0" text="Bairro:" />
+                        <TextField layoutX="136.0" layoutY="384.0" prefHeight="25.0" prefWidth="357.0" promptText="Bairro do chico" />
+                        <TextField layoutX="135.0" layoutY="458.0" promptText="Administração" />
+                        <TextField layoutX="344.0" layoutY="457.0" promptText="0.000,00" />
+                        <DatePicker layoutX="140.0" layoutY="497.0" prefHeight="25.0" prefWidth="142.0" promptText="00/00/0000" />
+                        <TextField layoutX="392.0" layoutY="273.0" prefHeight="25.0" prefWidth="98.0" promptText="horas..." />
+                        <Label layoutX="76.0" layoutY="462.0" text="Cargo:" />
+                        <Label layoutX="301.0" layoutY="462.0" text="Salário:" />
+                        <Label layoutX="76.0" layoutY="500.0" text="Data Entra.:" />
+                        <Label layoutX="299.0" layoutY="276.0" text="CarHor Semanal:" />
+                        <Button fx:id="insereFunc" alignment="CENTER" contentDisplay="CENTER" layoutX="77.0" layoutY="564.0" minWidth="79.0" mnemonicParsing="false" onAction="#insereFunc" prefHeight="25.0" prefWidth="98.0" text="      Salvar" textAlignment="CENTER" />
+                        <Button fx:id="voltar" alignment="CENTER" layoutX="488.0" layoutY="564.0" minWidth="90.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="98.0" text="    Voltar" />
+                        <Button fx:id="editaFunc" alignment="CENTER" layoutX="217.0" layoutY="564.0" mnemonicParsing="false" onAction="#editaFunc" prefHeight="25.0" prefWidth="98.0" text="    Editar" textAlignment="CENTER" />
+                        <Button fx:id="removeFunc" alignment="CENTER" layoutX="355.0" layoutY="564.0" mnemonicParsing="false" onAction="#removeFunc" prefHeight="25.0" prefWidth="98.0" text="      Excluir" />
+                        <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="87.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/salvar.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="366.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/excluir.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="494.0" layoutY="565.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@Images/voltar.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="222.0" layoutY="565.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@Images/edit-validated_40458.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" layoutX="280.0" layoutY="88.0" mnemonicParsing="true" text="Cadastrar Funcionários" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <effect>
+                              <ColorAdjust />
+                           </effect>
+                        </Label>
+                        <TextField layoutX="136.0" layoutY="424.0" promptText="Alexandria" />
+                        <TextField layoutX="343.0" layoutY="423.0" promptText="AA" />
                      </children>
                   </Pane>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="106.0">
                            <children>
-                              <TextField fx:id="campoPesquisa" prefHeight="30.0" prefWidth="371.0" text="Pesquisar cliente..." HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="campoPesquisa" prefHeight="30.0" prefWidth="371.0" promptText="Pesquisar funcionário..." HBox.hgrow="ALWAYS" />
                               <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="38.0">
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -171,7 +157,7 @@
                               <Insets bottom="25.0" top="25.0" />
                            </VBox.margin>
                         </HBox>
-                        <TableView fx:id="listaAlunos" prefHeight="492.0" prefWidth="440.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="listaFunc" prefHeight="492.0" prefWidth="440.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="colunaNome" editable="false" prefWidth="75.0" text="Nome" />
                             <TableColumn fx:id="colunaCPF" editable="false" prefWidth="75.0" sortable="false" text="CPF" />

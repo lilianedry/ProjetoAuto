@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1060.0" prefHeight="690.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaGerenteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1060.0" prefHeight="690.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaGerenteController">
    <children>
       <HBox prefHeight="25.0" prefWidth="1202.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
          <children>
@@ -26,26 +26,20 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Clientes">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Cadastrar cliente" />
-                        <MenuItem mnemonicParsing="false" text="Editar cliente" />
-                        <MenuItem mnemonicParsing="false" text="Remover cliente" />
+                        <MenuItem mnemonicParsing="false" text="Gerenciar Clientes" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Funcionarios">
+                  <Menu mnemonicParsing="false" text="Funcionários">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Cadastrar funcionario" />
-                        <MenuItem mnemonicParsing="false" text="Editar funcionario" />
-                        <MenuItem mnemonicParsing="false" text="Remover funcionario" />
+                        <MenuItem mnemonicParsing="false" text="Gerenciar Funcionários" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Veiculos">
+                  <Menu mnemonicParsing="false" text="Veículos">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Cadastrar veiculo" />
-                        <MenuItem mnemonicParsing="false" text="Editar veiculo" />
-                        <MenuItem mnemonicParsing="false" text="Remover veiculo" />
+                        <MenuItem mnemonicParsing="false" text="Gerenciar Veículos" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Relatorio">
+                  <Menu mnemonicParsing="false" text="Relatório">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Gerar Relatorio" />
                         <MenuItem mnemonicParsing="false" text="Relatorios cadastrados" />
