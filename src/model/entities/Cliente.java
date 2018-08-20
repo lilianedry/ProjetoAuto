@@ -1,10 +1,10 @@
 package model.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,14 +15,14 @@ import javax.persistence.Table;
 import model.entities.relationships.SolicitaCarro;
 
 @Entity
-@Table(name = "Cliente")
-@PrimaryKeyJoinColumn(name = "IDPessoa") //Herança: Pessoa -> Cliente
+@Table(name = "cliente")
+@PrimaryKeyJoinColumn(name = "idPessoa") //Herança: Pessoa -> Cliente
 public class Cliente extends Pessoa implements Serializable {
 
     private String cnh;
-    private Collection<SolicitaCarro> solicitaCarro = new ArrayList<>(); //RELACIONAMENTO N:N SolicitaCarro
-    private Collection<Carro> carrosCedidos = new HashSet<>(); //RELACIONAMENTO 1:N CedeCarro
-//02:39
+    private Set<SolicitaCarro> solicitaCarro = new HashSet<>(0); //RELACIONAMENTO N:N SolicitaCarro
+    private Set<Carro> carrosCedidos = new HashSet<>(0); //RELACIONAMENTO 1:N CedeCarro
+
     public Cliente() {
 
     }
@@ -33,29 +33,29 @@ public class Cliente extends Pessoa implements Serializable {
         this.cnh = cnh;
     }
     //SolicitaCarro
-    @OneToMany(mappedBy = "Cliente", targetEntity = Carro.class, 
+    @OneToMany(mappedBy = "pk.cliente", 
                fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public Collection<SolicitaCarro> getSolicitaCarro() {
+    public Set<SolicitaCarro> getSolicitaCarro() {
         return solicitaCarro;
     }
 
-    public void setSolicitaCarro(Collection<SolicitaCarro> solicitaCarro) {
+    public void setSolicitaCarro(Set<SolicitaCarro> solicitaCarro) {
         this.solicitaCarro = solicitaCarro;
     }
     //SolicitaCarro
     //CedeCarro
-    @OneToMany(mappedBy = "Cliente", 
-               fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    public Collection<Carro> getCarrosCedidos() {
+    @OneToMany(mappedBy = "cliente", 
+               fetch = FetchType.LAZY)
+    public Set<Carro> getCarrosCedidos() {
         return carrosCedidos;
     }
 
-    public void setCarrosCedidos(Collection<Carro> carrosCedidos) {
+    public void setCarrosCedidos(Set<Carro> carrosCedidos) {
         this.carrosCedidos = carrosCedidos;
     }
     //CedeCarro
     
-    @Column(name = "CNH")
+    @Column(name = "cnh")
     public String getCnh() {
         return cnh;
     }

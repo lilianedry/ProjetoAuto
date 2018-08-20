@@ -10,8 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
-@Table(name = "Funcionario")
-@PrimaryKeyJoinColumn(name = "IDPessoa") //Herança Pessoa -> Funcionario
+@Table(name = "funcionario")
+@PrimaryKeyJoinColumn(name = "idPessoa") //Herança Pessoa -> Funcionario
 public class Funcionario extends Pessoa implements Serializable {
     
     private String cargo;
@@ -33,7 +33,7 @@ public class Funcionario extends Pessoa implements Serializable {
         this.dataEntrada = dataEntrada;
     }
 
-    @Column(name = "Cargo")
+    @Column(name = "cargo")
     public String getCargo() {
         return cargo;
     }
@@ -42,7 +42,7 @@ public class Funcionario extends Pessoa implements Serializable {
         this.cargo = cargo;
     }
 
-    @Column(name = "CargaHorSem")
+    @Column(name = "cargaHorSem")
     public byte getCargaHorSem() {
         return cargaHorSem;
     }
@@ -51,7 +51,7 @@ public class Funcionario extends Pessoa implements Serializable {
         this.cargaHorSem = cargaHorSem;
     }
 
-    @Column(name = "Salario")
+    @Column(name = "salario")
     public float getSalario() {
         return salario;
     }
@@ -60,7 +60,7 @@ public class Funcionario extends Pessoa implements Serializable {
         this.salario = salario;
     }
 
-    @Column(name = "DataEntrada")
+    @Column(name = "dataEntrada")
     @Temporal(javax.persistence.TemporalType.DATE)
     public Date getDataEntrada() {
         return dataEntrada;

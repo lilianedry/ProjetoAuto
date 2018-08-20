@@ -1,8 +1,8 @@
 package model.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import model.entities.relationships.SolicitaCarro;
 
 @Entity
-@Table(name = "Carro")
+@Table(name = "carro")
 public class Carro implements Serializable {
 
     private int idCarro;
@@ -29,7 +29,7 @@ public class Carro implements Serializable {
     private String combustivel;
     private double quilometragem;
     private String opcionais;
-    private Collection<SolicitaCarro> solicitaCarro = new HashSet<>(); //RELACINAMENTO N:N SolicitaCarro
+    private Set<SolicitaCarro> solicitaCarro = new HashSet<>(0); //RELACINAMENTO N:N SolicitaCarro
     private Cliente cliente; //RELACIONAMENTO 1:N CedeCarro
 
     public Carro() {
@@ -49,17 +49,17 @@ public class Carro implements Serializable {
         this.opcionais = opcionais;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Carro")
-    public Collection<SolicitaCarro> getSolicitaCarro() {
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.carro")
+    public Set<SolicitaCarro> getSolicitaCarro() {
         return solicitaCarro;
     }
 
-    public void setSolicitaCarro(Collection<SolicitaCarro> solicitaCarro) {
+    public void setSolicitaCarro(Set<SolicitaCarro> solicitaCarro) {
         this.solicitaCarro = solicitaCarro;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IDCliente", nullable = false)
+    @JoinColumn(name = "idCliente")
     public Cliente getCliente() {
         return cliente;
     }
@@ -70,7 +70,7 @@ public class Carro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IDCarro")
+    @Column(name = "idCarro", unique = true, nullable = false)
     public int getIdCarro() {
         return idCarro;
     }
@@ -79,7 +79,7 @@ public class Carro implements Serializable {
         this.idCarro = idCarro;
     }
 
-    @Column(name = "Placa")
+    @Column(name = "placa")
     public String getPlaca() {
         return placa;
     }
@@ -88,7 +88,7 @@ public class Carro implements Serializable {
         this.placa = placa;
     }
 
-    @Column(name = "TipoCambio")
+    @Column(name = "tipoCambio")
     public byte getTipoCambio() {
         return tipoCambio;
     }
@@ -97,7 +97,7 @@ public class Carro implements Serializable {
         this.tipoCambio = tipoCambio;
     }
 
-    @Column(name = "Modelo")
+    @Column(name = "modelo")
     public String getModelo() {
         return modelo;
     }
@@ -106,7 +106,7 @@ public class Carro implements Serializable {
         this.modelo = modelo;
     }
 
-    @Column(name = "Cor")
+    @Column(name = "cor")
     public String getCor() {
         return cor;
     }
@@ -115,7 +115,7 @@ public class Carro implements Serializable {
         this.cor = cor;
     }
 
-    @Column(name = "AnoModelo")
+    @Column(name = "anoModelo")
     public int getAnoModelo() {
         return anoModelo;
     }
@@ -124,7 +124,7 @@ public class Carro implements Serializable {
         this.anoModelo = anoModelo;
     }
 
-    @Column(name = "Chassi")
+    @Column(name = "chassi")
     public String getChassi() {
         return chassi;
     }
@@ -133,7 +133,7 @@ public class Carro implements Serializable {
         this.chassi = chassi;
     }
 
-    @Column(name = "Combustivel")
+    @Column(name = "combustivel")
     public String getCombustivel() {
         return combustivel;
     }
@@ -142,7 +142,7 @@ public class Carro implements Serializable {
         this.combustivel = combustivel;
     }
 
-    @Column(name = "Quilometragem")
+    @Column(name = "quilometragem")
     public double getQuilometragem() {
         return quilometragem;
     }
@@ -151,7 +151,7 @@ public class Carro implements Serializable {
         this.quilometragem = quilometragem;
     }
 
-    @Column(name = "Opcionais")
+    @Column(name = "opcionais")
     public String getOpcionais() {
         return opcionais;
     }

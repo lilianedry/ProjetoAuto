@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import model.entities.Carro;
+import model.entities.Cliente;
 import model.entities.Pessoa;
 
 /**
@@ -24,13 +25,12 @@ import model.entities.Pessoa;
  * @author Enigma
  */
 @Entity
-@Table(name = "SolicitaCarro")
+@Table(name = "solicitaCarro")
 @AssociationOverrides({
-    @AssociationOverride(name = "Cliente",
-            joinColumns = @JoinColumn(name = "IDPessoa"))
-    ,
-		@AssociationOverride(name = "Carro",
-            joinColumns = @JoinColumn(name = "IDCarro"))})
+        @AssociationOverride(name = "pk.cliente",
+            joinColumns = @JoinColumn(name = "idPessoa")),
+        @AssociationOverride(name = "pk.carro",
+            joinColumns = @JoinColumn(name = "idCarro"))})
 public class SolicitaCarro implements java.io.Serializable {
 
     private SolicitaCarroId pk = new SolicitaCarroId();
@@ -49,12 +49,12 @@ public class SolicitaCarro implements java.io.Serializable {
     }
 
     @Transient
-    public Pessoa getPessoa() {
-        return getPk().getPessoa();
+    public Pessoa getCliente() {
+        return getPk().getCliente();
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        getPk().setPessoa(pessoa);
+    public void setCliente(Cliente cliente) {
+        getPk().setCliente(cliente);
     }
 
     @Transient
