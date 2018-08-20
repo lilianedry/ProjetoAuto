@@ -62,7 +62,8 @@ public class TelaGerenteController implements Initializable {
     @FXML
     private void gerenciaCarro(ActionEvent event) throws Exception {
         ChangeScreen change = new ChangeScreen();
-
+        TelaGerenciaCarroController car = new TelaGerenciaCarroController();
+        car.setJanela(true);
         Stage mainStage = change.change(event, Caminho.telaGerCarro, Especificacoes.getSoftwareNome(), true);
         mainStage.show();
     }
@@ -70,7 +71,8 @@ public class TelaGerenteController implements Initializable {
     @FXML
     private void gerenciaCli(ActionEvent event) throws Exception {
         ChangeScreen change = new ChangeScreen();
-
+        TelaGerenciaCliController cli = new  TelaGerenciaCliController();
+        cli.setJanela(true);
         Stage mainStage = change.change(event, Caminho.telaGerCli, Especificacoes.getSoftwareNome(), true);
         mainStage.show();
     }
