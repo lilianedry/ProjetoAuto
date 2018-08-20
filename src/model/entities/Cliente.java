@@ -22,7 +22,7 @@ public class Cliente extends Pessoa implements Serializable {
     private String cnh;
     private Collection<SolicitaCarro> solicitaCarro = new ArrayList<>(); //RELACIONAMENTO N:N SolicitaCarro
     private Collection<Carro> carrosCedidos = new HashSet<>(); //RELACIONAMENTO 1:N CedeCarro
-
+//02:39
     public Cliente() {
 
     }
