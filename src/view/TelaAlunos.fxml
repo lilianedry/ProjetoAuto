@@ -53,13 +53,13 @@
                <children>
                   <Pane minWidth="300.0" prefHeight="477.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button layoutX="182.0" layoutY="138.0" mnemonicParsing="false" onAction="#cliqueAlunosCadastro" prefHeight="390.0" prefWidth="331.0" styleClass="botao-principal" />
+                        <Button layoutX="182.0" layoutY="334.0" mnemonicParsing="false" onAction="#cliqueAlunosCadastro" prefHeight="194.0" prefWidth="203.0" styleClass="botao-principal" />
                         <ImageView disable="true" fitHeight="181.0" fitWidth="152.0" layoutX="269.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@image/icons/Aluno_Add.png" />
                            </image>
                         </ImageView>
-                        <Text disable="true" fill="#505050" layoutX="216.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADICIONAR ALUNO" textAlignment="CENTER">
+                        <Text disable="true" fill="#505050" layoutX="225.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADICIONAR ALUNO" textAlignment="CENTER" wrappingWidth="117.19921875">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
