@@ -7,11 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-//testando
+
 public class MainController extends Application {
     @Override
-    public void start (Stage primaryStage) throws Exception
-    {
+    public void start (Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource(Caminho.telaLogin));
 
         Scene scene = new Scene(root);
@@ -24,8 +23,7 @@ public class MainController extends Application {
 
     }
 
-    public static void main (String[] args)
-    {
+    public static void main (String[] args){
         launch(args);
     }
 }
