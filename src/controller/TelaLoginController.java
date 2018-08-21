@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
@@ -49,5 +50,13 @@ public class TelaLoginController implements Initializable {
             mensagemErro.setText("Login e/ou senha inválido(s)");
         }
     }
+
+    /*@FXML
+    private void sair(ActionEvent event) {
+          get a handle to the stage
+        Stage stage = (Stage) sair.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }*/
     
 }

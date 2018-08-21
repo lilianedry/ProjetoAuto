@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainController extends Application {
     @Override
@@ -15,10 +16,12 @@ public class MainController extends Application {
 
         Scene scene = new Scene(root);
 
+        primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.setTitle(Especificacoes.getSoftwareNome());
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
+        primaryStage.sizeToScene(); 
         primaryStage.show();
 
     }
