@@ -18,16 +18,16 @@ public class Funcionario extends Pessoa implements Serializable {
     private String login;
     private String senha;
     private String cargo;
-    private byte cargaHorSem;
-    private float salario;
+    private String cargaHorSem;
+    private String salario;
     private Date dataEntrada;
 
     public Funcionario() {
         
     }
 
-    public Funcionario(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, int numCasa,
-            String bairro, String cidade, String estado, String telefone, String cargo, byte cargaHorSem, float salario,
+    public Funcionario(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, String numCasa,
+            String bairro, String cidade, String estado, String telefone, String cargo, String cargaHorSem, String salario,
             Date dataEntrada) {
         super(nome, cpf, rg, sexo, dataNascimento, rua, numCasa, bairro, cidade, estado, telefone);
         this.cargo = cargo;
@@ -61,20 +61,20 @@ public class Funcionario extends Pessoa implements Serializable {
     }
 
     @Column(name = "cargaHorSem")
-    public byte getCargaHorSem() {
+    public String getCargaHorSem() {
         return cargaHorSem;
     }
 
-    public void setCargaHorSem(byte cargaHorSem) {
+    public void setCargaHorSem(String cargaHorSem) {
         this.cargaHorSem = cargaHorSem;
     }
 
     @Column(name = "salario")
-    public float getSalario() {
+    public String getSalario() {
         return salario;
     }
 
-    public void setSalario(float salario) {
+    public void setSalario(String salario) {
         this.salario = salario;
     }
 

@@ -62,21 +62,21 @@
                         <Label layoutX="354.0" layoutY="201.0" text="Câmbio:" />
                         <Label layoutX="55.0" layoutY="197.0" />
                         <Label layoutX="354.0" layoutY="166.0" text="Cor: " />
-                        <TextField layoutX="125.0" layoutY="162.0" prefHeight="25.0" prefWidth="200.0" promptText="AAA-0000" />
-                        <TextField layoutX="123.0" layoutY="274.0" prefHeight="25.0" prefWidth="200.0" promptText="Unix" />
-                        <TextField layoutX="123.0" layoutY="236.0" prefHeight="25.0" prefWidth="200.0" promptText="2000" />
-                        <TextField layoutX="386.0" layoutY="162.0" prefHeight="25.0" prefWidth="218.0" promptText="Preto" />
+                        <TextField fx:id="campoPlaca" layoutX="125.0" layoutY="162.0" prefHeight="25.0" prefWidth="200.0" promptText="AAA-0000" />
+                        <TextField fx:id="campoModelo" layoutX="123.0" layoutY="274.0" prefHeight="25.0" prefWidth="200.0" promptText="Unix" />
+                        <TextField fx:id="campoAno" layoutX="123.0" layoutY="236.0" prefHeight="25.0" prefWidth="200.0" promptText="2000" />
+                        <TextField fx:id="campoCor" layoutX="386.0" layoutY="162.0" prefHeight="25.0" prefWidth="218.0" promptText="Preto" />
                         <Label layoutX="354.0" layoutY="237.0" text="Combustível:" />
-                        <TextField layoutX="404.0" layoutY="198.0" minWidth="190.0" prefHeight="25.0" prefWidth="200.0" promptText="Automático" />
+                        <TextField fx:id="campoCambio" layoutX="404.0" layoutY="198.0" minWidth="190.0" prefHeight="25.0" prefWidth="200.0" promptText="Automático" />
                         <Label layoutX="72.0" layoutY="165.0" text="Placa:" />
                         <Label layoutX="70.0" layoutY="240.0" text="Ano :" />
-                        <TextField layoutX="429.0" layoutY="233.0" prefHeight="25.0" prefWidth="177.0" promptText="Litros..." />
+                        <TextField fx:id="campoCombustivel" layoutX="429.0" layoutY="233.0" prefHeight="25.0" prefWidth="177.0" promptText="Litros..." />
                         <Button fx:id="insereCarro" alignment="CENTER" contentDisplay="CENTER" layoutX="71.0" layoutY="449.0" minWidth="79.0" mnemonicParsing="false" onAction="#insereCarro" prefHeight="25.0" prefWidth="98.0" text="      Salvar" textAlignment="CENTER" />
                         <Button fx:id="voltar" alignment="CENTER" layoutX="512.0" layoutY="449.0" minWidth="90.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="98.0" text="    Voltar" />
                         <Separator layoutX="699.0" layoutY="1.0" orientation="VERTICAL" prefHeight="666.0" prefWidth="16.0" />
                         <Label layoutX="351.0" layoutY="276.0" text="Quilomentragem:" />
-                        <TextField layoutX="446.0" layoutY="272.0" prefHeight="25.0" prefWidth="159.0" promptText="Km..." />
-                        <TextField layoutX="124.0" layoutY="199.0" prefHeight="25.0" prefWidth="200.0" promptText="A12" />
+                        <TextField fx:id="campoKm" layoutX="446.0" layoutY="272.0" prefHeight="25.0" prefWidth="159.0" promptText="Km..." />
+                        <TextField fx:id="campoChassi" layoutX="124.0" layoutY="199.0" prefHeight="25.0" prefWidth="200.0" promptText="A12" />
                         <Label layoutX="68.0" layoutY="318.0" text="Opcional:" />
                         <Label layoutX="70.0" layoutY="202.0" text="Chassi:" />
                         <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" layoutX="290.0" layoutY="81.0" mnemonicParsing="true" text="Cadastrar Veículos" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
@@ -109,7 +109,7 @@
                               <Image url="@Images/edit-validated_40458.png" />
                            </image>
                         </ImageView>
-                        <TextArea layoutX="122.0" layoutY="317.0" prefHeight="73.0" prefWidth="488.0" promptText="Descrição do veículo..." />
+                        <TextArea fx:id="campoOpcional" layoutX="122.0" layoutY="317.0" prefHeight="73.0" prefWidth="488.0" promptText="Descrição do veículo..." />
                      </children>
                   </Pane>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">

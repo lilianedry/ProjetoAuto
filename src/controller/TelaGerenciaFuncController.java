@@ -1,7 +1,6 @@
 
 package controller;
 
-import antlr.Utils;
 import controller.alerts.Alertas;
 import controller.verificadores.verCPF;
 import database.DAOs.FuncionarioDAO;
@@ -102,7 +101,10 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
         func.setCidade(campoCidade.getText());        
         func.setEstado(campoEstado.getText());
         func.setBairro(campoBairro.getText());
-        func.setCargo(campoCargo.getText());        
+        func.setCargo(campoCargo.getText());   
+        func.setNumCasa(campoNumCasa.getText()); 
+        func.setSalario(campoSalario.getText()); 
+        func.setCargaHorSem(campoHoraSemana.getText());
                
         /*try {
             if (!(verCPF.isValidCPF(campoCPF)))
@@ -121,12 +123,7 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
         }*/   
         func.setCpf(campoCPF.getText());
         
-        int numcasa = Integer.parseInt(campoNumCasa.getText());
-        func.setNumCasa(numcasa); 
-        float salario = Float.parseFloat(campoSalario.getText());
-        func.setSalario(salario); 
-        byte chsem = Byte.parseByte(campoHoraSemana.getText());
-        func.setCargaHorSem(chsem);
+        
           
         LocalDate data = campoDataNasc.getValue();
         Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -137,8 +134,8 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
         func.setDataEntrada(entra); 
         
         
-        
-        Alertas.mostraAlertaInfo("Cadastro de Funcionario", "Cadastro realizado com sucesso");
+       
+        Alertas.mostraAlertaInfo("Cadastro de Funcionario", "Cadastro realizado com sucesso!");
 		
         FuncionarioDAO FuncDAO = new FuncionarioDAO();
         FuncDAO.add(func);

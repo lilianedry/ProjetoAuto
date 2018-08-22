@@ -21,13 +21,13 @@ public class Carro implements Serializable {
 
     private int idCarro;
     private String placa;
-    private byte tipoCambio;
+    private String tipoCambio;
     private String modelo;
     private String cor;
-    private int anoModelo;
+    private String anoModelo;
     private String chassi;
     private String combustivel;
-    private double quilometragem;
+    private String quilometragem;
     private String opcionais;
     private Set<SolicitaCarro> solicitaCarro = new HashSet<>(0); //RELACINAMENTO N:N SolicitaCarro
     private Cliente cliente; //RELACIONAMENTO 1:N CedeCarro
@@ -36,8 +36,8 @@ public class Carro implements Serializable {
 
     }
 
-    public Carro(String placa, byte tipoCambio, String modelo, String cor, int anoModelo, String chassi,
-            String combustivel, double quilometragem, String opcionais) {
+    public Carro(String placa, String tipoCambio, String modelo, String cor, String anoModelo, String chassi,
+            String combustivel, String quilometragem, String opcionais) {
         this.placa = placa;
         this.tipoCambio = tipoCambio;
         this.modelo = modelo;
@@ -89,11 +89,11 @@ public class Carro implements Serializable {
     }
 
     @Column(name = "tipoCambio")
-    public byte getTipoCambio() {
+    public String getTipoCambio() {
         return tipoCambio;
     }
 
-    public void setTipoCambio(byte tipoCambio) {
+    public void setTipoCambio(String tipoCambio) {
         this.tipoCambio = tipoCambio;
     }
 
@@ -116,11 +116,11 @@ public class Carro implements Serializable {
     }
 
     @Column(name = "anoModelo")
-    public int getAnoModelo() {
+    public String getAnoModelo() {
         return anoModelo;
     }
 
-    public void setAnoModelo(int anoModelo) {
+    public void setAnoModelo(String anoModelo) {
         this.anoModelo = anoModelo;
     }
 
@@ -143,11 +143,11 @@ public class Carro implements Serializable {
     }
 
     @Column(name = "quilometragem")
-    public double getQuilometragem() {
+    public String getQuilometragem() {
         return quilometragem;
     }
 
-    public void setQuilometragem(double quilometragem) {
+    public void setQuilometragem(String quilometragem) {
         this.quilometragem = quilometragem;
     }
 

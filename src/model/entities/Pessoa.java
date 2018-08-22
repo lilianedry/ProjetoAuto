@@ -25,7 +25,7 @@ public abstract class Pessoa implements Serializable {
     private String sexo;
     private Date dataNascimento;
     private String rua;
-    private int numCasa;
+    private String numCasa;
     private String bairro;
     private String cidade;
     private String estado;
@@ -34,7 +34,7 @@ public abstract class Pessoa implements Serializable {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, int numCasa,
+    public Pessoa(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, String numCasa,
             String bairro, String cidade, String estado, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
@@ -116,11 +116,11 @@ public abstract class Pessoa implements Serializable {
     }
 
     @Column(name = "numCasa")
-    public int getNumCasa() {
+    public String getNumCasa() {
         return numCasa;
     }
 
-    public void setNumCasa(int numCasa) {
+    public void setNumCasa(String numCasa) {
         this.numCasa = numCasa;
     }
 
