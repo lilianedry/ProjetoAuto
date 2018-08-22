@@ -14,6 +14,9 @@ import javax.persistence.Temporal;
 @PrimaryKeyJoinColumn(name = "idPessoa") //Herança Pessoa -> Funcionario
 public class Funcionario extends Pessoa implements Serializable {
     
+    
+    private String login;
+    private String senha;
     private String cargo;
     private byte cargaHorSem;
     private float salario;
@@ -32,7 +35,22 @@ public class Funcionario extends Pessoa implements Serializable {
         this.salario = salario;
         this.dataEntrada = dataEntrada;
     }
-
+    
+    @Column(name = "login")
+    public String getLogin() {
+        return login;
+    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
+    
+    @Column(name = "senha")
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     @Column(name = "cargo")
     public String getCargo() {
         return cargo;

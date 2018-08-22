@@ -66,17 +66,17 @@
                         <Label layoutX="302.0" layoutY="238.0" text="Sexo:" />
                         <Label layoutX="55.0" layoutY="197.0" />
                         <Label layoutX="77.0" layoutY="237.0" text="Telefone:" />
-                        <RadioButton layoutX="338.0" layoutY="237.0" mnemonicParsing="false" text="Masculino" />
-                        <RadioButton layoutX="417.0" layoutY="237.0" mnemonicParsing="false" text="Feminino" />
+                        <RadioButton fx:id="campoMasc" layoutX="338.0" layoutY="237.0" mnemonicParsing="false" text="Masculino" />
+                        <RadioButton fx:id="campoFem" layoutX="417.0" layoutY="237.0" mnemonicParsing="false" text="Feminino" />
                         <Label layoutX="75.0" layoutY="276.0" text="Data Nasc.:" />
-                        <TextField layoutX="135.0" layoutY="149.0" prefHeight="25.0" prefWidth="357.0" promptText="Maria da Silva" />
-                        <TextField layoutX="135.0" layoutY="189.0" promptText="000.000.000" />
-                        <TextField layoutX="342.0" layoutY="188.0" promptText="000.000.000-00" />
-                        <TextField layoutX="136.0" layoutY="233.0" prefHeight="25.0" prefWidth="149.0" promptText="(99) 99999-9999" />
+                        <TextField fx:id="campoNome" layoutX="135.0" layoutY="149.0" prefHeight="25.0" prefWidth="357.0" promptText="Maria da Silva" />
+                        <TextField fx:id="campoRG" layoutX="135.0" layoutY="189.0" promptText="000.000.000" />
+                        <TextField fx:id="campoCPF" layoutX="342.0" layoutY="188.0" promptText="000.000.000-00" />
+                        <TextField fx:id="campoTel" layoutX="136.0" layoutY="233.0" prefHeight="25.0" prefWidth="149.0" promptText="(99) 99999-9999" />
                         <Label layoutX="76.0" layoutY="351.0" text="Rua:" />
                         <Label layoutX="76.0" layoutY="428.0" text="Cidade:" />
-                        <TextField layoutX="135.0" layoutY="347.0" minWidth="190.0" prefHeight="25.0" prefWidth="258.0" promptText="Rua dos Bobos" />
-                        <TextField layoutX="421.0" layoutY="346.0" prefHeight="25.0" prefWidth="70.0" promptText="0" />
+                        <TextField fx:id="campoRua" layoutX="135.0" layoutY="347.0" minWidth="190.0" prefHeight="25.0" prefWidth="258.0" promptText="Rua dos Bobos" />
+                        <TextField fx:id="campoNumCasa" layoutX="421.0" layoutY="346.0" prefHeight="25.0" prefWidth="70.0" promptText="0" />
                         <Label layoutX="403.0" layoutY="351.0" text="Nº:" />
                         <ImageView fitHeight="123.0" fitWidth="164.0" layoutX="532.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -86,19 +86,17 @@
                         <Label layoutX="78.0" layoutY="153.0" text="Nome:" />
                         <Button layoutX="521.0" layoutY="272.0" minWidth="70.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="70.0" text="Editar" />
                         <Button layoutX="614.0" layoutY="273.0" minWidth="70.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="70.0" text="Remover" />
-                        <Label layoutX="75.0" layoutY="317.0" text="Email:" />
-                        <TextField layoutX="136.0" layoutY="313.0" prefHeight="25.0" prefWidth="357.0" promptText="exemplo@hotmail.com" />
-                        <DatePicker layoutX="135.0" layoutY="274.0" prefHeight="25.0" prefWidth="149.0" promptText="00/00/0000" />
+                        <DatePicker fx:id="campoDataNasc" layoutX="135.0" layoutY="274.0" prefHeight="25.0" prefWidth="149.0" promptText="00/00/0000" />
                         <Separator layoutX="699.0" layoutY="1.0" orientation="VERTICAL" prefHeight="666.0" prefWidth="16.0" />
                         <Label layoutX="75.0" layoutY="388.0" text="Bairro:" />
-                        <TextField layoutX="136.0" layoutY="384.0" prefHeight="25.0" prefWidth="357.0" promptText="Bairro do chico" />
-                        <TextField layoutX="135.0" layoutY="458.0" promptText="Administração" />
-                        <TextField layoutX="344.0" layoutY="457.0" promptText="0.000,00" />
-                        <DatePicker layoutX="140.0" layoutY="497.0" prefHeight="25.0" prefWidth="142.0" promptText="00/00/0000" />
-                        <TextField layoutX="392.0" layoutY="273.0" prefHeight="25.0" prefWidth="98.0" promptText="horas..." />
-                        <Label layoutX="76.0" layoutY="462.0" text="Cargo:" />
-                        <Label layoutX="301.0" layoutY="462.0" text="Salário:" />
-                        <Label layoutX="76.0" layoutY="500.0" text="Data Entra.:" />
+                        <TextField fx:id="campoBairro" layoutX="136.0" layoutY="384.0" prefHeight="25.0" prefWidth="357.0" promptText="Bairro do chico" />
+                        <TextField fx:id="campoCargo" layoutX="134.0" layoutY="309.0" promptText="Administração" />
+                        <TextField fx:id="campoSalario" layoutX="343.0" layoutY="308.0" promptText="0.000,00" />
+                        <DatePicker fx:id="campoDataEnt" layoutX="137.0" layoutY="461.0" prefHeight="25.0" prefWidth="142.0" promptText="00/00/0000" />
+                        <TextField fx:id="campoHoraSemana" layoutX="392.0" layoutY="273.0" prefHeight="25.0" prefWidth="98.0" promptText="horas..." />
+                        <Label layoutX="75.0" layoutY="313.0" text="Cargo:" />
+                        <Label layoutX="300.0" layoutY="313.0" text="Salário:" />
+                        <Label layoutX="76.0" layoutY="465.0" text="Data Entra.:" />
                         <Label layoutX="299.0" layoutY="276.0" text="CarHor Semanal:" />
                         <Button fx:id="insereFunc" alignment="CENTER" contentDisplay="CENTER" layoutX="77.0" layoutY="564.0" minWidth="79.0" mnemonicParsing="false" onAction="#insereFunc" prefHeight="25.0" prefWidth="98.0" text="      Salvar" textAlignment="CENTER" />
                         <Button fx:id="voltar" alignment="CENTER" layoutX="488.0" layoutY="564.0" minWidth="90.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="98.0" text="    Voltar" />
@@ -124,7 +122,7 @@
                               <Image url="@Images/edit-validated_40458.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" layoutX="280.0" layoutY="88.0" mnemonicParsing="true" text="Cadastrar Funcionários" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                        <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" layoutX="280.0" layoutY="52.0" mnemonicParsing="true" text="Cadastrar Funcionários" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -132,8 +130,12 @@
                               <ColorAdjust />
                            </effect>
                         </Label>
-                        <TextField layoutX="136.0" layoutY="424.0" promptText="Alexandria" />
-                        <TextField layoutX="343.0" layoutY="423.0" promptText="AA" />
+                        <TextField fx:id="campoCidade" layoutX="136.0" layoutY="424.0" promptText="Alexandria" />
+                        <TextField fx:id="campoEstado" layoutX="343.0" layoutY="423.0" promptText="AA" />
+                        <Label layoutX="80.0" layoutY="116.0" text="Login:" />
+                        <Label layoutX="311.0" layoutY="115.0" text="Senha:" />
+                        <TextField fx:id="campoLogin" layoutX="136.0" layoutY="111.0" prefHeight="25.0" prefWidth="162.0" promptText="Login" />
+                        <TextField fx:id="campoSenha" layoutX="350.0" layoutY="110.0" prefHeight="25.0" prefWidth="142.0" promptText="password" />
                      </children>
                   </Pane>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
