@@ -6,8 +6,10 @@
 package database.DAOs;
 
 import database.HibernateUtil;
+import java.util.List;
 import model.entities.Carro;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
@@ -16,16 +18,17 @@ import org.hibernate.Transaction;
  */
 public class CarroDAO {
 
+    private SessionFactory connection;
     private Session session;
-    private Transaction tx;
 
     public CarroDAO() {
-        session = HibernateUtil.getSessionFactory().openSession();
-        tx = session.beginTransaction();
+        connection = new HibernateUtil().getConnection();
+        session = connection.openSession();
     }
 
     public boolean add(Carro carro) {
         try {
+            Transaction tx = session.beginTransaction();
             session.save(carro);
             tx.commit();
             return true;
@@ -33,12 +36,13 @@ public class CarroDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
     }
 
     public boolean update(Carro carro) {
         try {
+            Transaction tx = session.beginTransaction();
             session.update(carro);
             tx.commit();
             return true;
@@ -46,12 +50,13 @@ public class CarroDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
     }
 
     public boolean delete(Carro carro) {
         try {
+            Transaction tx = session.beginTransaction();
             session.delete(carro);
             tx.commit();
             return true;
@@ -59,7 +64,26 @@ public class CarroDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
+    }
+    
+    public List<Carro> all (Carro carro) {
+        List<Carro> carros = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            carros = session.createQuery("from carros").list();
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return carros;
+    }
+    
+    public void closeConnection (){
+        session.close();
+        connection.close();
     }
 }

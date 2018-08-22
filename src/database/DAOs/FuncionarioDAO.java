@@ -6,8 +6,10 @@
 package database.DAOs;
 
 import database.HibernateUtil;
+import java.util.List;
 import model.entities.Funcionario;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
@@ -16,16 +18,17 @@ import org.hibernate.Transaction;
  */
 public class FuncionarioDAO {
 
+    private SessionFactory connection;
     private Session session;
-    private Transaction tx;
 
     public FuncionarioDAO() {
-        session = HibernateUtil.getSessionFactory().openSession();
-        tx = session.beginTransaction();
+        connection = new HibernateUtil().getConnection();
+        session = connection.openSession();    
     }
 
     public boolean add(Funcionario funcionario) {
         try {
+            Transaction tx = session.beginTransaction();
             session.save(funcionario);
             tx.commit();
             return true;
@@ -33,12 +36,13 @@ public class FuncionarioDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
     }
 
     public boolean update(Funcionario funcionario) {
         try {
+            Transaction tx = session.beginTransaction();
             session.update(funcionario);
             tx.commit();
             return true;
@@ -46,12 +50,13 @@ public class FuncionarioDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
     }
 
     public boolean delete(Funcionario funcionario) {
         try {
+            Transaction tx = session.beginTransaction();
             session.delete(funcionario);
             tx.commit();
             return true;
@@ -59,7 +64,26 @@ public class FuncionarioDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
+    }
+    
+    public List<Funcionario> all (Funcionario funcionario) {
+        List<Funcionario> funcionarios = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            funcionarios = session.createQuery("from funcionarios").list();
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return funcionarios;
+    }
+    
+    public void closeConnection (){
+        session.close();
+        connection.close();
     }
 }

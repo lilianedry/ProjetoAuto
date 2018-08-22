@@ -6,8 +6,10 @@
 package database.DAOs;
 
 import database.HibernateUtil;
+import java.util.List;
 import model.entities.Cliente;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
@@ -16,16 +18,17 @@ import org.hibernate.Transaction;
  */
 public class ClienteDAO {
 
+    private SessionFactory connection;
     private Session session;
-    private Transaction tx;
 
     public ClienteDAO() {
-        session = HibernateUtil.getSessionFactory().openSession();
-        tx = session.beginTransaction();
+        connection = new HibernateUtil().getConnection();
+        session = connection.openSession(); 
     }
 
     public boolean add(Cliente cliente) {
         try {
+            Transaction tx = session.beginTransaction();
             session.save(cliente);
             tx.commit();
             return true;
@@ -33,12 +36,13 @@ public class ClienteDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
     }
 
     public boolean update(Cliente cliente) {
         try {
+            Transaction tx = session.beginTransaction();
             session.update(cliente);
             tx.commit();
             return true;
@@ -46,12 +50,13 @@ public class ClienteDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
     }
 
     public boolean delete(Cliente cliente) {
         try {
+            Transaction tx = session.beginTransaction();
             session.delete(cliente);
             tx.commit();
             return true;
@@ -59,7 +64,26 @@ public class ClienteDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
+    }
+    
+    public List<Cliente> all (Cliente cliente) {
+        List<Cliente> clientes = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            clientes = session.createQuery("from clientes").list();
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return clientes;
+    }
+    
+    public void closeConnection (){
+        session.close();
+        connection.close();
     }
 }

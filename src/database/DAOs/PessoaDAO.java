@@ -6,8 +6,10 @@
 package database.DAOs;
 
 import database.HibernateUtil;
+import java.util.List;
 import model.entities.Pessoa;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
@@ -16,16 +18,17 @@ import org.hibernate.Transaction;
  */
 public class PessoaDAO {
 
+    private SessionFactory connection;
     private Session session;
-    private Transaction tx;
 
     public PessoaDAO() {
-        session = HibernateUtil.getSessionFactory().openSession();
-        tx = session.beginTransaction();
+        connection = new HibernateUtil().getConnection();
+        session = connection.openSession();   
     }
 
     public boolean add(Pessoa pessoa) {
         try {
+            Transaction tx = session.beginTransaction();
             session.save(pessoa);
             tx.commit();
             return true;
@@ -33,12 +36,13 @@ public class PessoaDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
     }
 
     public boolean update(Pessoa pessoa) {
         try {
+            Transaction tx = session.beginTransaction();
             session.update(pessoa);
             tx.commit();
             return true;
@@ -46,12 +50,13 @@ public class PessoaDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
     }
 
     public boolean delete(Pessoa pessoa) {
         try {
+            Transaction tx = session.beginTransaction();
             session.delete(pessoa);
             tx.commit();
             return true;
@@ -59,7 +64,26 @@ public class PessoaDAO {
             System.out.println(ex.getMessage());
             return false;
         } finally {
-            session.close();
+            closeConnection();
         }
+    }
+    
+    public List<Pessoa> all (Pessoa pessoa) {
+        List<Pessoa> pessoas = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            pessoas = session.createQuery("from pessoas").list();
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return pessoas;
+    }
+    
+    public void closeConnection (){
+        session.close();
+        connection.close();
     }
 }

@@ -5,7 +5,8 @@
  */
 package database;
 
-import org.hibernate.cfg.AnnotationConfiguration;
+import java.io.File;
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -14,28 +15,22 @@ import org.hibernate.cfg.Configuration;
  * Hibernate Utility class with a convenient method to get Session Factory
  * object.
  *
- * @author lilia
+ * @author Enigma
  */
 public class HibernateUtil {
 
-    private static final SessionFactory sessionFactory;
-    
-    static {
+    public SessionFactory getConnection () {
         try {
-            // Create the SessionFactory from standard (hibernate.cfg.xml) 
-            // config file.
-            Configuration con = new Configuration().configure("hibernate.cfg.xml");
-            StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().applySettings(con.getProperties());            
-            sessionFactory = con.buildSessionFactory(build.build());
-
-        } catch (Throwable ex) {
+            String path = System.getProperty("user.home");
+            path += "\\hibernate.cfg.xml";
+            File f = new File(path);
+            Configuration con = new Configuration().configure(f);
+            StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().applySettings(con.getProperties());
+            return con.buildSessionFactory(build.build());
+        } catch (HibernateException ex) {
             // Log the exception. 
-            System.err.println("Initial SessionFactory creation failed." + ex);
+            System.out.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
-    }
-    
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
     }
 }
