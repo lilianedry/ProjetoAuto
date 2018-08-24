@@ -21,7 +21,7 @@ public class HibernateUtil {
 
     public SessionFactory getConnection () {
         try {
-            Configuration con = new Configuration().configure();
+            Configuration con = new Configuration().configure("hibernate.cfg.xml");
             StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().applySettings(con.getProperties());
             return con.buildSessionFactory(build.build());
         } catch (HibernateException ex) {

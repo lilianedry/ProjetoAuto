@@ -6,7 +6,7 @@ import javafx.scene.control.Alert.AlertType;
 public class Alertas {
 	public static void mostraAlertaInfo(String cabecalho, String conteudo) {
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Informa��o");
+		alert.setTitle("Informação");
 		alert.setHeaderText(cabecalho);
 		alert.setContentText(conteudo);
 
@@ -15,7 +15,7 @@ public class Alertas {
 
 	public static void mostraAlertaConf(String cabecalho, String conteudo) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirma��o");
+		alert.setTitle("Confirmação");
 		alert.setHeaderText(cabecalho);
 		alert.setContentText(conteudo);
 

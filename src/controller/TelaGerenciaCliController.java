@@ -1,6 +1,7 @@
 package controller;
 
 import controller.alerts.Alertas;
+import controller.verificadores.verCPF;
 import database.DAOs.ClienteDAO;
 import java.io.IOException;
 import java.net.URL;
@@ -82,6 +83,8 @@ public class TelaGerenciaCliController implements Initializable {
     private TextField campoCidade;
     @FXML
     private TextField campoEstado;
+    @FXML
+    private TextField campoEmail;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -127,13 +130,22 @@ public class TelaGerenciaCliController implements Initializable {
         Cliente cli = new Cliente();
         
         cli.setNome(campoNome.getText()); 
+        try {
+            if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+                Alertas.mostraAlertaInfo("No campo CPF", "Digite um CPF válido.");
+                return;
+        }
         cli.setCpf(campoCPF.getText());
         //cli.setSexo(campo.getText());
         cli.setRua(campoRua.getText());
         cli.setNumCasa(campoNum.getText());
+        cli.setRg(campoRG.getText());        
         cli.setBairro(campoBairro.getText());
         cli.setCidade(campoCidade.getText());
         cli.setEstado(campoEstado.getText());
+        cli.setEmail(campoEmail.getText());
         cli.setTelefone(campoTel.getText());
         cli.setCnh(campoCnh.getText());
                 
