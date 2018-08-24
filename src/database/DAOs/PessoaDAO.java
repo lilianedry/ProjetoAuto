@@ -68,11 +68,11 @@ public class PessoaDAO {
         }
     }
     
-    public List<Pessoa> all (Pessoa pessoa) {
+    public List<Pessoa> all () {
         List<Pessoa> pessoas = null;
         try {
             Transaction tx = session.beginTransaction();
-            pessoas = session.createQuery("from pessoas").list();
+            pessoas = session.createQuery("from Pessoa").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

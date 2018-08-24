@@ -21,10 +21,7 @@ public class HibernateUtil {
 
     public SessionFactory getConnection () {
         try {
-            String path = System.getProperty("user.home");
-            path += "\\hibernate.cfg.xml";
-            File f = new File(path);
-            Configuration con = new Configuration().configure(f);
+            Configuration con = new Configuration().configure();
             StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().applySettings(con.getProperties());
             return con.buildSessionFactory(build.build());
         } catch (HibernateException ex) {

@@ -67,12 +67,24 @@ public class CarroDAO {
             closeConnection();
         }
     }
-    
-    public List<Carro> all (Carro carro) {
+
+    public Carro selectOne(int id) {
+        Carro carro = null;
+        try {
+            carro = (Carro) session.get(Carro.class, id);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            session.close();
+        }
+        return carro;
+    }
+
+    public List<Carro> all() {
         List<Carro> carros = null;
         try {
             Transaction tx = session.beginTransaction();
-            carros = session.createQuery("from carros").list();
+            carros = session.createQuery("from Carro").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -81,8 +93,8 @@ public class CarroDAO {
         }
         return carros;
     }
-    
-    public void closeConnection (){
+
+    public void closeConnection() {
         session.close();
         connection.close();
     }

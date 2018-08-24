@@ -28,8 +28,8 @@ public class Cliente extends Pessoa implements Serializable {
     }
 
     public Cliente(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, String numCasa,
-            String bairro, String cidade, String estado, String telefone, String cnh) {
-        super(nome, cpf, rg, sexo, dataNascimento, rua, numCasa, bairro, cidade, estado, telefone);
+            String bairro, String cidade, String estado, String telefone, String email, String cnh, boolean ativo) {
+        super(nome, cpf, rg, sexo, dataNascimento, rua, numCasa, bairro, cidade, estado, telefone, email, ativo);
         this.cnh = cnh;
     }
     //SolicitaCarro
@@ -68,7 +68,8 @@ public class Cliente extends Pessoa implements Serializable {
     public String toString() {
         return "Cliente [idPessoa=" + getIdPessoa() + ", nome=" + getNome() + ", cpf=" + getCpf() + ", rg=" + getRg() + ", sexo=" + getSexo()
                 + ", dataNascimento=" + getDataNascimento() + ", rua=" + getRua() + ", numCasa=" + getNumCasa() + ", bairro=" + getBairro()
-                + ", cidade=" + getCidade() + ", estado=" + getEstado() + ", telefone=" + getTelefone() + ", cnh=" + getCnh() + "]";
+                + ", cidade=" + getCidade() + ", estado=" + getEstado() + ", telefone=" + getTelefone() + ", email=" + getEmail()
+                + ", cnh=" + getCnh() + ", ativo=" + isAtivo() + "]";
     }
 
     

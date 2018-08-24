@@ -23,7 +23,7 @@ public class ClienteDAO {
 
     public ClienteDAO() {
         connection = new HibernateUtil().getConnection();
-        session = connection.openSession(); 
+        session = connection.openSession();
     }
 
     public boolean add(Cliente cliente) {
@@ -67,12 +67,24 @@ public class ClienteDAO {
             closeConnection();
         }
     }
-    
-    public List<Cliente> all (Cliente cliente) {
+
+    public Cliente selectOne(int id) {
+        Cliente cliente = null;
+        try {
+            cliente = (Cliente) session.get(Cliente.class, id);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            session.close();
+        }
+        return cliente;
+    }
+
+    public List<Cliente> all() {
         List<Cliente> clientes = null;
         try {
             Transaction tx = session.beginTransaction();
-            clientes = session.createQuery("from clientes").list();
+            clientes = session.createQuery("from Cliente").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -81,8 +93,8 @@ public class ClienteDAO {
         }
         return clientes;
     }
-    
-    public void closeConnection (){
+
+    public void closeConnection() {
         session.close();
         connection.close();
     }

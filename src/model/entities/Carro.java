@@ -29,6 +29,7 @@ public class Carro implements Serializable {
     private String combustivel;
     private String quilometragem;
     private String opcionais;
+    private boolean ativo;
     private Set<SolicitaCarro> solicitaCarro = new HashSet<>(0); //RELACINAMENTO N:N SolicitaCarro
     private Cliente cliente; //RELACIONAMENTO 1:N CedeCarro
 
@@ -37,7 +38,7 @@ public class Carro implements Serializable {
     }
 
     public Carro(String placa, String tipoCambio, String modelo, String cor, String anoModelo, String chassi,
-            String combustivel, String quilometragem, String opcionais) {
+            String combustivel, String quilometragem, String opcionais, boolean ativo) {
         this.placa = placa;
         this.tipoCambio = tipoCambio;
         this.modelo = modelo;
@@ -47,6 +48,7 @@ public class Carro implements Serializable {
         this.combustivel = combustivel;
         this.quilometragem = quilometragem;
         this.opcionais = opcionais;
+        this.ativo = ativo;
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.carro")
@@ -160,11 +162,19 @@ public class Carro implements Serializable {
         this.opcionais = opcionais;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
     @Override
     public String toString() {
-        return "Carro [idCarro=" + idCarro + ", placa=" + placa + ", tipoCambio=" + tipoCambio + ", modelo=" + modelo
-                + ", cor=" + cor + ", anoModelo=" + anoModelo + ", chassi=" + chassi + ", combustivel=" + combustivel
-                + ", quilometragem=" + quilometragem + ", opcionais=" + opcionais + "]";
+        return "Carro [idCarro=" + getIdCarro() + ", placa=" + getPlaca() + ", tipoCambio=" + getTipoCambio() + ", modelo=" + getModelo()
+                + ", cor=" + getCor() + ", anoModelo=" + getAnoModelo() + ", chassi=" + getChassi() + ", combustivel=" + getCombustivel()
+                + ", quilometragem=" + getQuilometragem() + ", opcionais=" + getOpcionais() + "]";
     }
 
 }

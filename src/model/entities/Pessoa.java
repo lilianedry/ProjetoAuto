@@ -30,12 +30,14 @@ public abstract class Pessoa implements Serializable {
     private String cidade;
     private String estado;
     private String telefone;
+    private String email;
+    private boolean ativo;
 
     public Pessoa() {
     }
 
     public Pessoa(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, String numCasa,
-            String bairro, String cidade, String estado, String telefone) {
+            String bairro, String cidade, String estado, String telefone, String email, boolean ativo) {
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
@@ -47,6 +49,7 @@ public abstract class Pessoa implements Serializable {
         this.cidade = cidade;
         this.estado = estado;
         this.telefone = telefone;
+        this.ativo = ativo;
     }
 
     @Id
@@ -160,11 +163,28 @@ public abstract class Pessoa implements Serializable {
         this.telefone = telefone;
     }
 
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
     @Override
     public String toString() {
         return "Pessoa [idPessoa=" + idPessoa + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", sexo=" + sexo
                 + ", dataNascimento=" + dataNascimento + ", rua=" + rua + ", numCasa=" + numCasa + ", bairro=" + bairro
-                + ", cidade=" + cidade + ", estado=" + estado + ", telefone=" + telefone + "]";
+                + ", cidade=" + cidade + ", estado=" + estado + ", telefone=" + telefone + ", email=" + email + "]";
     }
 
 }

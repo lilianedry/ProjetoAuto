@@ -27,9 +27,9 @@ public class Funcionario extends Pessoa implements Serializable {
     }
 
     public Funcionario(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, String numCasa,
-            String bairro, String cidade, String estado, String telefone, String cargo, String cargaHorSem, String salario,
-            Date dataEntrada) {
-        super(nome, cpf, rg, sexo, dataNascimento, rua, numCasa, bairro, cidade, estado, telefone);
+            String bairro, String cidade, String estado, String telefone, String email, String cargo, String cargaHorSem,
+            String salario, Date dataEntrada, boolean ativo) {
+        super(nome, cpf, rg, sexo, dataNascimento, rua, numCasa, bairro, cidade, estado, telefone, email, ativo);
         this.cargo = cargo;
         this.cargaHorSem = cargaHorSem;
         this.salario = salario;
@@ -90,10 +90,11 @@ public class Funcionario extends Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "Funcionario [idPessoa=" + idPessoa + ", nome=" + getNome() + ", cpf=" + getCpf() + ", rg=" + getRg() + ", sexo=" + getSexo()
+        return "Funcionario [idPessoa=" + getIdPessoa() + ", nome=" + getNome() + ", cpf=" + getCpf() + ", rg=" + getRg() + ", sexo=" + getSexo()
                 + ", dataNascimento=" + getDataNascimento() + ", rua=" + getRua() + ", numCasa=" + getNumCasa() + ", bairro=" + getBairro()
-                + ", cidade=" + getCidade() + ", estado=" + getEstado() + ", telefone=" + getTelefone() + ", cargo=" + cargo + ", cargaHorSem=" + cargaHorSem
-                + ", salario=" + salario + ", dataEntrada=" + dataEntrada + "]";
+                + ", cidade=" + getCidade() + ", estado=" + getEstado() + ", telefone=" + getTelefone() + ", email=" + getEmail()
+                + ", cargo=" + getCargo() + ", cargaHorSem=" + getCargaHorSem() + ", salario=" + getSalario()
+                + ", dataEntrada=" + getDataEntrada() + ", ativo=" + isAtivo() + "]";
     }
 
 }

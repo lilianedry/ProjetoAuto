@@ -68,11 +68,11 @@ public class FuncionarioDAO {
         }
     }
     
-    public List<Funcionario> all (Funcionario funcionario) {
+    public List<Funcionario> all () {
         List<Funcionario> funcionarios = null;
         try {
             Transaction tx = session.beginTransaction();
-            funcionarios = session.createQuery("from funcionarios").list();
+            funcionarios = session.createQuery("from Funcionario").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
