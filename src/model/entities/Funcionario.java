@@ -28,8 +28,8 @@ public class Funcionario extends Pessoa implements Serializable {
 
     public Funcionario(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, String numCasa,
             String bairro, String cidade, String estado, String telefone, String email, String cargo, String cargaHorSem,
-            String salario, Date dataEntrada, boolean ativo) {
-        super(nome, cpf, rg, sexo, dataNascimento, rua, numCasa, bairro, cidade, estado, telefone, email, ativo);
+            String salario, Date dataEntrada) {
+        super(nome, cpf, rg, sexo, dataNascimento, rua, numCasa, bairro, cidade, estado, telefone, email);
         this.cargo = cargo;
         this.cargaHorSem = cargaHorSem;
         this.salario = salario;

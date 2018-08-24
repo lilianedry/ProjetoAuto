@@ -38,7 +38,7 @@ public class Carro implements Serializable {
     }
 
     public Carro(String placa, String tipoCambio, String modelo, String cor, String anoModelo, String chassi,
-            String combustivel, String quilometragem, String opcionais, boolean ativo) {
+            String combustivel, String quilometragem, String opcionais) {
         this.placa = placa;
         this.tipoCambio = tipoCambio;
         this.modelo = modelo;
@@ -48,7 +48,7 @@ public class Carro implements Serializable {
         this.combustivel = combustivel;
         this.quilometragem = quilometragem;
         this.opcionais = opcionais;
-        this.ativo = ativo;
+        this.ativo = true;
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.carro")

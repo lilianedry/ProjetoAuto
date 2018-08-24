@@ -37,7 +37,7 @@ public abstract class Pessoa implements Serializable {
     }
 
     public Pessoa(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, String numCasa,
-            String bairro, String cidade, String estado, String telefone, String email, boolean ativo) {
+            String bairro, String cidade, String estado, String telefone, String email) {
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
@@ -49,7 +49,7 @@ public abstract class Pessoa implements Serializable {
         this.cidade = cidade;
         this.estado = estado;
         this.telefone = telefone;
-        this.ativo = ativo;
+        this.ativo = true;
     }
 
     @Id

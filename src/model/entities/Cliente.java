@@ -28,8 +28,8 @@ public class Cliente extends Pessoa implements Serializable {
     }
 
     public Cliente(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, String numCasa,
-            String bairro, String cidade, String estado, String telefone, String email, String cnh, boolean ativo) {
-        super(nome, cpf, rg, sexo, dataNascimento, rua, numCasa, bairro, cidade, estado, telefone, email, ativo);
+            String bairro, String cidade, String estado, String telefone, String email, String cnh) {
+        super(nome, cpf, rg, sexo, dataNascimento, rua, numCasa, bairro, cidade, estado, telefone, email);
         this.cnh = cnh;
     }
     //SolicitaCarro
