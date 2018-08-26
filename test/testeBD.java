@@ -21,9 +21,9 @@ public class testeBD {
 
     public static void main(String args[]) {
 //        Cliente cli = new Cliente("teste", "teste", "teste", "teste", Date.from(Instant.now()), "teste", "250",
-//                "teste", "teste", "teste", "teste", "teste", "teste", true);
+//                "teste", "teste", "teste", "teste", "teste", "teste");
 //        Carro car = new Carro("teste", "teste", "teste", "teste", "2018", "teste",
-//                "teste", "1000", "teste", true);
+//                "teste", "1000", "teste");
 //
 //        ClienteDAO cliDAO1 = new ClienteDAO();
 //        cliDAO1.add(cli);
