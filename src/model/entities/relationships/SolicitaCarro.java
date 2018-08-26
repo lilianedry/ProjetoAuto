@@ -27,16 +27,22 @@ import model.entities.Pessoa;
 @Entity
 @Table(name = "solicitaCarro")
 @AssociationOverrides({
-        @AssociationOverride(name = "pk.cliente",
-            joinColumns = @JoinColumn(name = "idPessoa")),
+    @AssociationOverride(name = "pk.cliente",
+            joinColumns = @JoinColumn(name = "idPessoa"))
+    ,
         @AssociationOverride(name = "pk.carro",
             joinColumns = @JoinColumn(name = "idCarro"))})
 public class SolicitaCarro implements java.io.Serializable {
 
     private SolicitaCarroId pk = new SolicitaCarroId();
-    private Date dataSolicitacao;
+    private Date dataRetirada;
+    private Date prazoFinal;
+    private Date dataEntrega;
+    private boolean ativo;
 
     public SolicitaCarro() {
+        this.dataEntrega = null;
+        this.ativo = true;
     }
 
     @EmbeddedId
@@ -67,13 +73,42 @@ public class SolicitaCarro implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "dataSolicitacao", nullable = false, length = 10)
-    public Date getDataSolicitacao() {
-        return this.dataSolicitacao;
+    @Column(name = "dataRetirada", nullable = false, length = 10)
+    public Date getDataRetirada() {
+        return this.dataRetirada;
     }
 
-    public void setDataSolicitacao(Date dataSolicitacao) {
-        this.dataSolicitacao = dataSolicitacao;
+    public void setDataRetirada(Date dataRetirada) {
+        this.dataRetirada = dataRetirada;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "prazoFinal", nullable = false, length = 10)
+    public Date getPrazoFinal() {
+        return prazoFinal;
+    }
+
+    public void setPrazoFinal(Date prazoFinal) {
+        this.prazoFinal = prazoFinal;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "dataEntrega", length = 10)
+    public Date getDataEntrega() {
+        return dataEntrega;
+    }
+
+    public void setDataEntrega(Date dataEntrega) {
+        this.dataEntrega = dataEntrega;
+    }
+
+    @Column(name = "ativo")
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     public boolean equals(Object o) {

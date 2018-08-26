@@ -84,7 +84,7 @@ public class CarroDAO {
         List<Carro> carros = null;
         try {
             Transaction tx = session.beginTransaction();
-            carros = session.createQuery("from Carro").list();
+            carros = session.createQuery("from Carro where ativo = true").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

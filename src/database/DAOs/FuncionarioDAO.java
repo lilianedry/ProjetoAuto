@@ -72,7 +72,7 @@ public class FuncionarioDAO {
         List<Funcionario> funcionarios = null;
         try {
             Transaction tx = session.beginTransaction();
-            funcionarios = session.createQuery("from Funcionario").list();
+            funcionarios = session.createQuery("from Funcionario where ativo = true").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

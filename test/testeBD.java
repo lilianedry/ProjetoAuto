@@ -3,6 +3,7 @@ import database.DAOs.CarroDAO;
 import database.DAOs.ClienteDAO;
 import java.time.Instant;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import model.entities.Carro;
 import model.entities.Cliente;
@@ -37,7 +38,8 @@ public class testeBD {
 //        SolicitaCarro sC = new SolicitaCarro();
 //        sC.setCliente(cli);
 //        sC.setCarro(car);
-//        sC.setDataSolicitacao(Date.from(Instant.now()));
+//        sC.setDataRetirada(new GregorianCalendar(2018, 10, 28).getTime());
+//        sC.setPrazoFinal(new GregorianCalendar(2018, 10, 28).getTime());
 //        
 //        cli.getSolicitaCarro().add(sC);
 //        
@@ -56,8 +58,18 @@ public class testeBD {
 //        System.out.println(t.toString());
 
         ClienteDAO cliDAO = new ClienteDAO();
+        System.out.println("Busca o cliente com ID = 1");
         Cliente c = cliDAO.selectOne(1);
-        System.out.println("Imprime o cliente com ID = 1");
         System.out.println(c.toString());
+        
+        System.out.println("Imprime os carros solicitados pelo cliente buscado");
+        c.getSolicitaCarro().forEach((sC) -> {
+            System.out.println(sC.getCarro());
+        });
+        
+        System.out.println("Imprime os carros cedidos pelo cliente buscado");
+        c.getCarrosCedidos().forEach(System.out::println);
+        
+        System.exit(0);
     }
 }

@@ -51,7 +51,7 @@ public class Carro implements Serializable {
         this.ativo = true;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.carro")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.carro")
     public Set<SolicitaCarro> getSolicitaCarro() {
         return solicitaCarro;
     }
@@ -60,7 +60,7 @@ public class Carro implements Serializable {
         this.solicitaCarro = solicitaCarro;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idCliente")
     public Cliente getCliente() {
         return cliente;
@@ -161,7 +161,7 @@ public class Carro implements Serializable {
     public void setOpcionais(String opcionais) {
         this.opcionais = opcionais;
     }
-
+    @Column(name = "ativo")
     public boolean isAtivo() {
         return ativo;
     }

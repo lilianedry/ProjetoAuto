@@ -49,6 +49,7 @@ public abstract class Pessoa implements Serializable {
         this.cidade = cidade;
         this.estado = estado;
         this.telefone = telefone;
+        this.email = email;
         this.ativo = true;
     }
 
@@ -171,7 +172,7 @@ public abstract class Pessoa implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @Column(name = "ativo")
     public boolean isAtivo() {
         return ativo;
     }

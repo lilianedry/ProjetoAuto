@@ -34,7 +34,7 @@ public class Cliente extends Pessoa implements Serializable {
     }
     //SolicitaCarro
     @OneToMany(mappedBy = "pk.cliente", 
-               fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+               fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public Set<SolicitaCarro> getSolicitaCarro() {
         return solicitaCarro;
     }
@@ -45,7 +45,7 @@ public class Cliente extends Pessoa implements Serializable {
     //SolicitaCarro
     //CedeCarro
     @OneToMany(mappedBy = "cliente", 
-               fetch = FetchType.LAZY)
+               fetch = FetchType.EAGER)
     public Set<Carro> getCarrosCedidos() {
         return carrosCedidos;
     }

@@ -84,7 +84,7 @@ public class ClienteDAO {
         List<Cliente> clientes = null;
         try {
             Transaction tx = session.beginTransaction();
-            clientes = session.createQuery("from Cliente").list();
+            clientes = session.createQuery("from Cliente where ativo = true").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
