@@ -138,7 +138,15 @@ public class TelaGerenciaCliController implements Initializable {
                 return;
         }
         cli.setCpf(campoCPF.getText());
+        
         //cli.setSexo(campo.getText());
+        RadioButton masc = new RadioButton("Masculino"); 
+        masc.setSelected(true);
+        cli.setSexo(campoMasc.getText());
+        RadioButton fem = new RadioButton("Feminino");
+        fem.setSelected(true);
+        cli.setSexo(campoFem.getText());
+        
         cli.setRua(campoRua.getText());
         cli.setNumCasa(campoNum.getText());
         cli.setRg(campoRG.getText());        
