@@ -1,5 +1,5 @@
 /build/
-/nbproject/
+nbproject/
 /nbproject/private/
 /dist/
 /src/hibernate.cfg.xml
