@@ -122,9 +122,12 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
                 return;
         }*/   
         func.setCpf(campoCPF.getText());
-        
-        
-          
+        if(campoMasc.isSelected()){
+            func.setSexo("M");
+        }
+        if(campoFem.isSelected()){
+            func.setSexo("F");
+        }
         LocalDate data = campoDataNasc.getValue();
         Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
         func.setDataNascimento(nasc);

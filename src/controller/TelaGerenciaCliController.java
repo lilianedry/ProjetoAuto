@@ -13,16 +13,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import model.Caminho;
 import model.ChangeScreen;
@@ -137,16 +135,14 @@ public class TelaGerenciaCliController implements Initializable {
                 Alertas.mostraAlertaInfo("No campo CPF", "Digite um CPF válido.");
                 return;
         }
-        cli.setCpf(campoCPF.getText());
-        
-        //cli.setSexo(campo.getText());
-        RadioButton masc = new RadioButton("Masculino"); 
-        masc.setSelected(true);
-        cli.setSexo(campoMasc.getText());
-        RadioButton fem = new RadioButton("Feminino");
-        fem.setSelected(true);
-        cli.setSexo(campoFem.getText());
-        
+        cli.setCpf(campoCPF.getText()); 
+       
+        if(campoMasc.isSelected()){
+            cli.setSexo("M");
+        }
+        if(campoFem.isSelected()){
+            cli.setSexo("F");
+        }
         cli.setRua(campoRua.getText());
         cli.setNumCasa(campoNum.getText());
         cli.setRg(campoRG.getText());        

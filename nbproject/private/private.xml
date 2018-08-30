@@ -3,13 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/database/DAOs/CarroDAO.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/model/entities/Pessoa.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/model/entities/Cliente.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/model/entities/Funcionario.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/test/testeBD.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/database/DAOs/ClienteDAO.java</file>
-            <file>file:/C:/Users/Enigma/Documents/Projeto%20POO-BD%202018.1/ProjetoAuto/src/model/entities/Carro.java</file>
+            <file>file:/C:/Users/lilia/Documents/NetBeansProjects/ProjetoAuto/src/controller/TelaGerenciaCliController.java</file>
         </group>
     </open-files>
 </project-private>
