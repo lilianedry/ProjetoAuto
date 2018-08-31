@@ -1,7 +1,6 @@
 package model.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,16 +11,17 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import model.entities.relationships.GerenciaCliente;
 import model.entities.relationships.SolicitaCarro;
 
 @Entity
 @Table(name = "cliente")
 @PrimaryKeyJoinColumn(name = "idPessoa") //Herança: Pessoa -> Cliente
 public class Cliente extends Pessoa implements Serializable {
-
     private String cnh;
     private Set<SolicitaCarro> solicitaCarro = new HashSet<>(0); //RELACIONAMENTO N:N SolicitaCarro
     private Set<Carro> carrosCedidos = new HashSet<>(0); //RELACIONAMENTO 1:N CedeCarro
+    private Set<GerenciaCliente> gerenciaCliente = new HashSet<>(0);
 
     public Cliente() {
 
@@ -54,6 +54,16 @@ public class Cliente extends Pessoa implements Serializable {
         this.carrosCedidos = carrosCedidos;
     }
     //CedeCarro
+    //GerenciaCliente
+    @OneToMany(mappedBy = "ok.cliente", 
+               fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public Set<GerenciaCliente> getGerenciaCliente() {
+        return gerenciaCliente;
+    }
+
+    public void setGerenciaCliente(Set<GerenciaCliente> gerenciaCliente) {
+        this.gerenciaCliente = gerenciaCliente;
+    }
     
     @Column(name = "cnh")
     public String getCnh() {

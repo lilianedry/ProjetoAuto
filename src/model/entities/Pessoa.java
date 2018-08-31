@@ -17,7 +17,6 @@ import javax.persistence.Temporal;
 @Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED) //Tabela própria para a super classe
 public abstract class Pessoa implements Serializable {
-
     protected int idPessoa;
     private String nome;
     private String cpf;

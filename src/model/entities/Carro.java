@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import model.entities.relationships.GerenciaCarro;
 import model.entities.relationships.SolicitaCarro;
 
 @Entity
@@ -32,6 +33,7 @@ public class Carro implements Serializable {
     private boolean ativo;
     private Set<SolicitaCarro> solicitaCarro = new HashSet<>(0); //RELACINAMENTO N:N SolicitaCarro
     private Cliente cliente; //RELACIONAMENTO 1:N CedeCarro
+    private Set<GerenciaCarro> gerenciaCarro = new HashSet<>(0); //RELACINAMENTO N:N GerenciaCarro
 
     public Carro() {
 
@@ -68,6 +70,15 @@ public class Carro implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+    
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "ik.carro")
+    public Set<GerenciaCarro> getGerenciaCarro() {
+        return gerenciaCarro;
+    }
+
+    public void setGerenciaCarro(Set<GerenciaCarro> gerenciaCarro) {
+        this.gerenciaCarro = gerenciaCarro;
     }
 
     @Id
