@@ -22,8 +22,11 @@ public class ClienteDAO {
     private Session session;
 
     public ClienteDAO() {
+        System.out.println("fodac5");
         connection = new HibernateUtil().getConnection();
+        System.out.println("fodac6");
         session = connection.openSession();
+        System.out.println("fodac7");
     }
 
     public boolean add(Cliente cliente) {

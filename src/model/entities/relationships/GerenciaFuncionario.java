@@ -16,7 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import model.entities.Funcionario;
+import model.entities.Empregado;
+import model.entities.Gerente;
 import model.entities.Pessoa;
 
 /**
@@ -26,11 +27,11 @@ import model.entities.Pessoa;
 @Entity
 @Table(name = "gerenciaFuncionario")
 @AssociationOverrides({
-    @AssociationOverride(name = "lk.funcionarioGerente",
-            joinColumns = @JoinColumn(name = "idFuncionario"))
+    @AssociationOverride(name = "lk.gerente",
+            joinColumns = @JoinColumn(name = "idGerente"))
     ,
-        @AssociationOverride(name = "lk.funcionario",
-            joinColumns = @JoinColumn(name = "idFuncionario"))})
+        @AssociationOverride(name = "lk.empregado",
+            joinColumns = @JoinColumn(name = "idEmpregado"))})
 public class GerenciaFuncionario implements java.io.Serializable {
 
     private GerenciaFuncionarioId lk = new GerenciaFuncionarioId();
@@ -50,27 +51,31 @@ public class GerenciaFuncionario implements java.io.Serializable {
     }
 
     @Transient
-    public Pessoa getFuncionarioGerente() {
-        return getLk().getFuncionarioGerente();
+    public Pessoa getGerente() {
+        return getLk().getGerente();
     }
 
-    public void setFuncionarioGerente(Funcionario funcionarioGerente) {
-        getLk().setFuncionarioGerente(funcionarioGerente);
+    public void setGerente(Gerente gerente) {
+        getLk().setGerente(gerente);
     }
 
     @Transient
-    public Pessoa getFuncionario() {
-        return getLk().getFuncionario();
+    public Pessoa getEmpregado() {
+        return getLk().getEmpregado();
     }
 
-    public void setFuncionario(Funcionario funcionario) {
-        getLk().setFuncionario(funcionario);
+    public void setFuncionario(Empregado empregado) {
+        getLk().setEmpregado(empregado);
     }
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dataAcesso", nullable = false, length = 10)
     public Date getDataAcesso() {
         return this.dataAcesso;
+    }
+
+    public void setDataAcesso(Date dataAcesso) {
+        this.dataAcesso = dataAcesso;
     }
 
     public boolean equals(Object o) {
@@ -80,14 +85,11 @@ public class GerenciaFuncionario implements java.io.Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         GerenciaFuncionario that = (GerenciaFuncionario) o;
-
         if (getLk() != null ? !getLk().equals(that.getLk())
                 : that.getLk() != null) {
             return false;
         }
-
         return true;
     }
 
@@ -95,4 +97,3 @@ public class GerenciaFuncionario implements java.io.Serializable {
         return (getLk() != null ? getLk().hashCode() : 0);
     }
 }
-

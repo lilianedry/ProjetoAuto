@@ -8,7 +8,8 @@ package model.entities.relationships;
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
-import model.entities.Funcionario;
+import model.entities.Empregado;
+import model.entities.Gerente;
 
 /**
  *
@@ -17,25 +18,25 @@ import model.entities.Funcionario;
 @Embeddable
 public class GerenciaFuncionarioId implements Serializable {
 
-    private Funcionario funcionarioGerente;
-    private Funcionario funcionario;
+    private Gerente gerente;
+    private Empregado empregado;
 
     @ManyToOne
-    public Funcionario getFuncionarioGerente() {
-        return funcionarioGerente;
+    public Gerente getGerente() {
+        return gerente;
     }
 
-    public void setFuncionarioGerente(Funcionario funcionarioGerente) {
-        this.funcionarioGerente = funcionarioGerente;
+    public void setGerente(Gerente gerente) {
+        this.gerente = gerente;
     }
 
     @ManyToOne
-    public Funcionario getFuncionario() {
-        return funcionario;
+    public Empregado getEmpregado() {
+        return empregado;
     }
 
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
+    public void setEmpregado(Empregado empregado) {
+        this.empregado = empregado;
     }
 
     @Override
@@ -46,25 +47,21 @@ public class GerenciaFuncionarioId implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         GerenciaFuncionarioId that = (GerenciaFuncionarioId) o;
-
-        if (funcionarioGerente != null ? !funcionarioGerente.equals(that.funcionarioGerente) : that.funcionarioGerente != null) {
+        if (gerente != null ? !gerente.equals(that.gerente) : that.gerente != null) {
             return false;
         }
-        if (funcionario != null ? !funcionario.equals(that.funcionario) : that.funcionario != null) {
+        if (empregado != null ? !empregado.equals(that.empregado) : that.empregado != null) {
             return false;
         }
-
         return true;
     }
 
     @Override
     public int hashCode() {
         int result;
-        result = (funcionarioGerente != null ? funcionarioGerente.hashCode() : 0);
-        result = 31 * result + (funcionario != null ? funcionario.hashCode() : 0);
+        result = (gerente != null ? gerente.hashCode() : 0);
+        result = 31 * result + (empregado != null ? empregado.hashCode() : 0);
         return result;
     }
-
 }

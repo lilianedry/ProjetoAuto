@@ -55,7 +55,7 @@ public class SolicitaCarro implements java.io.Serializable {
     }
 
     @Transient
-    public Pessoa getCliente() {
+    public Cliente getCliente() {
         return getPk().getCliente();
     }
 

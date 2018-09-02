@@ -74,6 +74,10 @@ public class GerenciaCarro implements java.io.Serializable {
         return this.dataAcesso;
     }
 
+    public void setDataAcesso(Date dataAcesso) {
+        this.dataAcesso = dataAcesso;
+    }    
+
     public boolean equals(Object o) {
         if (this == o) {
             return true;
