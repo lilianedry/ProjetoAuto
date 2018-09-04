@@ -18,6 +18,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -137,7 +139,18 @@ public class TelaGerenciaCliController implements Initializable {
 
     @FXML
     private void removeCli(ActionEvent event) {
-        deleta();
+        if(selecionado != null){
+            deleta();
+            Alert a = new Alert(AlertType.CONFIRMATION);
+            a.setHeaderText("Cliente excluído com Sucesso");
+            a.show();
+            listaClientes.setItems(atualizaTabela());
+        }else{
+            Alert a = new Alert(AlertType.WARNING);
+            a.setHeaderText("Selecione um Cliente");
+            a.show();
+        }
+        
     }
 
     @FXML
@@ -179,6 +192,7 @@ public class TelaGerenciaCliController implements Initializable {
 	
         ClienteDAO cliDAO = new ClienteDAO();
         cliDAO.add(cli);
+        listaClientes.setItems(atualizaTabela());
     }
     
     
