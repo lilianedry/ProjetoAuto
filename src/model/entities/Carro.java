@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import model.entities.relationships.GerenciaCarro;
 import model.entities.relationships.SolicitaCarro;
 
@@ -33,6 +35,7 @@ public class Carro implements Serializable {
     private boolean ativo;
     private Set<SolicitaCarro> solicitaCarro = new HashSet<>(0); //RELACINAMENTO N:N SolicitaCarro
     private Cliente cliente; //RELACIONAMENTO 1:N CedeCarro
+    private Date dataCede;
     private Set<GerenciaCarro> gerenciaCarro = new HashSet<>(0); //RELACINAMENTO N:N GerenciaCarro
 
     public Carro() {
@@ -70,6 +73,15 @@ public class Carro implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    @Temporal(javax.persistence.TemporalType.DATE)
+    public Date getDataCede() {
+        return dataCede;
+    }
+
+    public void setDataCede(Date dataCede) {
+        this.dataCede = dataCede;
     }
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "ik.carro")
