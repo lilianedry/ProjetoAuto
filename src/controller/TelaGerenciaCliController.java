@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Caminho;
 import model.ChangeScreen;
@@ -42,9 +45,9 @@ public class TelaGerenciaCliController implements Initializable {
     @FXML
     private TextField campoPesquisa;
     @FXML
-    private TableColumn<?, ?> colunaNome;
+    private TableColumn<Cliente, String> colunaNome;
     @FXML
-    private TableColumn<?, ?> colunaCPF;
+    private TableColumn<Cliente, String> colunaCPF;
     @FXML
     private Button voltar;
     @FXML
@@ -54,7 +57,7 @@ public class TelaGerenciaCliController implements Initializable {
     @FXML
     private Button insereCli;
     @FXML
-    private TableView<?> listaClientes;
+    private TableView<Cliente> listaClientes;
     @FXML
     private RadioButton campoMasc;
     @FXML
@@ -86,7 +89,7 @@ public class TelaGerenciaCliController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        initTable();
     }    
 
 
@@ -152,6 +155,7 @@ public class TelaGerenciaCliController implements Initializable {
         cli.setEmail(campoEmail.getText());
         cli.setTelefone(campoTel.getText());
         cli.setCnh(campoCnh.getText());
+        cli.setAtivo(true);
                 
         LocalDate data = campoDataNasc.getValue();
         Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -163,4 +167,15 @@ public class TelaGerenciaCliController implements Initializable {
         cliDAO.add(cli);
     }
     
+    
+    public void initTable(){
+        colunaNome.setCellValueFactory(new PropertyValueFactory("nome"));
+        colunaCPF.setCellValueFactory(new PropertyValueFactory("cpf"));
+        listaClientes.setItems(atualizaTabela());
+    }
+    
+    public ObservableList<Cliente> atualizaTabela(){
+        ClienteDAO dao = new ClienteDAO();
+        return FXCollections.observableArrayList(dao.all());
+    }
 }
