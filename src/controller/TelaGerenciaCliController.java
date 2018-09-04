@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -86,10 +88,21 @@ public class TelaGerenciaCliController implements Initializable {
     private TextField campoEstado;
     @FXML
     private TextField campoEmail;
+    
+    private Cliente selecionado;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initTable();
+        
+        listaClientes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+               selecionado = (Cliente) newValue;
+               
+            }
+        });
+        
     }    
 
 
@@ -124,6 +137,7 @@ public class TelaGerenciaCliController implements Initializable {
 
     @FXML
     private void removeCli(ActionEvent event) {
+        deleta();
     }
 
     @FXML
@@ -177,5 +191,10 @@ public class TelaGerenciaCliController implements Initializable {
     public ObservableList<Cliente> atualizaTabela(){
         ClienteDAO dao = new ClienteDAO();
         return FXCollections.observableArrayList(dao.all());
+    }
+    
+    public void deleta(){
+        ClienteDAO cli = new ClienteDAO();
+        cli.delete(selecionado);
     }
 }
