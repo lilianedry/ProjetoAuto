@@ -8,6 +8,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -138,7 +140,20 @@ public class TelaGerenciaCliController implements Initializable {
     }
 
     @FXML
-    private void removeCli(ActionEvent event) {
+    private void removeCli(ActionEvent event) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmação");
+        alert.setHeaderText("Tem certeza que deseja excluir o cliente?");
+        alert.setContentText("Todos os dados serão deletados do banco de dados");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+                remove(event);
+        } else {
+
+        }
+    }
+      private void remove(ActionEvent event) throws Exception {
         if(selecionado != null){
             deleta();
             Alert a = new Alert(AlertType.CONFIRMATION);
@@ -149,8 +164,7 @@ public class TelaGerenciaCliController implements Initializable {
             Alert a = new Alert(AlertType.WARNING);
             a.setHeaderText("Selecione um Cliente");
             a.show();
-        }
-        
+        }        
     }
 
     @FXML
