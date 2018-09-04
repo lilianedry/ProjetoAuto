@@ -24,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import model.entities.Empregado;
 import model.entities.Funcionario;
 import model.entities.Pessoa;
 
@@ -90,11 +91,19 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
     
     @FXML 
     private void insereFunc(ActionEvent event) {
-        Funcionario func = new Funcionario();  
+        Empregado func = new Empregado();  
         
         func.setLogin(campoLogin.getText());
         func.setSenha(campoSenha.getText());
         func.setNome(campoNome.getText());
+        
+        try {
+            if (campoRG.getText().length()>10)
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
+                return;
+        }
         func.setRg(campoRG.getText());
         func.setTelefone(campoTel.getText());
         func.setRua(campoRua.getText());
@@ -106,14 +115,14 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
         func.setSalario(campoSalario.getText()); 
         func.setCargaHorSem(campoHoraSemana.getText());
                
-        /*try {
-            if (!(verCPF.isValidCPF(campoCPF)))
+        try {
+            if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
                     throw new IllegalArgumentException();
 	} catch (IllegalArgumentException e) {
             Alertas.mostraAlertaInfo("Erro no campo CPF!", "Digite um CPF válido.");
 		return;
 	}
-       verifica no banco
+       /*verifica no banco
         try {
             if (func.cpfNoArray(campoCPF.getText().trim()))
                 throw new IllegalArgumentException();

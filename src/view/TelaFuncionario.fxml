@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1060.0" prefHeight="690.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaFuncionarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1060.0" prefHeight="690.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaFuncionarioController">
    <children>
       <HBox prefHeight="25.0" prefWidth="1202.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
          <children>
@@ -53,7 +53,7 @@
                <children>
                   <Pane minWidth="300.0" prefHeight="477.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="gerenciarCli" layoutX="120.0" layoutY="244.0" mnemonicParsing="false" onAction="#gerenciarCli" prefHeight="139.0" prefWidth="185.0">
+                        <Button fx:id="gerenciarCli" layoutX="93.0" layoutY="267.0" mnemonicParsing="false" onAction="#gerenciarCli" prefHeight="116.0" prefWidth="149.0">
                            <graphic>
                               <ImageView disable="true" fitHeight="95.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -61,7 +61,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button fx:id="gerenciarCarro" layoutX="401.0" layoutY="243.0" mnemonicParsing="false" onAction="#gerenciarCarro" prefHeight="139.0" prefWidth="185.0">
+                        <Button fx:id="gerenciarCarro" layoutX="286.0" layoutY="267.0" mnemonicParsing="false" onAction="#gerenciarCarro" prefHeight="116.0" prefWidth="149.0">
                            <graphic>
                               <ImageView fitHeight="95.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -69,16 +69,27 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Label layoutX="426.0" layoutY="395.0" prefHeight="21.0" prefWidth="131.0" text="Gerenciar Veiculos">
+                        <Label layoutX="295.0" layoutY="394.0" prefHeight="21.0" prefWidth="131.0" text="Gerenciar Veiculos">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="147.0" layoutY="393.0" text="Gerenciar Clientes">
+                        <Label layoutX="109.0" layoutY="393.0" text="Gerenciar Clientes">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
+                        <Button fx:id="locarVeiculo" layoutX="476.0" layoutY="268.0" mnemonicParsing="false" onAction="#locarVeiculo" prefHeight="116.0" prefWidth="149.0" />
+                        <Label layoutX="499.0" layoutY="394.0" prefHeight="17.0" prefWidth="110.0" text="Locar Veículo">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="94.0" fitWidth="96.0" layoutX="503.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/locar.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </Pane>
                   <Separator orientation="VERTICAL" prefHeight="666.0" prefWidth="6.0" />

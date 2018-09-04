@@ -175,6 +175,14 @@ public class TelaGerenciaCliController implements Initializable {
         }
         cli.setRua(campoRua.getText());
         cli.setNumCasa(campoNum.getText());
+        
+        try {
+            if (campoRG.getText().length()>10)
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
+                return;
+        }
         cli.setRg(campoRG.getText());        
         cli.setBairro(campoBairro.getText());
         cli.setCidade(campoCidade.getText());
@@ -188,11 +196,12 @@ public class TelaGerenciaCliController implements Initializable {
         Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
         cli.setDataNascimento(nasc);
         
-        Alertas.mostraAlertaInfo("Cadastro de Clientes", "Cadastro realizado com sucesso!");
-	
         ClienteDAO cliDAO = new ClienteDAO();
         cliDAO.add(cli);
         listaClientes.setItems(atualizaTabela());
+        
+        Alertas.mostraAlertaInfo("Cadastro de Clientes", "Cadastro realizado com sucesso!");
+	        
     }
     
     

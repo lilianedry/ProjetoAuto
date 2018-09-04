@@ -2,8 +2,14 @@ package controller;
 
 import controller.alerts.Alertas;
 import database.DAOs.CarroDAO;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,24 +17,23 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Caminho;
 import model.ChangeScreen;
 import model.Especificacoes;
 import model.entities.Carro;
+import model.entities.Cliente;
 
 public class TelaGerenciaCarroController {
-    
     private static boolean janela;
 
     public static boolean getJanela() {
         return janela;
     }
-
     public static void setJanela(boolean janela) {
         TelaGerenciaCarroController.janela = janela;
     }
-
 
     @FXML
     private Button insereCarro;
@@ -41,11 +46,11 @@ public class TelaGerenciaCarroController {
     @FXML
     private TextField campoPesquisa;
     @FXML
-    private TableColumn<?, ?> colunaModelo;
+    private TableColumn<Carro, String> colunaPlaca;
     @FXML
-    private TableColumn<?, ?> colunaPlaca;
+    private TableColumn<Carro, String> colunaModelo;
     @FXML
-    private TableView<?> listaVeiculos;
+    private TableView<Carro> listaVeiculos;
     @FXML
     private TextField campoPlaca;
     @FXML
@@ -65,6 +70,19 @@ public class TelaGerenciaCarroController {
     @FXML
     private TextArea campoOpcional;
 
+    private Carro selecionado;
+    
+    public void initialize(URL url, ResourceBundle rb) {
+        initTable();
+        
+        listaVeiculos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+               selecionado = (Carro) newValue;               
+            }
+        });        
+    } 
+    
     @FXML
     private void insereCarro(ActionEvent event) {
         Carro car = new Carro();
@@ -77,12 +95,14 @@ public class TelaGerenciaCarroController {
         car.setCombustivel(campoCombustivel.getText());          
         car.setOpcionais(campoOpcional.getText());                
         car.setAnoModelo(campoAno.getText());        
-        car.setQuilometragem(campoKm.getText());  
+        car.setQuilometragem(campoKm.getText());          
+       
+        CarroDAO carDAO = new CarroDAO();
+        carDAO.add(car);
+        listaVeiculos.setItems(atualizaTabela());
         
         Alertas.mostraAlertaInfo("Cadastro de Veículo", "Cadastro realizado com sucesso!");
 	
-        CarroDAO carDAO = new CarroDAO();
-        carDAO.add(car);
     }
 
     @FXML
@@ -107,15 +127,35 @@ public class TelaGerenciaCarroController {
             } catch (Exception ex) {
                 Logger.getLogger(TelaGerenciaCarroController.class.getName()).log(Level.SEVERE, null, ex);
             }
-                    }
+        }
     }
 
     @FXML
     private void removeCarro(ActionEvent event) {
+        deleta();
+        Alertas.mostraAlertaInfo("Remoção de Veículo", "Veículo removido com sucesso!");
+	
     }
 
     @FXML
     private void editaCarro(ActionEvent event) {
+        
+        Alertas.mostraAlertaInfo("Edição de Veículo", "Veículo editado com sucesso!");
+	
     }
-
+    public void initTable(){
+        colunaPlaca.setCellValueFactory(new PropertyValueFactory("placa"));
+        colunaModelo.setCellValueFactory(new PropertyValueFactory("modelo"));
+        listaVeiculos.setItems(atualizaTabela());
+    }
+    
+    public ObservableList<Carro> atualizaTabela(){
+        CarroDAO dao = new CarroDAO();
+        return FXCollections.observableArrayList(dao.all());
+    }
+    
+    public void deleta(){
+        CarroDAO car = new CarroDAO();
+        car.delete(selecionado);
+    }
 }

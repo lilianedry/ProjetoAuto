@@ -10,5 +10,6 @@ public class Caminho {
     public static String telaFunc  = "../view/TelaFuncionario.fxml";
     public static String telaGerente  = "../view/TelaGerente.fxml";
     public static String telaLogin = "../view/TelaLogin.fxml";
-    public static String telaRelatorios = "../view/TelaRelatorios.fxml";
+    public static String telaRelatorios = "../view/TelaRelatorios.fxml";    
+    public static String telaLocar = "../view/TelaLocarVeiculos.fxml";
 }

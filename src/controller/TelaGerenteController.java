@@ -4,12 +4,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -40,6 +38,8 @@ public class TelaGerenteController implements Initializable {
     private Button gerenciaCarro;
     @FXML
     private Button gerenciaCli;
+    @FXML
+    private Button locarVeiculo;
 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -80,6 +80,15 @@ public class TelaGerenteController implements Initializable {
         TelaGerenciaCliController cli = new  TelaGerenciaCliController();
         cli.setJanela(true);
         Stage mainStage = change.change(event, Caminho.telaGerCli, Especificacoes.getSoftwareNome(), true);
+        mainStage.show();
+    }
+
+    @FXML
+    private void locarVeiculo(ActionEvent event) throws Exception {
+        ChangeScreen change = new ChangeScreen();
+        TelaLocarVeiculosController locar = new  TelaLocarVeiculosController();
+        locar.setJanela(true);
+        Stage mainStage = change.change(event, Caminho.telaLocar, Especificacoes.getSoftwareNome(), true);
         mainStage.show();
     }
 }

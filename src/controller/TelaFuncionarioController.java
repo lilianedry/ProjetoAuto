@@ -28,6 +28,8 @@ public class TelaFuncionarioController implements Initializable {
     private TableColumn<?, ?> colunaNome;
     @FXML
     private TableColumn<?, ?> colunaCPF;
+    @FXML
+    private Button locarVeiculo;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -50,5 +52,13 @@ public class TelaFuncionarioController implements Initializable {
             car.setJanela(false);
             Stage mainStage = change.change(event, Caminho.telaGerCarro, Especificacoes.getSoftwareNome(), true);
             mainStage.show();
+    }
+    @FXML
+    private void locarVeiculo(ActionEvent event) throws Exception {
+        ChangeScreen change = new ChangeScreen();
+        TelaLocarVeiculosController locar = new  TelaLocarVeiculosController();
+        locar.setJanela(true);
+        Stage mainStage = change.change(event, Caminho.telaLocar, Especificacoes.getSoftwareNome(), true);
+        mainStage.show();
     }
 }

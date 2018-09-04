@@ -38,6 +38,7 @@ public class SolicitaCarro implements java.io.Serializable {
     private Date dataRetirada;
     private Date prazoFinal;
     private Date dataEntrega;
+    private String valor;
     private boolean ativo;
 
     public SolicitaCarro() {
@@ -110,7 +111,13 @@ public class SolicitaCarro implements java.io.Serializable {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-
+    @Column(name = "Valor")
+    public String getValor() {
+        return valor;
+    }
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
     public boolean equals(Object o) {
         if (this == o) {
             return true;
