@@ -102,13 +102,22 @@ public class TelaGerenciaCliController implements Initializable {
         listaClientes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-               selecionado = (Cliente) newValue;
-               
+               selecionado = (Cliente) newValue;  
+                System.out.println(selecionado.toString());
             }
-        });
-        
+        });  
     }    
 
+        
+    public void initCliente(){
+       campoRG.setText(selecionado.getRg());
+        campoBairro.setText(selecionado.getBairro());
+        campoCidade.setText(selecionado.getCidade());
+       campoEstado.setText(selecionado.getEstado());
+       campoEmail.setText(selecionado.getEmail());
+        campoTel.setText(selecionado.getTelefone());
+        campoCnh.setText(selecionado.getCnh());
+    }
 
     @FXML
     private void voltar(ActionEvent event) {
@@ -137,6 +146,19 @@ public class TelaGerenciaCliController implements Initializable {
 
     @FXML
     private void editaCli(ActionEvent event) {
+        campoNome.setText(selecionado.getNome());
+        campoCPF.setText(selecionado.getCpf());
+        campoRua.setText(selecionado.getRua());
+        campoNum.setText(selecionado.getNumCasa());
+        campoRG.setText(selecionado.getRg());
+        campoBairro.setText(selecionado.getBairro());
+        campoCidade.setText(selecionado.getCidade());
+        campoEstado.setText(selecionado.getEstado());
+        campoEmail.setText(selecionado.getEmail());
+        campoTel.setText(selecionado.getTelefone());
+        campoCnh.setText(selecionado.getCnh());
+        
+        
     }
 
     @FXML
@@ -169,6 +191,54 @@ public class TelaGerenciaCliController implements Initializable {
 
     @FXML
     private void insereCli(ActionEvent event) {
+      if(selecionado != null){
+        Cliente cli = new Cliente();
+        
+        cli.setNome(campoNome.getText()); 
+        try {
+            if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+                Alertas.mostraAlertaInfo("No campo CPF", "Digite um CPF válido.");
+                return;
+        }
+        cli.setCpf(campoCPF.getText()); 
+       
+        if(campoMasc.isSelected()){
+            cli.setSexo("M");
+        }
+        if(campoFem.isSelected()){
+            cli.setSexo("F");
+        }
+        cli.setRua(campoRua.getText());
+        cli.setNumCasa(campoNum.getText());
+        
+        try {
+            if (campoRG.getText().length()>10)
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
+                return;
+        }
+        cli.setIdPessoa(selecionado.getIdPessoa());
+        cli.setRg(campoRG.getText());        
+        cli.setBairro(campoBairro.getText());
+        cli.setCidade(campoCidade.getText());
+        cli.setEstado(campoEstado.getText());
+        cli.setEmail(campoEmail.getText());
+        cli.setTelefone(campoTel.getText());
+        cli.setCnh(campoCnh.getText());
+        cli.setAtivo(true);
+                
+        LocalDate data = campoDataNasc.getValue();
+        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        cli.setDataNascimento(nasc);
+        
+        ClienteDAO cliDAO = new ClienteDAO();
+        cliDAO.update(cli);
+        listaClientes.setItems(atualizaTabela());
+        Alertas.mostraAlertaInfo("Edição de Clientes", "Edição realizado com sucesso!");
+       }else{
         Cliente cli = new Cliente();
         
         cli.setNome(campoNome.getText()); 
@@ -214,8 +284,8 @@ public class TelaGerenciaCliController implements Initializable {
         cliDAO.add(cli);
         listaClientes.setItems(atualizaTabela());
         
-        Alertas.mostraAlertaInfo("Cadastro de Clientes", "Cadastro realizado com sucesso!");
-	        
+        Alertas.mostraAlertaInfo("Cadastro de Clientes", "Cadastro realizado com sucesso!");  
+      }        
     }
     
     
@@ -232,6 +302,9 @@ public class TelaGerenciaCliController implements Initializable {
     
     public void deleta(){
         ClienteDAO cli = new ClienteDAO();
+        selecionado.setAtivo(false);
         cli.delete(selecionado);
     }
+    
+    
 }
