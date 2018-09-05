@@ -8,6 +8,7 @@ package database.DAOs;
 import database.HibernateUtil;
 import java.util.List;
 import model.entities.Cliente;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -88,6 +89,36 @@ public class ClienteDAO {
         try {
             Transaction tx = session.beginTransaction();
             clientes = session.createQuery("from Cliente where ativo = true").list();
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return clientes;
+    }
+    
+    public List<Cliente> allf() {
+        List<Cliente> clientes = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            clientes = session.createQuery("from Cliente").list();
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return clientes;
+    }
+    
+    public List<Cliente> selectNome(String nome) {
+        List<Cliente> clientes = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from Usuario where nome = :nome");
+            q.setString("nome", nome);
+            clientes = q.list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

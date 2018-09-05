@@ -8,6 +8,7 @@ package database.DAOs;
 import database.HibernateUtil;
 import java.util.List;
 import model.entities.Funcionario;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -73,6 +74,36 @@ public class FuncionarioDAO {
         try {
             Transaction tx = session.beginTransaction();
             funcionarios = session.createQuery("from Funcionario where ativo = true").list();
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return funcionarios;
+    }
+    
+    public List<Funcionario> allf() {
+        List<Funcionario> funcionarios = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            funcionarios = session.createQuery("from Funcionario").list();
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return funcionarios;
+    }
+    
+    public List<Funcionario> selectNome(String nome) {
+        List<Funcionario> funcionarios = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from Usuario where nome = :nome");
+            q.setString("nome", nome);
+            funcionarios = q.list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
