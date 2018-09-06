@@ -8,10 +8,11 @@ package database.DAOs;
 import database.HibernateUtil;
 import java.util.List;
 import model.entities.Carro;
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Example;
 
 /**
  *
@@ -94,7 +95,7 @@ public class CarroDAO {
         }
         return carros;
     }
-    
+
     public List<Carro> allf() {
         List<Carro> carros = null;
         try {
@@ -108,14 +109,14 @@ public class CarroDAO {
         }
         return carros;
     }
-    
-    public List<Carro> selectModelo(String modelo) {
+
+    public List<Carro> selectParam(Carro carro) {
         List<Carro> carros = null;
         try {
+            Criteria crit = session.createCriteria(Carro.class);
+            crit.add(Example.create(carro));
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Usuario where modelo = :modelo");
-            q.setString("modelo", modelo);
-            carros = q.list();
+            carros = crit.list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

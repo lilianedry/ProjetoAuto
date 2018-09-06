@@ -8,10 +8,12 @@ package database.DAOs;
 import database.HibernateUtil;
 import java.util.List;
 import model.entities.Funcionario;
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -101,9 +103,25 @@ public class FuncionarioDAO {
         List<Funcionario> funcionarios = null;
         try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Usuario where nome = :nome");
-            q.setString("nome", nome);
-            funcionarios = q.list();
+            Criteria crit = session.createCriteria(Funcionario.class);
+            crit.add(Restrictions.eq("nome", nome + "%"));
+            funcionarios = crit.list();
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return funcionarios;
+    }
+    
+    public List<Funcionario> selectParam(Funcionario funcionario) {
+        List<Funcionario> funcionarios = null;
+        try {
+            Criteria crit = session.createCriteria(Funcionario.class);
+            crit.add(Example.create(funcionario));
+            Transaction tx = session.beginTransaction();
+            funcionarios = crit.list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
