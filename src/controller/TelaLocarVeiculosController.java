@@ -7,10 +7,13 @@ package controller;
 
 import controller.alerts.Alertas;
 import controller.verificadores.verCPF;
+import database.DAOs.CarroDAO;
+import database.DAOs.ClienteDAO;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,39 +84,40 @@ public class TelaLocarVeiculosController implements Initializable {
 
     @FXML
     private void locarVeiculo(ActionEvent event) {
-        Carro car = new Carro();
-        Cliente cli = new Cliente();
-        SolicitaCarro sol = new SolicitaCarro();
+    Cliente aux = new Cliente();
+        aux.setCpf(campoCPFCli.getText());
+        ClienteDAO cliDAO2 = new ClienteDAO();
+        System.out.println(aux);
+        Cliente cli = cliDAO2.selectParam(aux).get(0);
+     
+    Carro auxCar = new Carro();
+        auxCar.setPlaca(campoPlaca.getText());
+        CarroDAO carDAO = new CarroDAO();
+        Carro car = carDAO.selectParam(auxCar).get(0);
         
-        /*try {
-            if (!(verCPF.isValidCPF(campoCPFCli.getText().trim())))
-            throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e) {
-                Alertas.mostraAlertaInfo("No campo CPF", "Digite um CPF válido.");
-                return;
-        }
-        cli.setCpf(campoCPFCli.getText()); 
+    SolicitaCarro sC = new SolicitaCarro();
+        sC.setCliente(cli);
+        sC.setCarro(car);
         
-        car.setPlaca(campoPlaca.getText());        
-        LocalDate data = campoDataRetira.getValue();
-        Date retira = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        car.setDataCede(retira);
+        LocalDate data = campoDataRetira.getValue();        
+        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        sC.setDataRetirada(nasc);
         
-        LocalDate data2 = campoDataEntrega.getValue();
-        Date entrega = Date.from(data2.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        car.setDataCede(entrega);
+        LocalDate data1 = campoDataEntrega.getValue();
+        Date nasc1 = Date.from(data1.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        sC.setDataEntrega(nasc1);
         
-        LocalDate data3 = campoPrazoFinal.getValue();
-        Date prazo = Date.from(data3.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        car.setDataCede(entrega);
+        LocalDate data2 = campoPrazoFinal.getValue();
+        Date nasc2 = Date.from(data2.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        sC.setPrazoFinal(nasc2);
         
-        sol.setCliente(cli);
-        sol.setCarro(car);
-        sol.setDataRetirada(retira);
-        sol.setDataEntrega(entrega);
-        sol.setPrazoFinal(prazo);
-        sol.setValor(null);
-        */
+        sC.setValor(campoValor.getText());
+        
+        cli.getSolicitaCarro().add(sC);
+        
+        ClienteDAO cliDAO3 = new ClienteDAO();
+        cliDAO3.update(cli);        
+        
         Alertas.mostraAlertaInfo("Locação de Veículo", "Locação realizada com sucesso!");
 	
     }
