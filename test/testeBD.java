@@ -1,10 +1,10 @@
 
-import database.DAOs.EmpregadoDAO;
-import database.DAOs.FuncionarioDAO;
+import database.DAOs.CarroDAO;
+import database.DAOs.ClienteDAO;
 import java.time.Instant;
 import java.util.Date;
-import java.util.List;
-import model.entities.Empregado;
+import model.entities.Carro;
+import model.entities.Cliente;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,25 +18,38 @@ import model.entities.Empregado;
 public class testeBD {
 
     public static void main(String args[]) {
+        //Como inserir cliente e carro
 //        Cliente cli = new Cliente("teste", "teste", "teste", "teste", Date.from(Instant.now()), "teste", "250",
 //                "teste", "teste", "teste", "teste", "teste", "teste");
-//        Carro car = new Carro("teste", "teste", "teste", "teste", "2018", "teste",
-//                "teste", "1000", "teste");
-        Empregado emp = new Empregado("teste", "teste", "teste", "teste", Date.from(Instant.now()), "teste", "teste",
-            "teste", "teste", "teste", "teste", "teste", "teste", "teste",
-            "teste", Date.from(Instant.now()));
 //
 //        ClienteDAO cliDAO1 = new ClienteDAO();
 //        cliDAO1.add(cli);
-//        
+//
+//        Carro car = new Carro("teste", "teste", "teste", "teste", "2018", "teste",
+//                "teste", "1000", "teste");
 //        car.setCliente(cli);
+//        car.setDataCede(Date.from(Instant.now()));
 //        cli.getCarrosCedidos().add(car);
 //
 //        CarroDAO carDAO1 = new CarroDAO();
 //        carDAO1.add(car);
 
-        EmpregadoDAO empDAO1 = new EmpregadoDAO();
-        empDAO1.add(emp);
+        //Pesquisa de cliente
+        Cliente aux = new Cliente();
+        aux.setCpf("teste");
+        ClienteDAO cliDAO2 = new ClienteDAO();
+        System.out.println(aux);
+        Cliente cliSel = cliDAO2.selectParam(aux).get(0);
+        if(cliSel != null)
+            System.out.println(cliSel);
+        else
+            System.out.println("Cliente não encontrado.");
+
+//        Empregado emp = new Empregado("teste", "teste", "teste", "teste", Date.from(Instant.now()), "teste", "teste",
+//            "teste", "teste", "teste", "teste", "teste", "teste", "teste",
+//            "teste", Date.from(Instant.now()));
+//        EmpregadoDAO empDAO1 = new EmpregadoDAO();
+//        empDAO1.add(emp);
 //
 //        System.out.println("fodac4");
 //        ClienteDAO cliDAO = new ClienteDAO();
@@ -46,11 +59,11 @@ public class testeBD {
 //        for(int x = 0; x < clientes.size(); x++)
 //            System.out.printf("%s\n", clientes.get(x).toString());  
 
-        EmpregadoDAO empDAO = new EmpregadoDAO();
-        List<Empregado> emps = empDAO.all();
-        
-        for(int x = 0; x < emps.size(); x++)
-            System.out.printf("%s\n", emps.get(x).toString());
+//        EmpregadoDAO empDAO = new EmpregadoDAO();
+//        List<Empregado> emps = empDAO.all();
+//        
+//        for(int x = 0; x < emps.size(); x++)
+//            System.out.printf("%s\n", emps.get(x).toString());
 
 //        SolicitaCarro sC = new SolicitaCarro();
 //        sC.setCliente(cli);

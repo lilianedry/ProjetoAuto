@@ -24,7 +24,7 @@ public class Cliente extends Pessoa implements Serializable {
     private Set<GerenciaCliente> gerenciaCliente = new HashSet<>(0);
 
     public Cliente() {
-
+        super();
     }
 
     public Cliente(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, String numCasa,

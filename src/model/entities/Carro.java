@@ -22,7 +22,7 @@ import model.entities.relationships.SolicitaCarro;
 @Table(name = "carro")
 public class Carro implements Serializable {
 
-    private int idCarro;
+    private Integer idCarro;
     private String placa;
     private String tipoCambio;
     private String modelo;
@@ -39,7 +39,7 @@ public class Carro implements Serializable {
     private Set<GerenciaCarro> gerenciaCarro = new HashSet<>(0); //RELACINAMENTO N:N GerenciaCarro
 
     public Carro() {
-
+        this.ativo = true;
     }
 
     public Carro(String placa, String tipoCambio, String modelo, String cor, String anoModelo, String chassi,
@@ -95,12 +95,12 @@ public class Carro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCarro", unique = true, nullable = false)
-    public int getIdCarro() {
+    @Column(name = "idCarro", unique = true)
+    public Integer getIdCarro() {
         return idCarro;
     }
 
-    public void setIdCarro(int idCarro) {
+    public void setIdCarro(Integer idCarro) {
         this.idCarro = idCarro;
     }
 

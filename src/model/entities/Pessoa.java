@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
 @Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED) //Tabela própria para a super classe
 public abstract class Pessoa implements Serializable {
-    protected int idPessoa;
+    protected Integer idPessoa;
     private String nome;
     private String cpf;
     private String rg;
@@ -33,6 +33,7 @@ public abstract class Pessoa implements Serializable {
     private boolean ativo;
 
     public Pessoa() {
+        this.ativo = true;
     }
 
     public Pessoa(String nome, String cpf, String rg, String sexo, Date dataNascimento, String rua, String numCasa,
@@ -54,12 +55,12 @@ public abstract class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPessoa", unique = true, nullable = false)
-    public int getIdPessoa() {
+    @Column(name = "idPessoa", unique = true)
+    public Integer getIdPessoa() {
         return idPessoa;
     }
 
-    public void setIdPessoa(int idPessoa) {
+    public void setIdPessoa(Integer idPessoa) {
         this.idPessoa = idPessoa;
     }
 
