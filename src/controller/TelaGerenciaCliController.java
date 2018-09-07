@@ -303,7 +303,7 @@ public class TelaGerenciaCliController implements Initializable {
     public void deleta(){
         ClienteDAO cli = new ClienteDAO();
         selecionado.setAtivo(false);
-        cli.delete(selecionado);
+        cli.update(selecionado);
     }
     
     

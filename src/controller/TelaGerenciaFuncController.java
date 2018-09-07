@@ -10,6 +10,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,8 +26,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import model.entities.Cliente;
 import model.entities.Empregado;
 import model.entities.Funcionario;
 import model.entities.Pessoa;
@@ -38,15 +44,15 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
     @FXML
     private TextField campoPesquisa;
     @FXML
-    private TableColumn<?, ?> colunaNome;
+    private TableColumn<Funcionario, String> colunaNome;
     @FXML
-    private TableColumn<?, ?> colunaCPF;
+    private TableColumn<Funcionario, String> colunaCPF;
     @FXML
     private Button insereFunc;
     @FXML
     private Button voltar;
     @FXML
-    private TableView<?> listaFunc;
+    private TableView<Funcionario> listaFunc;
     @FXML
     private RadioButton campoMasc;
     @FXML
@@ -84,13 +90,78 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
     @FXML
     private TextField campoSenha;
     
+    private Funcionario selecionado;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        initTable();
+        listaFunc.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+               selecionado = (Funcionario) newValue;  
+                System.out.println(selecionado.toString());
+            }
+        });  
     }    
     
     @FXML 
     private void insereFunc(ActionEvent event) {
+        if(selecionado != null){
+            Empregado func = new Empregado();  
+        
+        func.setLogin(campoLogin.getText());
+        func.setSenha(campoSenha.getText());
+        func.setNome(campoNome.getText());
+        
+        try {
+            if (campoRG.getText().length()>10)
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
+                return;
+        }
+        func.setRg(campoRG.getText());
+        func.setTelefone(campoTel.getText());
+        func.setRua(campoRua.getText());
+        func.setCidade(campoCidade.getText());        
+        func.setEstado(campoEstado.getText());
+        func.setBairro(campoBairro.getText());
+        func.setCargo(campoCargo.getText());   
+        func.setNumCasa(campoNumCasa.getText()); 
+        func.setSalario(campoSalario.getText()); 
+        func.setCargaHorSem(campoHoraSemana.getText());
+        func.setAtivo(true);
+        func.setIdPessoa(selecionado.getIdPessoa());
+               
+        try {
+            if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
+                    throw new IllegalArgumentException();
+	} catch (IllegalArgumentException e) {
+            Alertas.mostraAlertaInfo("Erro no campo CPF!", "Digite um CPF válido.");
+		return;
+	}
+        
+        func.setCpf(campoCPF.getText());
+        if(campoMasc.isSelected()){
+            func.setSexo("M");
+        }
+        if(campoFem.isSelected()){
+            func.setSexo("F");
+        }
+        LocalDate data = campoDataNasc.getValue();
+        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        func.setDataNascimento(nasc);
+        
+        LocalDate data2 = campoDataEnt.getValue();
+        Date entra = Date.from(data2.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        func.setDataEntrada(entra); 
+        
+        FuncionarioDAO FuncDAO = new FuncionarioDAO();
+        FuncDAO.update(func);
+       
+        listaFunc.setItems(atualizaTabela());
+        Alertas.mostraAlertaInfo("Cadastro de Funcionario", "Cadastro realizado com sucesso!");
+        }else{
         Empregado func = new Empregado();  
         
         func.setLogin(campoLogin.getText());
@@ -114,6 +185,7 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
         func.setNumCasa(campoNumCasa.getText()); 
         func.setSalario(campoSalario.getText()); 
         func.setCargaHorSem(campoHoraSemana.getText());
+        func.setAtivo(true);
                
         try {
             if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
@@ -122,14 +194,7 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
             Alertas.mostraAlertaInfo("Erro no campo CPF!", "Digite um CPF válido.");
 		return;
 	}
-       /*verifica no banco
-        try {
-            if (func.cpfNoArray(campoCPF.getText().trim()))
-                throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e) {
-                Alertas.mostraAlertaInfo("No campo CPF do Aluno", "O CPF informado j� est� cadastrado.");
-                return;
-        }*/   
+        
         func.setCpf(campoCPF.getText());
         if(campoMasc.isSelected()){
             func.setSexo("M");
@@ -145,23 +210,39 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
         Date entra = Date.from(data2.atStartOfDay(ZoneId.systemDefault()).toInstant());
         func.setDataEntrada(entra); 
         
-        
-       
-        Alertas.mostraAlertaInfo("Cadastro de Funcionario", "Cadastro realizado com sucesso!");
-		
         FuncionarioDAO FuncDAO = new FuncionarioDAO();
         FuncDAO.add(func);
+       
+        listaFunc.setItems(atualizaTabela());
+        Alertas.mostraAlertaInfo("Cadastro de Funcionario", "Cadastro realizado com sucesso!");	
+        }
     }
     
     @FXML
     private void editaFunc(ActionEvent event) {
-    
+        campoLogin.setText(selecionado.getLogin());
+        campoSenha.setText(selecionado.getSenha());
+        campoNome.setText(selecionado.getNome());
+        campoRG.setText(selecionado.getRg());
+        campoTel.setText(selecionado.getTelefone());
+        campoRua.setText(selecionado.getRua());
+        campoCidade.setText(selecionado.getCidade());
+        campoEstado.setText(selecionado.getEstado());
+        campoBairro.setText(selecionado.getBairro());
+        campoCargo.setText(selecionado.getCargo());
+        campoNumCasa.setText(selecionado.getNumCasa());
+        campoSalario.setText(selecionado.getSalario());
+        campoHoraSemana.setText(selecionado.getCargaHorSem());
+        campoCPF.setText(selecionado.getCpf());
+        
     }
 
     @FXML
     private void removeFunc(ActionEvent event) {
-        
-    
+        FuncionarioDAO dao = new FuncionarioDAO();
+        selecionado.setAtivo(false);
+        dao.update(selecionado);
+        listaFunc.setItems(atualizaTabela());    
     } 
     
     @FXML
@@ -181,5 +262,16 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
                 stage.close(); //fecha a pagina atual antes de sair
             }
     }
+    
+    public void initTable(){
+        colunaNome.setCellValueFactory(new PropertyValueFactory("nome"));
+        colunaCPF.setCellValueFactory(new PropertyValueFactory("cpf"));
+        listaFunc.setItems(atualizaTabela());
+    }
+    
+     public ObservableList<Funcionario> atualizaTabela(){
+         FuncionarioDAO dao = new FuncionarioDAO();
+         return FXCollections.observableArrayList(dao.all());
+     }
     
 }
