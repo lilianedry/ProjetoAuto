@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,7 +26,7 @@ import model.Especificacoes;
 import model.entities.Carro;
 import model.entities.Cliente;
 
-public class TelaGerenciaCarroController {
+public class TelaGerenciaCarroController implements Initializable{
     private static boolean janela;
 
     public static boolean getJanela() {
@@ -72,6 +73,7 @@ public class TelaGerenciaCarroController {
 
     private Carro selecionado;
     
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         initTable();
         
@@ -85,6 +87,27 @@ public class TelaGerenciaCarroController {
     
     @FXML
     private void insereCarro(ActionEvent event) {
+       if(selecionado != null){
+           Carro car = new Carro();
+        
+        car.setPlaca(campoPlaca.getText());        
+        car.setModelo(campoModelo.getText());
+        car.setCor(campoCor.getText());        
+        car.setChassi(campoChassi.getText());  
+        car.setTipoCambio(campoCambio.getText());
+        car.setCombustivel(campoCombustivel.getText());          
+        car.setOpcionais(campoOpcional.getText());                
+        car.setAnoModelo(campoAno.getText());        
+        car.setQuilometragem(campoKm.getText()); 
+        car.setIdCarro(selecionado.getIdCarro());
+        car.setAtivo(true);
+       
+        CarroDAO carDAO = new CarroDAO();
+        carDAO.update(car);
+        listaVeiculos.setItems(atualizaTabela());
+        
+        Alertas.mostraAlertaInfo("Edita Veículo", "Edição realizado com sucesso!");
+       }else{
         Carro car = new Carro();
         
         car.setPlaca(campoPlaca.getText());        
@@ -95,14 +118,15 @@ public class TelaGerenciaCarroController {
         car.setCombustivel(campoCombustivel.getText());          
         car.setOpcionais(campoOpcional.getText());                
         car.setAnoModelo(campoAno.getText());        
-        car.setQuilometragem(campoKm.getText());          
+        car.setQuilometragem(campoKm.getText()); 
+        car.setAtivo(true);
        
         CarroDAO carDAO = new CarroDAO();
         carDAO.add(car);
         listaVeiculos.setItems(atualizaTabela());
         
         Alertas.mostraAlertaInfo("Cadastro de Veículo", "Cadastro realizado com sucesso!");
-	
+       }
     }
 
     @FXML
@@ -132,16 +156,25 @@ public class TelaGerenciaCarroController {
 
     @FXML
     private void removeCarro(ActionEvent event) {
-        deleta();
+        selecionado.setAtivo(false);
+        CarroDAO dao = new CarroDAO();
+        dao.update(selecionado);
         Alertas.mostraAlertaInfo("Remoção de Veículo", "Veículo removido com sucesso!");
-	
+	listaVeiculos.setItems(atualizaTabela());
     }
 
     @FXML
     private void editaCarro(ActionEvent event) {
         
-        Alertas.mostraAlertaInfo("Edição de Veículo", "Veículo editado com sucesso!");
-	
+        campoPlaca.setText(selecionado.getPlaca());
+        campoModelo.setText(selecionado.getModelo());
+        campoCor.setText(selecionado.getCor());
+        campoChassi.setText(selecionado.getChassi());
+        campoCambio.setText(selecionado.getTipoCambio());
+        campoCombustivel.setText(selecionado.getCombustivel());
+        campoOpcional.setText(selecionado.getOpcionais());
+        campoAno.setText(selecionado.getAnoModelo());
+        campoKm.setText(selecionado.getQuilometragem());
     }
     public void initTable(){
         colunaPlaca.setCellValueFactory(new PropertyValueFactory("placa"));
@@ -154,8 +187,4 @@ public class TelaGerenciaCarroController {
         return FXCollections.observableArrayList(dao.all());
     }
     
-    public void deleta(){
-        CarroDAO car = new CarroDAO();
-        car.delete(selecionado);
-    }
 }
