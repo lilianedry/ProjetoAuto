@@ -1,8 +1,14 @@
 package controller;
 
 import controller.alerts.Alertas;
+import controller.verificadores.verCPF;
 import database.DAOs.CarroDAO;
+import database.DAOs.ClienteDAO;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -72,6 +79,10 @@ public class TelaGerenciaCarroController implements Initializable{
     private TextArea campoOpcional;
 
     private Carro selecionado;
+    @FXML
+    private TextField campoCPF;
+    @FXML
+    private DatePicker campoData;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -120,6 +131,40 @@ public class TelaGerenciaCarroController implements Initializable{
         car.setAnoModelo(campoAno.getText());        
         car.setQuilometragem(campoKm.getText()); 
         car.setAtivo(true);
+        
+        try {
+            if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+                Alertas.mostraAlertaInfo("No campo CPF", "Digite um CPF válido.");
+                return;
+        }
+//        Cliente cli =new Cliente();
+//        cli.setCpf(campoCPF.getText());
+//        ClienteDAO dao = new ClienteDAO();
+//        List<Cliente> cli1 = dao.selectParam(cli);
+//           System.out.println(cli.getIdPessoa());
+//       if(cli1 != null){
+//           car.setCliente(cli);
+//       }else{
+//          Alertas.mostraAlertaInfo("NAO Cadastro de Veículo", "Cadastro realizado com sucesso!");
+//       }
+       
+       Cliente aux = new Cliente();
+        aux.setCpf(campoCPF.getText());
+        ClienteDAO cliDAO2 = new ClienteDAO();
+        System.out.println(aux);
+        Cliente cliSel = cliDAO2.selectParam(aux).get(0);
+        if(cliSel != null){
+            car.setCliente(cliSel);
+            System.out.println(cliSel);
+        }else{
+            System.out.println("Cliente não encontrado.");
+        }
+
+       LocalDate data = campoData.getValue();
+        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        car.setDataCede(nasc);
        
         CarroDAO carDAO = new CarroDAO();
         carDAO.add(car);
