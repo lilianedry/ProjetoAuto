@@ -164,7 +164,6 @@ public class TelaGerenciaCarroController implements Initializable{
             CarroDAO carDAO = new CarroDAO();
             carDAO.add(car);
             listaVeiculos.setItems(atualizaTabela());
-
             Alertas.mostraAlertaInfo("Cadastro de Veículo", "Cadastro realizado com sucesso!");
         }
     }
@@ -181,9 +180,9 @@ public class TelaGerenciaCarroController implements Initializable{
             } catch (Exception ex) {
                 Logger.getLogger(TelaGerenciaCarroController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
-             ChangeScreen change = new ChangeScreen();
-
+        }
+        else{
+            ChangeScreen change = new ChangeScreen();
             Stage mainStage;
             try {
                 mainStage = change.change(event, Caminho.telaFunc, Especificacoes.getSoftwareNome(), true);
@@ -196,29 +195,30 @@ public class TelaGerenciaCarroController implements Initializable{
 
     @FXML
     private void removeCarro(ActionEvent event) throws Exception {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmação");
-        alert.setHeaderText("Tem certeza que deseja excluir o veículo?");
-        alert.setContentText("Todos os dados serão deletados do banco de dados");
+        if(selecionado!=null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmação");
+            alert.setHeaderText("Tem certeza que deseja excluir o veículo?");
+            alert.setContentText("Todos os dados serão deletados do banco de dados");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-                remove(event);
-        } else {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                    remove(event);
+            } else { }        
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setHeaderText("Selecione um veículo");
+            a.setContentText("Veículo não selecionado!");
+            a.show();
         }
     }
-      private void remove(ActionEvent event) throws Exception {
-        if(selecionado != null){
-            deleta();
-            Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-            a.setHeaderText("Veículo excluído com Sucesso");
-            a.show();
-            listaVeiculos.setItems(atualizaTabela());
-        }else{
-            Alert a = new Alert(Alert.AlertType.WARNING);
-            a.setHeaderText("Selecione um Veículo");
-            a.show();
-        }        
+    private void remove(ActionEvent event) throws Exception {   
+        deleta();
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("Veículo excluído com Sucesso");
+        a.show();
+        listaVeiculos.setItems(atualizaTabela());           
     }
     public void deleta(){
         CarroDAO dao = new CarroDAO();        
@@ -227,23 +227,35 @@ public class TelaGerenciaCarroController implements Initializable{
     }
     
     @FXML
-    private void editaCarro(ActionEvent event) {
-        
-        campoPlaca.setText(selecionado.getPlaca());
-        campoModelo.setText(selecionado.getModelo());
-        campoCor.setText(selecionado.getCor());
-        campoChassi.setText(selecionado.getChassi());
-        campoCambio.setText(selecionado.getTipoCambio());
-        campoCombustivel.setText(selecionado.getCombustivel());
-        campoOpcional.setText(selecionado.getOpcionais());
-        campoAno.setText(selecionado.getAnoModelo());
-        campoKm.setText(selecionado.getQuilometragem());
+    private void editaCarro(ActionEvent event) {    
+        if(selecionado==null){
+            try {
+                if (selecionado==null)
+                        throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                Alertas.mostraAlertaInfo("Edição de veículo", "Clique em um veículo para editar!");	
+                    return;
+            }
+        }
+        else{
+            campoPlaca.setText(selecionado.getPlaca());
+            campoModelo.setText(selecionado.getModelo());
+            campoCor.setText(selecionado.getCor());
+            campoChassi.setText(selecionado.getChassi());
+            campoCambio.setText(selecionado.getTipoCambio());
+            campoCombustivel.setText(selecionado.getCombustivel());
+            campoOpcional.setText(selecionado.getOpcionais());
+            campoAno.setText(selecionado.getAnoModelo());
+            campoKm.setText(selecionado.getQuilometragem());
+        }
     }
+    
     public void initTable(){
         colunaPlaca.setCellValueFactory(new PropertyValueFactory("placa"));
         colunaModelo.setCellValueFactory(new PropertyValueFactory("modelo"));
         listaVeiculos.setItems(atualizaTabela());
-    }    
+    }  
+    
     public ObservableList<Carro> atualizaTabela(){
         CarroDAO dao = new CarroDAO();
         return FXCollections.observableArrayList(dao.all());

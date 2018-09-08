@@ -3,7 +3,6 @@ package controller;
 
 import controller.alerts.Alertas;
 import controller.verificadores.verCPF;
-import database.DAOs.ClienteDAO;
 import database.DAOs.FuncionarioDAO;
 import java.io.IOException;
 import java.net.URL;
@@ -32,8 +31,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
-import model.entities.Cliente;
 import model.entities.Empregado;
 import model.entities.Funcionario;
 import model.entities.Pessoa;
@@ -165,7 +162,9 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
        
         listaFunc.setItems(atualizaTabela());
         Alertas.mostraAlertaInfo("Cadastro de Funcionario", "Cadastro realizado com sucesso!");
-        }else{
+        }
+        
+        else if(selecionado==null){
         Empregado func = new Empregado();  
         
         func.setLogin(campoLogin.getText());
@@ -220,53 +219,67 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
         listaFunc.setItems(atualizaTabela());
         Alertas.mostraAlertaInfo("Cadastro de Funcionario", "Cadastro realizado com sucesso!");	
         }
+        else{
+            
+        }
     }
     
     @FXML
     private void editaFunc(ActionEvent event) {
-        campoLogin.setText(selecionado.getLogin());
-        campoSenha.setText(selecionado.getSenha());
-        campoNome.setText(selecionado.getNome());
-        campoRG.setText(selecionado.getRg());
-        campoTel.setText(selecionado.getTelefone());
-        campoRua.setText(selecionado.getRua());
-        campoCidade.setText(selecionado.getCidade());
-        campoEstado.setText(selecionado.getEstado());
-        campoBairro.setText(selecionado.getBairro());
-        campoCargo.setText(selecionado.getCargo());
-        campoNumCasa.setText(selecionado.getNumCasa());
-        campoSalario.setText(selecionado.getSalario());
-        campoHoraSemana.setText(selecionado.getCargaHorSem());
-        campoCPF.setText(selecionado.getCpf());
-        
+        if(selecionado==null){
+            try {
+                if (selecionado==null)
+                        throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                Alertas.mostraAlertaInfo("Edição de Funcionário", "Clique em um funcionário para editar!");	
+                    return;
+            }
+        }
+        else{
+            campoLogin.setText(selecionado.getLogin());
+            campoSenha.setText(selecionado.getSenha());
+            campoNome.setText(selecionado.getNome());
+            campoRG.setText(selecionado.getRg());
+            campoTel.setText(selecionado.getTelefone());
+            campoRua.setText(selecionado.getRua());
+            campoCidade.setText(selecionado.getCidade());
+            campoEstado.setText(selecionado.getEstado());
+            campoBairro.setText(selecionado.getBairro());
+            campoCargo.setText(selecionado.getCargo());
+            campoNumCasa.setText(selecionado.getNumCasa());
+            campoSalario.setText(selecionado.getSalario());
+            campoHoraSemana.setText(selecionado.getCargaHorSem());
+            campoCPF.setText(selecionado.getCpf());
+        }
     }
 
     @FXML
     private void removeFunc(ActionEvent event) throws Exception {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmação");
-        alert.setHeaderText("Tem certeza que deseja excluir o funcionário?");
-        alert.setContentText("Todos os dados serão deletados do banco de dados");
+        if(selecionado!=null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmação");
+            alert.setHeaderText("Tem certeza que deseja excluir o funcionário?");
+            alert.setContentText("Todos os dados serão deletados do banco de dados");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-                remove(event);
-        } else {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                    remove(event);
+            }else { }
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setHeaderText("Selecione um Funcionário");
+            a.setContentText("Funcionário não selecionado!");
+            a.show();
         }
     }
     private void remove(ActionEvent event) throws Exception {
-      if(selecionado != null){
-          deleta();
-          Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-          a.setHeaderText("Cliente excluído com Sucesso");
-          a.show();
-          listaFunc.setItems(atualizaTabela());    
-      }else{
-          Alert a = new Alert(Alert.AlertType.WARNING);
-          a.setHeaderText("Selecione um Funcionario");
-          a.show();
-      }        
-   }
+        deleta();
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("Funcionário excluído com Sucesso");
+        a.show();
+        listaFunc.setItems(atualizaTabela());               
+    }
     public void deleta(){
         FuncionarioDAO dao = new FuncionarioDAO();
         selecionado.setAtivo(false);
@@ -297,9 +310,8 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
         listaFunc.setItems(atualizaTabela());
     }
     
-     public ObservableList<Funcionario> atualizaTabela(){
-         FuncionarioDAO dao = new FuncionarioDAO();
-         return FXCollections.observableArrayList(dao.all());
-     }
-    
+    public ObservableList<Funcionario> atualizaTabela(){
+        FuncionarioDAO dao = new FuncionarioDAO();
+        return FXCollections.observableArrayList(dao.all());
+    }    
 }

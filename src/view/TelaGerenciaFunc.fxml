@@ -59,7 +59,7 @@
          <children>
             <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <Pane minWidth="300.0" prefHeight="666.0" prefWidth="321.0" HBox.hgrow="ALWAYS">
+                  <Pane minWidth="300.0" prefHeight="666.0" prefWidth="359.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label layoutX="300.0" layoutY="429.0" text="Estado:" />
                         <Label layoutX="78.0" layoutY="193.0" text="RG:" />
@@ -160,7 +160,7 @@
                               <Insets bottom="25.0" top="25.0" />
                            </VBox.margin>
                         </HBox>
-                        <TableView fx:id="listaFunc" prefHeight="492.0" prefWidth="440.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="listaFunc" prefHeight="498.0" prefWidth="477.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="colunaNome" editable="false" prefWidth="75.0" text="Nome" />
                             <TableColumn fx:id="colunaCPF" editable="false" prefWidth="75.0" sortable="false" text="CPF" />

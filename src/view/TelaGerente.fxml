@@ -149,10 +149,11 @@
                               <Insets bottom="25.0" top="25.0" />
                            </VBox.margin>
                         </HBox>
-                        <TableView fx:id="listaClientes" prefHeight="492.0" prefWidth="440.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="listaAluguel" prefHeight="492.0" prefWidth="440.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn fx:id="colunaNome" editable="false" prefWidth="75.0" text="Nome" />
-                            <TableColumn fx:id="colunaCPF" editable="false" prefWidth="75.0" sortable="false" text="CPF" />
+                            <TableColumn fx:id="colunaNome" editable="false" prefWidth="75.0" text="Cliente" />
+                            <TableColumn fx:id="colunaPlaca" editable="false" prefWidth="75.0" sortable="false" text="Placa" />
+                              <TableColumn fx:id="colunaDataVenc" editable="false" prefWidth="75.0" text="Vencimento" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

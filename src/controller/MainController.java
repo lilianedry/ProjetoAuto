@@ -23,7 +23,6 @@ public class MainController extends Application {
         primaryStage.centerOnScreen();
         primaryStage.sizeToScene(); 
         primaryStage.show();
-
     }
 
     public static void main (String[] args){

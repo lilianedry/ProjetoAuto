@@ -98,25 +98,25 @@ public class TelaGerenciaCliController implements Initializable {
         listaClientes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-               selecionado = (Cliente) newValue;  
+                selecionado = (Cliente) newValue;  
                 System.out.println(selecionado.toString());
             }
         });  
     }    
         
     public void initCliente(){
-       campoRG.setText(selecionado.getRg());
+        campoRG.setText(selecionado.getRg());
         campoBairro.setText(selecionado.getBairro());
         campoCidade.setText(selecionado.getCidade());
-       campoEstado.setText(selecionado.getEstado());
-       campoEmail.setText(selecionado.getEmail());
+        campoEstado.setText(selecionado.getEstado());
+        campoEmail.setText(selecionado.getEmail());
         campoTel.setText(selecionado.getTelefone());
         campoCnh.setText(selecionado.getCnh());
     }
 
     @FXML
     private void voltar(ActionEvent event) {
-           if(janela == true){
+        if(janela == true){
             ChangeScreen change = new ChangeScreen();
 
             Stage mainStage;
@@ -136,51 +136,62 @@ public class TelaGerenciaCliController implements Initializable {
             } catch (Exception ex) {
                 Logger.getLogger(TelaGerenciaCarroController.class.getName()).log(Level.SEVERE, null, ex);
             }
-                    }
+        }
     }
 
     @FXML
     private void editaCli(ActionEvent event) {
-        campoNome.setText(selecionado.getNome());
-        campoCPF.setText(selecionado.getCpf());
-        campoRua.setText(selecionado.getRua());
-        campoNum.setText(selecionado.getNumCasa());
-        campoRG.setText(selecionado.getRg());
-        campoBairro.setText(selecionado.getBairro());
-        campoCidade.setText(selecionado.getCidade());
-        campoEstado.setText(selecionado.getEstado());
-        campoEmail.setText(selecionado.getEmail());
-        campoTel.setText(selecionado.getTelefone());
-        campoCnh.setText(selecionado.getCnh());
-        
-        
+        if(selecionado==null){
+            try {
+                if (selecionado==null)
+                        throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                Alertas.mostraAlertaInfo("Edição de Funcionário", "Clique em um funcionário para editar!");	
+                    return;
+            }
+        }
+        else{
+            campoNome.setText(selecionado.getNome());
+            campoCPF.setText(selecionado.getCpf());
+            campoRua.setText(selecionado.getRua());
+            campoNum.setText(selecionado.getNumCasa());
+            campoRG.setText(selecionado.getRg());
+            campoBairro.setText(selecionado.getBairro());
+            campoCidade.setText(selecionado.getCidade());
+            campoEstado.setText(selecionado.getEstado());
+            campoEmail.setText(selecionado.getEmail());
+            campoTel.setText(selecionado.getTelefone());
+            campoCnh.setText(selecionado.getCnh());
+        }        
     }
 
     @FXML
     private void removeCli(ActionEvent event) throws Exception {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmação");
-        alert.setHeaderText("Tem certeza que deseja excluir o cliente?");
-        alert.setContentText("Todos os dados serão deletados do banco de dados");
+        if(selecionado!=null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmação");
+            alert.setHeaderText("Tem certeza que deseja excluir o cliente?");
+            alert.setContentText("Todos os dados serão deletados do banco de dados");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-                remove(event);
-        } else {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                    remove(event);
+            } 
+            else { }
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setHeaderText("Selecione um Cliente");
+            a.setContentText("Cliente não selecionado!");
+            a.show();
         }
     }
-      private void remove(ActionEvent event) throws Exception {
-        if(selecionado != null){
-            deleta();
-            Alert a = new Alert(AlertType.CONFIRMATION);
-            a.setHeaderText("Cliente excluído com Sucesso");
-            a.show();
-            listaClientes.setItems(atualizaTabela());
-        }else{
-            Alert a = new Alert(AlertType.WARNING);
-            a.setHeaderText("Selecione um Cliente");
-            a.show();
-        }        
+    private void remove(ActionEvent event) throws Exception {
+        deleta();
+        Alert a = new Alert(AlertType.CONFIRMATION);
+        a.setHeaderText("Cliente excluído com Sucesso");
+        a.show();
+        listaClientes.setItems(atualizaTabela());
     }
      public void deleta(){
         ClienteDAO cli = new ClienteDAO();
@@ -190,103 +201,99 @@ public class TelaGerenciaCliController implements Initializable {
 
     @FXML
     private void insereCli(ActionEvent event) {
-      if(selecionado != null){
-        Cliente cli = new Cliente();
-        
-        cli.setNome(campoNome.getText()); 
-        try {
-            if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
-            throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e) {
+            if(selecionado != null){
+            Cliente cli = new Cliente();
+
+            cli.setNome(campoNome.getText()); 
+            try {
+                if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
+                throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                    Alertas.mostraAlertaInfo("No campo CPF", "Digite um CPF válido.");
+                    return;
+            }
+            cli.setCpf(campoCPF.getText()); 
+
+            if(campoMasc.isSelected()){
+                cli.setSexo("M");
+            }
+            if(campoFem.isSelected()){
+                cli.setSexo("F");
+            }
+            cli.setRua(campoRua.getText());
+            cli.setNumCasa(campoNum.getText());
+
+            try {
+                if (campoRG.getText().length()>10)
+                    throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
+                    return;
+            }
+            cli.setIdPessoa(selecionado.getIdPessoa());
+            cli.setRg(campoRG.getText());        
+            cli.setBairro(campoBairro.getText());
+            cli.setCidade(campoCidade.getText());
+            cli.setEstado(campoEstado.getText());
+            cli.setEmail(campoEmail.getText());
+            cli.setTelefone(campoTel.getText());
+            cli.setCnh(campoCnh.getText());
+            cli.setAtivo(true);
+
+            LocalDate data = campoDataNasc.getValue();
+            Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            cli.setDataNascimento(nasc);
+
+            ClienteDAO cliDAO = new ClienteDAO();
+            cliDAO.update(cli);
+            listaClientes.setItems(atualizaTabela());
+            Alertas.mostraAlertaInfo("Edição de Clientes", "Edição realizado com sucesso!");
+        }
+        else{
+            Cliente cli = new Cliente();
+
+            cli.setNome(campoNome.getText()); 
+            try {
+                if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
+                throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
                 Alertas.mostraAlertaInfo("No campo CPF", "Digite um CPF válido.");
                 return;
-        }
-        cli.setCpf(campoCPF.getText()); 
-       
-        if(campoMasc.isSelected()){
-            cli.setSexo("M");
-        }
-        if(campoFem.isSelected()){
-            cli.setSexo("F");
-        }
-        cli.setRua(campoRua.getText());
-        cli.setNumCasa(campoNum.getText());
-        
-        try {
-            if (campoRG.getText().length()>10)
-                throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e) {
-            Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
-                return;
-        }
-        cli.setIdPessoa(selecionado.getIdPessoa());
-        cli.setRg(campoRG.getText());        
-        cli.setBairro(campoBairro.getText());
-        cli.setCidade(campoCidade.getText());
-        cli.setEstado(campoEstado.getText());
-        cli.setEmail(campoEmail.getText());
-        cli.setTelefone(campoTel.getText());
-        cli.setCnh(campoCnh.getText());
-        cli.setAtivo(true);
-                
-        LocalDate data = campoDataNasc.getValue();
-        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        cli.setDataNascimento(nasc);
-        
-        ClienteDAO cliDAO = new ClienteDAO();
-        cliDAO.update(cli);
-        listaClientes.setItems(atualizaTabela());
-        Alertas.mostraAlertaInfo("Edição de Clientes", "Edição realizado com sucesso!");
-       }else{
-        Cliente cli = new Cliente();
-        
-        cli.setNome(campoNome.getText()); 
-        try {
-            if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
-            throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e) {
-                Alertas.mostraAlertaInfo("No campo CPF", "Digite um CPF válido.");
-                return;
-        }
-        cli.setCpf(campoCPF.getText()); 
-       
-        if(campoMasc.isSelected()){
-            cli.setSexo("M");
-        }
-        if(campoFem.isSelected()){
-            cli.setSexo("F");
-        }
-        cli.setRua(campoRua.getText());
-        cli.setNumCasa(campoNum.getText());
-        
-        try {
-            if (campoRG.getText().length()>10)
-                throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e) {
-            Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
-                return;
-        }
-        cli.setRg(campoRG.getText());        
-        cli.setBairro(campoBairro.getText());
-        cli.setCidade(campoCidade.getText());
-        cli.setEstado(campoEstado.getText());
-        cli.setEmail(campoEmail.getText());
-        cli.setTelefone(campoTel.getText());
-        cli.setCnh(campoCnh.getText());
-        cli.setAtivo(true);
-                
-        LocalDate data = campoDataNasc.getValue();
-        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        cli.setDataNascimento(nasc);
-        
-        ClienteDAO cliDAO = new ClienteDAO();
-        cliDAO.add(cli);
-        listaClientes.setItems(atualizaTabela());
-        
-        Alertas.mostraAlertaInfo("Cadastro de Clientes", "Cadastro realizado com sucesso!");  
-      }        
-    }
-    
+            }
+            cli.setCpf(campoCPF.getText()); 
+            if(campoMasc.isSelected()){
+                cli.setSexo("M");
+            }
+            if(campoFem.isSelected()){
+                cli.setSexo("F");
+            }
+            cli.setRua(campoRua.getText());
+            cli.setNumCasa(campoNum.getText());
+            try {
+                if (campoRG.getText().length()>10)
+                    throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
+                    return;
+            }
+            cli.setRg(campoRG.getText());        
+            cli.setBairro(campoBairro.getText());
+            cli.setCidade(campoCidade.getText());
+            cli.setEstado(campoEstado.getText());
+            cli.setEmail(campoEmail.getText());
+            cli.setTelefone(campoTel.getText());
+            cli.setCnh(campoCnh.getText());
+            cli.setAtivo(true);
+            LocalDate data = campoDataNasc.getValue();
+            Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            cli.setDataNascimento(nasc);
+
+            ClienteDAO cliDAO = new ClienteDAO();
+            cliDAO.add(cli);
+            listaClientes.setItems(atualizaTabela());
+            Alertas.mostraAlertaInfo("Cadastro de Clientes", "Cadastro realizado com sucesso!");  
+        }        
+    }    
     
     public void initTable(){
         colunaNome.setCellValueFactory(new PropertyValueFactory("nome"));

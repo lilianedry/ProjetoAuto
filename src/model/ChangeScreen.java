@@ -10,8 +10,7 @@ import javafx.event.ActionEvent;
 
 public class ChangeScreen {
 
-    public Stage change (ActionEvent event, String path, String name, Boolean exp) throws Exception
-    {
+    public Stage change (ActionEvent event, String path, String name, Boolean exp) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 
