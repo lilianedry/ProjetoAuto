@@ -12,31 +12,30 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaLoginController">
   <children>
-      <AnchorPane prefHeight="508.0" prefWidth="309.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane prefHeight="528.0" prefWidth="309.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <ImageView fitHeight="181.0" fitWidth="250.0" layoutX="31.0" layoutY="14.0" opacity="0.81">
                <image>
                   <Image url="@Images/Logo.png" />
                </image>
             </ImageView>
-            <AnchorPane cache="true" layoutX="25.0" layoutY="208.0" prefHeight="275.0" prefWidth="260.0" style="-fx-background-color: B22222;">
+            <AnchorPane cache="true" layoutX="25.0" layoutY="208.0" prefHeight="294.0" prefWidth="260.0" style="-fx-background-color: B22222;">
                <children>
-                  <Label layoutX="99.0" layoutY="25.0" prefHeight="17.0" prefWidth="65.0" text="SIGN IN" textFill="#fcf7f7">
+                  <Label layoutX="99.0" layoutY="31.0" prefHeight="17.0" prefWidth="65.0" text="SIGN IN" textFill="#fcf7f7">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="campoLogin" focusTraversable="false" layoutX="14.0" layoutY="75.0" prefHeight="30.0" prefWidth="230.0" promptText="Login" />
-                  <PasswordField fx:id="campoSenha" layoutX="14.0" layoutY="121.0" prefHeight="30.0" prefWidth="230.0" promptText="Senha">
+                  <TextField fx:id="campoLogin" focusTraversable="false" layoutX="14.0" layoutY="87.0" prefHeight="30.0" prefWidth="230.0" promptText="Login" />
+                  <PasswordField fx:id="campoSenha" layoutX="14.0" layoutY="135.0" prefHeight="30.0" prefWidth="230.0" promptText="Senha">
                      <effect>
                         <Reflection topOpacity="0.05" />
                      </effect>
                   </PasswordField>
-                  <Label fx:id="mensagemErro" layoutX="13.0" layoutY="232.0" prefHeight="30.0" prefWidth="230.0" textAlignment="CENTER" textFill="WHITE" />
-                  <Button layoutX="14.0" layoutY="193.0" mnemonicParsing="false" onAction="#cliqueBotaoEntrar" prefHeight="30.0" prefWidth="230.0" text="Entrar" />
+                  <Label fx:id="mensagemErro" layoutX="13.0" layoutY="250.0" prefHeight="30.0" prefWidth="230.0" textAlignment="CENTER" textFill="WHITE" />
+                  <Button layoutX="14.0" layoutY="206.0" mnemonicParsing="false" onAction="#cliqueBotaoEntrar" prefHeight="30.0" prefWidth="230.0" text="Entrar" />
                </children>
             </AnchorPane>
-            <Label layoutX="132.0" layoutY="486.0" text="V 0.0.1" textAlignment="CENTER" />
          </children>
       </AnchorPane>
    </children>

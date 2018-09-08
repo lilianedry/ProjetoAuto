@@ -3,12 +3,14 @@ package controller;
 
 import controller.alerts.Alertas;
 import controller.verificadores.verCPF;
+import database.DAOs.ClienteDAO;
 import database.DAOs.FuncionarioDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -20,7 +22,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -238,12 +242,36 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
     }
 
     @FXML
-    private void removeFunc(ActionEvent event) {
+    private void removeFunc(ActionEvent event) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmação");
+        alert.setHeaderText("Tem certeza que deseja excluir o funcionário?");
+        alert.setContentText("Todos os dados serão deletados do banco de dados");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+                remove(event);
+        } else {
+        }
+    }
+    private void remove(ActionEvent event) throws Exception {
+      if(selecionado != null){
+          deleta();
+          Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+          a.setHeaderText("Cliente excluído com Sucesso");
+          a.show();
+          listaFunc.setItems(atualizaTabela());    
+      }else{
+          Alert a = new Alert(Alert.AlertType.WARNING);
+          a.setHeaderText("Selecione um Funcionario");
+          a.show();
+      }        
+   }
+    public void deleta(){
         FuncionarioDAO dao = new FuncionarioDAO();
         selecionado.setAtivo(false);
         dao.update(selecionado);
-        listaFunc.setItems(atualizaTabela());    
-    } 
+    }  
     
     @FXML
     private void voltar(ActionEvent event) {

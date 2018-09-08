@@ -6,38 +6,29 @@
 package controller;
 
 import controller.alerts.Alertas;
-import controller.verificadores.verCPF;
 import database.DAOs.CarroDAO;
 import database.DAOs.ClienteDAO;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import model.Caminho;
 import model.ChangeScreen;
 import model.Especificacoes;
 import model.entities.Carro;
 import model.entities.Cliente;
 import model.entities.relationships.SolicitaCarro;
-/**
- * FXML Controller class
- *
- * @author lilia
- */
+
 public class TelaLocarVeiculosController implements Initializable {
     private static boolean janela;
 
@@ -72,11 +63,6 @@ public class TelaLocarVeiculosController implements Initializable {
     @FXML
     private TextField campoValor;
 
-    /**
-     * Initializes the controller class.
-     * @param url
-     * @param rb
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

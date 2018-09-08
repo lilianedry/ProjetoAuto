@@ -37,12 +37,19 @@
                   <Menu mnemonicParsing="false" text="Veículos">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Gerenciar Veículos" />
+                        <MenuItem mnemonicParsing="false" text="Locar Veículos" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Relatório">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Gerar Relatorio" />
                         <MenuItem mnemonicParsing="false" text="Relatorios cadastrados" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Ajuda">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Sobre" />
+                        <MenuItem mnemonicParsing="false" text="Ajuda" />
                      </items>
                   </Menu>
                </menus>
@@ -55,7 +62,7 @@
                <children>
                   <Pane minWidth="300.0" prefHeight="477.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="gerenciaFunc" layoutX="115.0" layoutY="137.0" mnemonicParsing="false" onAction="#gerenciaFunc" prefHeight="117.0" prefWidth="147.0">
+                        <Button fx:id="gerenciaFunc" layoutX="95.0" layoutY="159.0" mnemonicParsing="false" onAction="#gerenciaFunc" prefHeight="117.0" prefWidth="147.0">
                            <graphic>
                               <ImageView fitHeight="108.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -63,7 +70,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button fx:id="gerarRelatorio" layoutX="115.0" layoutY="323.0" mnemonicParsing="false" onAction="#geraRelatorio" prefHeight="117.0" prefWidth="147.0">
+                        <Button fx:id="gerarRelatorio" layoutX="97.0" layoutY="346.0" mnemonicParsing="false" onAction="#geraRelatorio" prefHeight="117.0" prefWidth="147.0">
                            <graphic>
                               <ImageView fitHeight="104.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -71,12 +78,12 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Label layoutX="115.0" layoutY="263.0" prefHeight="21.0" prefWidth="147.0" text="Gerenciar Funcionário">
+                        <Label layoutX="95.0" layoutY="285.0" prefHeight="21.0" prefWidth="147.0" text="Gerenciar Funcionário">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="gerenciaCarro" layoutX="324.0" layoutY="137.0" mnemonicParsing="false" onAction="#gerenciaCarro" prefHeight="117.0" prefWidth="147.0">
+                        <Button fx:id="gerenciaCarro" layoutX="305.0" layoutY="159.0" mnemonicParsing="false" onAction="#gerenciaCarro" prefHeight="117.0" prefWidth="147.0">
                            <graphic>
                               <ImageView fitHeight="98.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -84,7 +91,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button fx:id="gerenciaCli" layoutX="504.0" layoutY="136.0" mnemonicParsing="false" onAction="#gerenciaCli" prefHeight="117.0" prefWidth="147.0">
+                        <Button fx:id="gerenciaCli" layoutX="504.0" layoutY="157.0" mnemonicParsing="false" onAction="#gerenciaCli" prefHeight="117.0" prefWidth="147.0">
                            <graphic>
                               <ImageView fitHeight="100.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -92,28 +99,28 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Label layoutX="134.0" layoutY="450.0" prefHeight="17.0" prefWidth="110.0" text="Gerar Relatório">
+                        <Label layoutX="115.0" layoutY="470.0" prefHeight="17.0" prefWidth="110.0" text="Gerar Relatório">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="333.0" layoutY="265.0" prefHeight="17.0" prefWidth="122.0" text="Gerenciar Veículo">
+                        <Label layoutX="316.0" layoutY="287.0" prefHeight="17.0" prefWidth="122.0" text="Gerenciar Veículo">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="521.0" layoutY="263.0" text="Gerenciar Cliente">
+                        <Label layoutX="521.0" layoutY="284.0" text="Gerenciar Cliente">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="locarVeiculo" layoutX="323.0" layoutY="326.0" mnemonicParsing="false" onAction="#locarVeiculo" prefHeight="117.0" prefWidth="147.0" />
-                        <Label layoutX="343.0" layoutY="452.0" prefHeight="17.0" prefWidth="110.0" text="Locar Veículo">
+                        <Button fx:id="locarVeiculo" layoutX="304.0" layoutY="346.0" mnemonicParsing="false" onAction="#locarVeiculo" prefHeight="117.0" prefWidth="147.0" />
+                        <Label layoutX="325.0" layoutY="472.0" prefHeight="17.0" prefWidth="110.0" text="Locar Veículo">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="94.0" fitWidth="96.0" layoutX="346.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="94.0" fitWidth="96.0" layoutX="330.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/locar.png" />
                            </image>

@@ -3,7 +3,6 @@ package controller;
 import controller.alerts.Alertas;
 import controller.verificadores.verCPF;
 import database.DAOs.ClienteDAO;
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -28,7 +27,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Caminho;
@@ -37,13 +35,11 @@ import model.Especificacoes;
 import model.entities.Cliente;
 
 public class TelaGerenciaCliController implements Initializable {
-    
     private static boolean janela;
 
     public static boolean getJanela() {
         return janela;
     }
-
     public static void setJanela(boolean janela) {
         TelaGerenciaCliController.janela = janela;
     }
@@ -107,7 +103,6 @@ public class TelaGerenciaCliController implements Initializable {
             }
         });  
     }    
-
         
     public void initCliente(){
        campoRG.setText(selecionado.getRg());
@@ -172,7 +167,6 @@ public class TelaGerenciaCliController implements Initializable {
         if (result.get() == ButtonType.OK) {
                 remove(event);
         } else {
-
         }
     }
       private void remove(ActionEvent event) throws Exception {
@@ -187,6 +181,11 @@ public class TelaGerenciaCliController implements Initializable {
             a.setHeaderText("Selecione um Cliente");
             a.show();
         }        
+    }
+     public void deleta(){
+        ClienteDAO cli = new ClienteDAO();
+        selecionado.setAtivo(false);
+        cli.update(selecionado);
     }
 
     @FXML
@@ -299,12 +298,4 @@ public class TelaGerenciaCliController implements Initializable {
         ClienteDAO dao = new ClienteDAO();
         return FXCollections.observableArrayList(dao.all());
     }
-    
-    public void deleta(){
-        ClienteDAO cli = new ClienteDAO();
-        selecionado.setAtivo(false);
-        cli.update(selecionado);
-    }
-    
-    
 }

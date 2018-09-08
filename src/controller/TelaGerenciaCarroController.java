@@ -8,7 +8,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +19,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -77,12 +79,12 @@ public class TelaGerenciaCarroController implements Initializable{
     private TextField campoChassi;
     @FXML
     private TextArea campoOpcional;
-
-    private Carro selecionado;
     @FXML
     private TextField campoCPF;
     @FXML
-    private DatePicker campoData;
+    private DatePicker campoData;    
+
+    private Carro selecionado;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,80 +100,73 @@ public class TelaGerenciaCarroController implements Initializable{
     
     @FXML
     private void insereCarro(ActionEvent event) {
-       if(selecionado != null){
-           Carro car = new Carro();
+        if(selecionado != null){
+            Carro car = new Carro();
         
-        car.setPlaca(campoPlaca.getText());        
-        car.setModelo(campoModelo.getText());
-        car.setCor(campoCor.getText());        
-        car.setChassi(campoChassi.getText());  
-        car.setTipoCambio(campoCambio.getText());
-        car.setCombustivel(campoCombustivel.getText());          
-        car.setOpcionais(campoOpcional.getText());                
-        car.setAnoModelo(campoAno.getText());        
-        car.setQuilometragem(campoKm.getText()); 
-        car.setIdCarro(selecionado.getIdCarro());
-        car.setAtivo(true);
-       
-        CarroDAO carDAO = new CarroDAO();
-        carDAO.update(car);
-        listaVeiculos.setItems(atualizaTabela());
-        
-        Alertas.mostraAlertaInfo("Edita Veículo", "Edição realizado com sucesso!");
-       }else{
-        Carro car = new Carro();
-        
-        car.setPlaca(campoPlaca.getText());        
-        car.setModelo(campoModelo.getText());
-        car.setCor(campoCor.getText());        
-        car.setChassi(campoChassi.getText());  
-        car.setTipoCambio(campoCambio.getText());
-        car.setCombustivel(campoCombustivel.getText());          
-        car.setOpcionais(campoOpcional.getText());                
-        car.setAnoModelo(campoAno.getText());        
-        car.setQuilometragem(campoKm.getText()); 
-        car.setAtivo(true);
-        
-        try {
-            if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
-            throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e) {
-                Alertas.mostraAlertaInfo("No campo CPF", "Digite um CPF válido.");
-                return;
-        }
-//        Cliente cli =new Cliente();
-//        cli.setCpf(campoCPF.getText());
-//        ClienteDAO dao = new ClienteDAO();
-//        List<Cliente> cli1 = dao.selectParam(cli);
-//           System.out.println(cli.getIdPessoa());
-//       if(cli1 != null){
-//           car.setCliente(cli);
-//       }else{
-//          Alertas.mostraAlertaInfo("NAO Cadastro de Veículo", "Cadastro realizado com sucesso!");
-//       }
-       
-       Cliente aux = new Cliente();
-        aux.setCpf(campoCPF.getText());
-        ClienteDAO cliDAO2 = new ClienteDAO();
-        System.out.println(aux);
-        Cliente cliSel = cliDAO2.selectParam(aux).get(0);
-        if(cliSel != null){
-            car.setCliente(cliSel);
-            System.out.println(cliSel);
-        }else{
-            System.out.println("Cliente não encontrado.");
-        }
+            car.setPlaca(campoPlaca.getText());        
+            car.setModelo(campoModelo.getText());
+            car.setCor(campoCor.getText());        
+            car.setChassi(campoChassi.getText());  
+            car.setTipoCambio(campoCambio.getText());
+            car.setCombustivel(campoCombustivel.getText());          
+            car.setOpcionais(campoOpcional.getText());                
+            car.setAnoModelo(campoAno.getText());        
+            car.setQuilometragem(campoKm.getText()); 
+            car.setIdCarro(selecionado.getIdCarro());
+            car.setAtivo(true);
 
-       LocalDate data = campoData.getValue();
-        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        car.setDataCede(nasc);
-       
-        CarroDAO carDAO = new CarroDAO();
-        carDAO.add(car);
-        listaVeiculos.setItems(atualizaTabela());
-        
-        Alertas.mostraAlertaInfo("Cadastro de Veículo", "Cadastro realizado com sucesso!");
+            CarroDAO carDAO = new CarroDAO();
+            carDAO.update(car);
+            listaVeiculos.setItems(atualizaTabela());
+
+            Alertas.mostraAlertaInfo("Edita Veículo", "Edição realizado com sucesso!");
        }
+       else{
+            Carro car = new Carro();
+        
+            car.setPlaca(campoPlaca.getText());  
+            car.setCor(campoCor.getText());      
+            car.setChassi(campoChassi.getText());           
+            car.setTipoCambio(campoCambio.getText());
+            car.setAnoModelo(campoAno.getText()); 
+            car.setCombustivel(campoCombustivel.getText());  
+            car.setModelo(campoModelo.getText());  
+            car.setQuilometragem(campoKm.getText());            
+            car.setOpcionais(campoOpcional.getText());  
+            car.setAtivo(true);
+            
+    //        Cliente cli =new Cliente();
+    //        cli.setCpf(campoCPF.getText());
+    //        ClienteDAO dao = new ClienteDAO();
+    //        List<Cliente> cli1 = dao.selectParam(cli);
+    //           System.out.println(cli.getIdPessoa());
+    //       if(cli1 != null){
+    //           car.setCliente(cli);
+    //       }else{
+    //          Alertas.mostraAlertaInfo("NAO Cadastro de Veículo", "Cadastro realizado com sucesso!");
+    //       }
+       
+            Cliente aux = new Cliente();            
+            aux.setCpf(campoCPF.getText());
+            ClienteDAO cliDAO2 = new ClienteDAO();
+            System.out.println(aux);
+            Cliente cliSel = cliDAO2.selectParam(aux).get(0);
+            if(cliSel != null){
+                car.setCliente(cliSel);
+                System.out.println(cliSel);
+            }else{
+                System.out.println("Cliente não encontrado.");
+            }
+            LocalDate data = campoData.getValue();
+            Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            car.setDataCede(nasc);
+
+            CarroDAO carDAO = new CarroDAO();
+            carDAO.add(car);
+            listaVeiculos.setItems(atualizaTabela());
+
+            Alertas.mostraAlertaInfo("Cadastro de Veículo", "Cadastro realizado com sucesso!");
+        }
     }
 
     @FXML
@@ -200,14 +195,37 @@ public class TelaGerenciaCarroController implements Initializable{
     }
 
     @FXML
-    private void removeCarro(ActionEvent event) {
-        selecionado.setAtivo(false);
-        CarroDAO dao = new CarroDAO();
-        dao.update(selecionado);
-        Alertas.mostraAlertaInfo("Remoção de Veículo", "Veículo removido com sucesso!");
-	listaVeiculos.setItems(atualizaTabela());
-    }
+    private void removeCarro(ActionEvent event) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmação");
+        alert.setHeaderText("Tem certeza que deseja excluir o veículo?");
+        alert.setContentText("Todos os dados serão deletados do banco de dados");
 
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+                remove(event);
+        } else {
+        }
+    }
+      private void remove(ActionEvent event) throws Exception {
+        if(selecionado != null){
+            deleta();
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+            a.setHeaderText("Veículo excluído com Sucesso");
+            a.show();
+            listaVeiculos.setItems(atualizaTabela());
+        }else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setHeaderText("Selecione um Veículo");
+            a.show();
+        }        
+    }
+    public void deleta(){
+        CarroDAO dao = new CarroDAO();        
+        selecionado.setAtivo(false);
+        dao.update(selecionado);
+    }
+    
     @FXML
     private void editaCarro(ActionEvent event) {
         
@@ -225,11 +243,9 @@ public class TelaGerenciaCarroController implements Initializable{
         colunaPlaca.setCellValueFactory(new PropertyValueFactory("placa"));
         colunaModelo.setCellValueFactory(new PropertyValueFactory("modelo"));
         listaVeiculos.setItems(atualizaTabela());
-    }
-    
+    }    
     public ObservableList<Carro> atualizaTabela(){
         CarroDAO dao = new CarroDAO();
         return FXCollections.observableArrayList(dao.all());
     }
-    
 }

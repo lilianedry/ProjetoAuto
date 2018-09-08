@@ -26,21 +26,24 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Clientes">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Cadastrar cliente" />
-                        <MenuItem mnemonicParsing="false" text="Editar cliente" />
-                        <MenuItem mnemonicParsing="false" text="Remover cliente" />
+                        <MenuItem mnemonicParsing="false" text="Gerenciar Clientes" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Veiculos">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Cadastrar veiculo" />
-                        <MenuItem mnemonicParsing="false" text="Editar veiculo" />
-                        <MenuItem mnemonicParsing="false" text="Remover veiculo" />
+                        <MenuItem mnemonicParsing="false" text="Gerenciar Veículos" />
+                        <MenuItem mnemonicParsing="false" text="Locar Veículos" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Relatorio">
+                  <Menu mnemonicParsing="false" text="Relatório">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Relatorios cadastrados" />
+                        <MenuItem mnemonicParsing="false" text="Relatórios Cadastrados" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Ajuda">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Sobre" />
+                        <MenuItem mnemonicParsing="false" text="Ajuda" />
                      </items>
                   </Menu>
                </menus>
@@ -51,7 +54,7 @@
          <children>
             <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <Pane minWidth="300.0" prefHeight="477.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
+                  <Pane minHeight="500.0" minWidth="300.0" prefHeight="500.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Button fx:id="gerenciarCli" layoutX="93.0" layoutY="267.0" mnemonicParsing="false" onAction="#gerenciarCli" prefHeight="116.0" prefWidth="149.0">
                            <graphic>
@@ -61,7 +64,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button fx:id="gerenciarCarro" layoutX="286.0" layoutY="267.0" mnemonicParsing="false" onAction="#gerenciarCarro" prefHeight="116.0" prefWidth="149.0">
+                        <Button fx:id="gerenciarCarro" layoutX="290.0" layoutY="267.0" mnemonicParsing="false" onAction="#gerenciarCarro" prefHeight="116.0" prefWidth="149.0">
                            <graphic>
                               <ImageView fitHeight="95.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -69,7 +72,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Label layoutX="295.0" layoutY="394.0" prefHeight="21.0" prefWidth="131.0" text="Gerenciar Veiculos">
+                        <Label layoutX="300.0" layoutY="394.0" prefHeight="21.0" prefWidth="131.0" text="Gerenciar Veiculos">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -79,13 +82,13 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="locarVeiculo" layoutX="476.0" layoutY="268.0" mnemonicParsing="false" onAction="#locarVeiculo" prefHeight="116.0" prefWidth="149.0" />
-                        <Label layoutX="499.0" layoutY="394.0" prefHeight="17.0" prefWidth="110.0" text="Locar Veículo">
+                        <Button fx:id="locarVeiculo" layoutX="485.0" layoutY="268.0" mnemonicParsing="false" onAction="#locarVeiculo" prefHeight="116.0" prefWidth="149.0" />
+                        <Label layoutX="509.0" layoutY="394.0" prefHeight="17.0" prefWidth="110.0" text="Locar Veículo">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="94.0" fitWidth="96.0" layoutX="503.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="94.0" fitWidth="96.0" layoutX="514.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/locar.png" />
                            </image>

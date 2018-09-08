@@ -27,19 +27,25 @@
          <children>
             <MenuBar prefHeight="25.0" prefWidth="478.0" HBox.hgrow="ALWAYS">
                <menus>
-                  <Menu mnemonicParsing="false" text="Cliente">
+                  <Menu mnemonicParsing="false" text="Funcionários">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Gerenciar Cliente" />
-                        <Menu mnemonicParsing="false" text="Funcionário">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Gerenciar Funcionário" />
-                           </items>
-                        </Menu>
+                        <MenuItem mnemonicParsing="false" text="Gerenciar Funcionários" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Relatório">
+                  <Menu mnemonicParsing="false" text="Veículos">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Pesquisar Relatório" />
+                        <MenuItem mnemonicParsing="false" text="Gerenciar Veículos" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Relatórios">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Relatórios Cadastrados" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Ajuda">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Sobre" />
+                        <MenuItem mnemonicParsing="false" text="Ajuda" />
                      </items>
                   </Menu>
                </menus>
@@ -55,64 +61,64 @@
                <children>
                   <Pane minWidth="300.0" prefHeight="477.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label layoutX="298.0" layoutY="429.0" text="Estado:" />
-                        <Label layoutX="85.0" layoutY="206.0" text="RG:" />
-                        <Label layoutX="308.0" layoutY="206.0" text="CPF:" />
+                        <Label layoutX="298.0" layoutY="431.0" text="Estado:" />
+                        <Label layoutX="86.0" layoutY="212.0" text="RG:" />
+                        <Label layoutX="308.0" layoutY="212.0" text="CPF:" />
                         <Label layoutX="85.0" layoutY="289.0" text="Sexo:" />
                         <Label layoutX="55.0" layoutY="197.0" />
-                        <Label layoutX="83.0" layoutY="250.0" text="Telefone:" />
-                        <RadioButton fx:id="campoMasc" layoutX="132.0" layoutY="289.0" mnemonicParsing="false" text="Masculino" />
-                        <RadioButton fx:id="campoFem" layoutX="222.0" layoutY="289.0" mnemonicParsing="false" text="Feminino" />
-                        <Label layoutX="305.0" layoutY="289.0" text="Data Nasc.:" />
-                        <TextField fx:id="campoNome" layoutX="132.0" layoutY="162.0" prefHeight="25.0" prefWidth="357.0" promptText="Mario da Silva" />
-                        <TextField fx:id="campoRG" layoutX="132.0" layoutY="202.0" promptText="000.000.000" />
-                        <TextField fx:id="campoCPF" layoutX="340.0" layoutY="202.0" promptText="000.000.000-00" />
-                        <Label layoutX="85.0" layoutY="389.0" text="Bairro:" />
-                        <Label layoutX="86.0" layoutY="429.0" text="Cidade:" />
+                        <Label layoutX="83.0" layoutY="251.0" text="Telefone:" />
+                        <RadioButton fx:id="campoMasc" layoutX="132.0" layoutY="286.0" mnemonicParsing="false" text="Masculino" />
+                        <RadioButton fx:id="campoFem" layoutX="222.0" layoutY="286.0" mnemonicParsing="false" text="Feminino" />
+                        <Label layoutX="306.0" layoutY="285.0" text="Data Nasc.:" />
+                        <TextField fx:id="campoNome" layoutX="132.0" layoutY="168.0" prefHeight="25.0" prefWidth="357.0" promptText="Mario da Silva" />
+                        <TextField fx:id="campoRG" layoutX="132.0" layoutY="208.0" promptText="000.000.000" />
+                        <TextField fx:id="campoCPF" layoutX="340.0" layoutY="208.0" promptText="000.000.000-00" />
+                        <Label layoutX="85.0" layoutY="395.0" text="Bairro:" />
+                        <Label layoutX="86.0" layoutY="431.0" text="Cidade:" />
                         <TextField fx:id="campoTel" layoutX="135.0" layoutY="246.0" promptText="(99) 99999-9999" />
-                        <TextField fx:id="campoBairro" layoutX="133.0" layoutY="385.0" minWidth="190.0" prefHeight="25.0" prefWidth="357.0" promptText="Bobo da Corte" />
-                        <TextField fx:id="campoNum" layoutX="420.0" layoutY="348.0" prefHeight="25.0" prefWidth="70.0" promptText="0" />
-                        <Label layoutX="401.0" layoutY="352.0" text="Nº:" />
+                        <TextField fx:id="campoBairro" layoutX="133.0" layoutY="391.0" minWidth="190.0" prefHeight="25.0" prefWidth="357.0" promptText="Bobo da Corte" />
+                        <TextField fx:id="campoNum" layoutX="420.0" layoutY="353.0" prefHeight="25.0" prefWidth="70.0" promptText="0" />
+                        <Label layoutX="401.0" layoutY="357.0" text="Nº:" />
                         <ImageView fitHeight="132.0" fitWidth="149.0" layoutX="520.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/cliente.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="84.0" layoutY="166.0" text="Nome:" />
+                        <Label layoutX="84.0" layoutY="172.0" text="Nome:" />
                         <Label layoutX="307.0" layoutY="250.0" text="CNH:" />
                         <TextField fx:id="campoCnh" layoutX="340.0" layoutY="246.0" promptText="00000000000" />
                         <Button layoutX="528.0" layoutY="285.0" minWidth="59.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Editar" />
                         <Button layoutX="606.0" layoutY="285.0" minWidth="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Remover" />
-                        <Label layoutX="86.0" layoutY="352.0" text="Rua:" />
-                        <TextField fx:id="campoRua" layoutX="133.0" layoutY="348.0" prefHeight="25.0" prefWidth="256.0" promptText="Rua dos Bobos" />
-                        <DatePicker fx:id="campoDataNasc" layoutX="368.0" layoutY="285.0" prefHeight="25.0" prefWidth="119.0" promptText="00/00/0000" />
+                        <Label layoutX="86.0" layoutY="356.0" text="Rua:" />
+                        <TextField fx:id="campoRua" layoutX="133.0" layoutY="353.0" prefHeight="25.0" prefWidth="256.0" promptText="Rua dos Bobos" />
+                        <DatePicker fx:id="campoDataNasc" layoutX="368.0" layoutY="282.0" prefHeight="25.0" prefWidth="119.0" promptText="00/00/0000" />
                         <Separator layoutX="699.0" layoutY="1.0" orientation="VERTICAL" prefHeight="666.0" prefWidth="16.0" />
-                        <Button fx:id="insereCli" alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="505.0" minWidth="79.0" mnemonicParsing="false" onAction="#insereCli" prefHeight="25.0" prefWidth="98.0" text="      Salvar" textAlignment="CENTER" />
-                        <Button fx:id="voltar" alignment="CENTER" layoutX="440.0" layoutY="505.0" minWidth="90.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="98.0" text="    Voltar" />
-                        <Button fx:id="editaCli" alignment="CENTER" layoutX="204.0" layoutY="505.0" mnemonicParsing="false" onAction="#editaCli" prefHeight="25.0" prefWidth="98.0" text="    Editar" textAlignment="CENTER" />
-                        <Button fx:id="removeCli" alignment="CENTER" layoutX="322.0" layoutY="505.0" mnemonicParsing="false" onAction="#removeCli" prefHeight="25.0" prefWidth="98.0" text="      Excluir" />
-                        <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="98.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="insereCli" alignment="CENTER" contentDisplay="CENTER" layoutX="87.0" layoutY="540.0" minWidth="79.0" mnemonicParsing="false" onAction="#insereCli" prefHeight="25.0" prefWidth="98.0" text="      Salvar" textAlignment="CENTER" />
+                        <Button fx:id="voltar" alignment="CENTER" layoutX="439.0" layoutY="540.0" minWidth="90.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="98.0" text="    Voltar" />
+                        <Button fx:id="editaCli" alignment="CENTER" layoutX="203.0" layoutY="540.0" mnemonicParsing="false" onAction="#editaCli" prefHeight="25.0" prefWidth="98.0" text="    Editar" textAlignment="CENTER" />
+                        <Button fx:id="removeCli" alignment="CENTER" layoutX="321.0" layoutY="540.0" mnemonicParsing="false" onAction="#removeCli" prefHeight="25.0" prefWidth="98.0" text="      Excluir" />
+                        <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="97.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/salvar.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="333.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="332.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/excluir.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="451.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="450.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/voltar.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="211.0" layoutY="507.0" pickOnBounds="true">
+                        <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="210.0" layoutY="542.0" pickOnBounds="true">
                            <image>
                               <Image url="@Images/edit-validated_40458.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="campoCidade" layoutX="135.0" layoutY="424.0" promptText="Cidade de Deus" />
-                        <TextField fx:id="campoEstado" layoutX="341.0" layoutY="424.0" promptText="XX" />
+                        <TextField fx:id="campoCidade" layoutX="135.0" layoutY="428.0" promptText="Cidade de Deus" />
+                        <TextField fx:id="campoEstado" layoutX="341.0" layoutY="428.0" promptText="XX" />
                         <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" layoutX="290.0" layoutY="89.0" mnemonicParsing="true" text="Cadastrar Clientes" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                            <font>
                               <Font size="15.0" />
@@ -121,8 +127,8 @@
                               <ColorAdjust />
                            </effect>
                         </Label>
-                        <Label layoutX="85.0" layoutY="319.0" text="E-mail:" />
-                        <TextField fx:id="campoEmail" layoutX="133.0" layoutY="315.0" prefHeight="25.0" prefWidth="357.0" promptText="exemplo@hotmail.com" />
+                        <Label layoutX="85.0" layoutY="320.0" text="E-mail:" />
+                        <TextField fx:id="campoEmail" layoutX="133.0" layoutY="316.0" prefHeight="25.0" prefWidth="357.0" promptText="exemplo@hotmail.com" />
                      </children>
                   </Pane>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">

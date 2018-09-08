@@ -27,18 +27,19 @@
          <children>
             <MenuBar prefHeight="25.0" prefWidth="478.0" styleClass="menu-padrao" HBox.hgrow="ALWAYS">
                <menus>
-                  <Menu mnemonicParsing="false" text="Menu">
+                  <Menu mnemonicParsing="false" text="Clientes">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Cadastrar cliente" />
-                        <MenuItem mnemonicParsing="false" text="Editar cliente" />
-                        <MenuItem mnemonicParsing="false" text="Excluir cliente" />
-                        <MenuItem mnemonicParsing="false" text="Gerar Relatorio" />
+                        <MenuItem mnemonicParsing="false" text="Gerenciar Clientes" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Ferramentas">
+                  <Menu mnemonicParsing="false" text="Veículos">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Gerenciar Veículos" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Relatórios">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Gerar relatórios" />
-                        <MenuItem mnemonicParsing="false" text="Pesquisar cliente" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Ajuda">
@@ -86,18 +87,18 @@
                         <Label layoutX="78.0" layoutY="153.0" text="Nome:" />
                         <Button layoutX="521.0" layoutY="272.0" minWidth="70.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="70.0" text="Editar" />
                         <Button layoutX="614.0" layoutY="273.0" minWidth="70.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="70.0" text="Remover" />
-                        <DatePicker fx:id="campoDataNasc" layoutX="135.0" layoutY="274.0" prefHeight="25.0" prefWidth="149.0" promptText="00/00/0000" />
+                        <DatePicker fx:id="campoDataNasc" layoutX="135.0" layoutY="272.0" prefHeight="25.0" prefWidth="149.0" promptText="00/00/0000" />
                         <Separator layoutX="699.0" layoutY="1.0" orientation="VERTICAL" prefHeight="666.0" prefWidth="16.0" />
                         <Label layoutX="75.0" layoutY="388.0" text="Bairro:" />
                         <TextField fx:id="campoBairro" layoutX="136.0" layoutY="384.0" prefHeight="25.0" prefWidth="357.0" promptText="Bairro do chico" />
                         <TextField fx:id="campoCargo" layoutX="134.0" layoutY="309.0" promptText="Administração" />
                         <TextField fx:id="campoSalario" layoutX="343.0" layoutY="308.0" promptText="0.000,00" />
                         <DatePicker fx:id="campoDataEnt" layoutX="137.0" layoutY="461.0" prefHeight="25.0" prefWidth="142.0" promptText="00/00/0000" />
-                        <TextField fx:id="campoHoraSemana" layoutX="392.0" layoutY="273.0" prefHeight="25.0" prefWidth="98.0" promptText="horas..." />
+                        <TextField fx:id="campoHoraSemana" layoutX="392.0" layoutY="271.0" prefHeight="25.0" prefWidth="98.0" promptText="horas..." />
                         <Label layoutX="75.0" layoutY="313.0" text="Cargo:" />
                         <Label layoutX="300.0" layoutY="313.0" text="Salário:" />
                         <Label layoutX="76.0" layoutY="465.0" text="Data Entra.:" />
-                        <Label layoutX="299.0" layoutY="276.0" text="CarHor Semanal:" />
+                        <Label layoutX="299.0" layoutY="275.0" text="CarHor Semanal:" />
                         <Button fx:id="insereFunc" alignment="CENTER" contentDisplay="CENTER" layoutX="77.0" layoutY="564.0" minWidth="79.0" mnemonicParsing="false" onAction="#insereFunc" prefHeight="25.0" prefWidth="98.0" text="      Salvar" textAlignment="CENTER" />
                         <Button fx:id="voltar" alignment="CENTER" layoutX="488.0" layoutY="564.0" minWidth="90.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="98.0" text="    Voltar" />
                         <Button fx:id="editaFunc" alignment="CENTER" layoutX="217.0" layoutY="564.0" mnemonicParsing="false" onAction="#editaFunc" prefHeight="25.0" prefWidth="98.0" text="    Editar" textAlignment="CENTER" />
