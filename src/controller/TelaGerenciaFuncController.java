@@ -31,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.entities.Cliente;
 import model.entities.Empregado;
 import model.entities.Funcionario;
 import model.entities.Pessoa;
@@ -93,6 +94,8 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
     
     private Funcionario selecionado;
     
+    private ObservableList<Funcionario> func = FXCollections.observableArrayList();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initTable();
@@ -104,6 +107,11 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
             }
         });  
     }    
+    
+    @FXML
+    void btPesquisa(ActionEvent event) {
+        listaFunc.setItems(busca());
+    }
     
     @FXML 
     private void insereFunc(ActionEvent event) {
@@ -285,7 +293,7 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
         selecionado.setAtivo(false);
         dao.update(selecionado);
     }  
-    
+      
     @FXML
     private void voltar(ActionEvent event) {
         System.out.println("Voltando de Cadastro para Login");
@@ -312,6 +320,18 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
     
     public ObservableList<Funcionario> atualizaTabela(){
         FuncionarioDAO dao = new FuncionarioDAO();
-        return FXCollections.observableArrayList(dao.all());
+        func = FXCollections.observableArrayList(dao.all());
+        return func;
     }    
+    
+    private ObservableList<Funcionario> busca(){
+        ObservableList<Funcionario> funPesquisa = FXCollections.observableArrayList();
+        for(int x = 0; x<func.size(); x++){
+            if(func.get(x).getNome().toLowerCase().contains(campoPesquisa.getText().toLowerCase())){
+                funPesquisa.add(func.get(x));
+            }
+        }
+        return funPesquisa;
+    }
+    
 }

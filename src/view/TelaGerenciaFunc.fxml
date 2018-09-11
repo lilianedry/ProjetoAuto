@@ -144,7 +144,7 @@
                         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="106.0">
                            <children>
                               <TextField fx:id="campoPesquisa" prefHeight="30.0" prefWidth="371.0" promptText="Pesquisar funcionário..." HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="38.0">
+                              <Button mnemonicParsing="false" onAction="#btPesquisa" prefHeight="25.0" prefWidth="38.0">
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
