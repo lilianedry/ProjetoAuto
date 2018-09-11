@@ -124,4 +124,8 @@ public class TelaGerenteController implements Initializable {
         return FXCollections.observableArrayList(dao.all());*/
         return null;
     }
+
+    @FXML
+    private void btPesquisa(ActionEvent event) {
+    }
 }
