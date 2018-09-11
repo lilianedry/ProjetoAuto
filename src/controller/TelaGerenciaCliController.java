@@ -90,6 +90,8 @@ public class TelaGerenciaCliController implements Initializable {
     private TextField campoEmail;
     
     private Cliente selecionado;
+    
+    private ObservableList<Cliente> clients = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -112,6 +114,11 @@ public class TelaGerenciaCliController implements Initializable {
         campoEmail.setText(selecionado.getEmail());
         campoTel.setText(selecionado.getTelefone());
         campoCnh.setText(selecionado.getCnh());
+    }
+    
+    @FXML
+    void btPesquisa(ActionEvent event) {
+        listaClientes.setItems(busca());
     }
 
     @FXML
@@ -303,6 +310,17 @@ public class TelaGerenciaCliController implements Initializable {
     
     public ObservableList<Cliente> atualizaTabela(){
         ClienteDAO dao = new ClienteDAO();
-        return FXCollections.observableArrayList(dao.all());
+        clients = FXCollections.observableArrayList(dao.all());
+        return clients;
+    }
+    
+    private ObservableList<Cliente> busca(){
+        ObservableList<Cliente> empPesquisa = FXCollections.observableArrayList();
+        for(int x = 0; x<clients.size(); x++){
+            if(clients.get(x).getNome().toLowerCase().contains(campoPesquisa.getText().toLowerCase())){
+                empPesquisa.add(clients.get(x));
+            }
+        }
+        return empPesquisa;
     }
 }
