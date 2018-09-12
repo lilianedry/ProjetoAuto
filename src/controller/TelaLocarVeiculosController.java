@@ -20,6 +20,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Caminho;
@@ -43,8 +45,6 @@ public class TelaLocarVeiculosController implements Initializable {
     @FXML
     private TextField campoPesquisa;
     @FXML
-    private Button botaoPesquisa;
-    @FXML
     private TextField campoCPFCli;
     @FXML
     private TextField campoPlaca;
@@ -62,6 +62,12 @@ public class TelaLocarVeiculosController implements Initializable {
     private Button voltar;
     @FXML
     private TextField campoValor;
+    @FXML
+    private TableView<?> listaAlunos;
+    @FXML
+    private TableColumn<?, ?> colunaNome;
+    @FXML
+    private TableColumn<?, ?> colunaCPF;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -141,5 +147,11 @@ public class TelaLocarVeiculosController implements Initializable {
             }
         }
     }
+
+    @FXML
+    private void btPesquisa(ActionEvent event) {
+    }
+
+
     
 }

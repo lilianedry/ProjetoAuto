@@ -1,8 +1,14 @@
 package controller;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import database.DAOs.CarroDAO;
 import database.DAOs.ClienteDAO;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +19,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -22,6 +30,7 @@ import javafx.stage.Stage;
 import model.Caminho;
 import model.ChangeScreen;
 import model.Especificacoes;
+import model.entities.Carro;
 import model.entities.Cliente;
 import model.entities.relationships.SolicitaCarro;
 
@@ -67,10 +76,22 @@ public class TelaGerenteController implements Initializable {
 
     @FXML
     private void geraRelatorio(ActionEvent event) throws Exception {
-        ChangeScreen change = new ChangeScreen();
-
-        Stage mainStage = change.change(event, Caminho.telaRelatorios, Especificacoes.getSoftwareNome(), true);
-        mainStage.show();
+        Document doc = new Document();
+        
+      
+        PdfWriter.getInstance(doc, new FileOutputStream("p.pdf"));
+        doc.open();
+        CarroDAO dao = new CarroDAO();
+        List<Carro> car = dao.all();
+        for(int x=0; x<car.size();x++){
+            doc.add(new Paragraph("Placa"+car.get(x).getPlaca()));
+        }
+        doc.close();
+        Alert a = new Alert(AlertType.CONFIRMATION);
+        a.setHeaderText("PDF Gerado con sucesso");
+        a.show();
+       
+        
     }
 
     @FXML
@@ -123,5 +144,9 @@ public class TelaGerenteController implements Initializable {
         /*CarroDAO dao = new CarroDAO();
         return FXCollections.observableArrayList(dao.all());*/
         return null;
+    }
+
+    @FXML
+    private void btPesquisa(ActionEvent event) {
     }
 }

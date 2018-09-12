@@ -34,6 +34,7 @@ import model.ChangeScreen;
 import model.Especificacoes;
 import model.entities.Carro;
 import model.entities.Cliente;
+import model.entities.Funcionario;
 
 public class TelaGerenciaCarroController implements Initializable{
     private static boolean janela;
@@ -86,6 +87,8 @@ public class TelaGerenciaCarroController implements Initializable{
 
     private Carro selecionado;
     
+    private ObservableList<Carro> carr = FXCollections.observableArrayList();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initTable();
@@ -97,6 +100,11 @@ public class TelaGerenciaCarroController implements Initializable{
             }
         });        
     } 
+    
+    @FXML
+    void btPesquisa(ActionEvent event) {
+        listaVeiculos.setItems(busca());
+    }
     
     @FXML
     private void insereCarro(ActionEvent event) {
@@ -258,6 +266,18 @@ public class TelaGerenciaCarroController implements Initializable{
     
     public ObservableList<Carro> atualizaTabela(){
         CarroDAO dao = new CarroDAO();
-        return FXCollections.observableArrayList(dao.all());
+        carr = FXCollections.observableArrayList(dao.all());
+        return carr;
     }
+    
+    private ObservableList<Carro> busca(){
+        ObservableList<Carro> funPesquisa = FXCollections.observableArrayList();
+        for(int x = 0; x<carr.size(); x++){
+            if(carr.get(x).getPlaca().toLowerCase().contains(campoPesquisa.getText().toLowerCase())){
+                funPesquisa.add(carr.get(x));
+            }
+        }
+        return funPesquisa;
+    }
+    
 }
