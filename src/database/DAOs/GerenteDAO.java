@@ -57,20 +57,6 @@ public class GerenteDAO {
         }
     }
 
-    public boolean delete(Gerente gerente) {
-        try {
-            Transaction tx = session.beginTransaction();
-            session.delete(gerente);
-            tx.commit();
-            return true;
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        } finally {
-            closeConnection();
-        }
-    }
-    
     public List<Gerente> all () {
         List<Gerente> gerentes = null;
         try {

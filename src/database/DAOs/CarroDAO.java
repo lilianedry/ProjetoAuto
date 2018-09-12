@@ -56,20 +56,6 @@ public class CarroDAO {
         }
     }
 
-    public boolean delete(Carro carro) {
-        try {
-            Transaction tx = session.beginTransaction();
-            session.delete(carro);
-            tx.commit();
-            return true;
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        } finally {
-            closeConnection();
-        }
-    }
-
     public Carro selectOne(int id) {
         Carro carro = null;
         try {

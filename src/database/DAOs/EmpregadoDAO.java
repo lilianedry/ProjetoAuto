@@ -56,21 +56,7 @@ public class EmpregadoDAO {
             closeConnection();
         }
     }
-
-    public boolean delete(Empregado empregado) {
-        try {
-            Transaction tx = session.beginTransaction();
-            session.delete(empregado);
-            tx.commit();
-            return true;
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        } finally {
-            closeConnection();
-        }
-    }
-    
+ 
     public List<Empregado> all () {
         List<Empregado> empregados = null;
         try {

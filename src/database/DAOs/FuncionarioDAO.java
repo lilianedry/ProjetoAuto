@@ -56,21 +56,7 @@ public class FuncionarioDAO {
             closeConnection();
         }
     }
-
-    public boolean delete(Funcionario funcionario) {
-        try {
-            Transaction tx = session.beginTransaction();
-            session.delete(funcionario);
-            tx.commit();
-            return true;
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        } finally {
-            closeConnection();
-        }
-    }
-    
+   
     public List<Funcionario> all () {
         List<Funcionario> funcionarios = null;
         try {

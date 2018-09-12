@@ -1,4 +1,4 @@
 /build/
-/nbproject/
+/nbproject
 /dist/
 /src/hibernate.cfg.xml

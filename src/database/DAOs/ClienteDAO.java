@@ -25,11 +25,11 @@ public class ClienteDAO {
     private Session session;
 
     public ClienteDAO() {
-        System.out.println("fodac5");
+        
         connection = new HibernateUtil().getConnection();
-        System.out.println("fodac6");
+       
         session = connection.openSession();
-        System.out.println("fodac7");
+        
     }
 
     public boolean add(Cliente cliente) {
@@ -50,20 +50,6 @@ public class ClienteDAO {
         try {
             Transaction tx = session.beginTransaction();
             session.update(cliente);
-            tx.commit();
-            return true;
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        } finally {
-            closeConnection();
-        }
-    }
-
-    public boolean delete(Cliente cliente) {
-        try {
-            Transaction tx = session.beginTransaction();
-            session.delete(cliente);
             tx.commit();
             return true;
         } catch (Exception ex) {

@@ -18,7 +18,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import model.entities.Carro;
 import model.entities.Cliente;
-import model.entities.Pessoa;
 
 /**
  *
