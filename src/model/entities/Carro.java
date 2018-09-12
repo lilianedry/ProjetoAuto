@@ -33,6 +33,7 @@ public class Carro implements Serializable {
     private String quilometragem;
     private String opcionais;
     private boolean ativo;
+    private boolean emprestado;  
     private Set<SolicitaCarro> solicitaCarro = new HashSet<>(0); //RELACINAMENTO N:N SolicitaCarro
     private Cliente cliente; //RELACIONAMENTO 1:N CedeCarro
     private Date dataCede;
@@ -40,6 +41,7 @@ public class Carro implements Serializable {
 
     public Carro() {
         this.ativo = true;
+        this.emprestado = false;
     }
 
     public Carro(String placa, String tipoCambio, String modelo, String cor, String anoModelo, String chassi,
@@ -54,6 +56,7 @@ public class Carro implements Serializable {
         this.quilometragem = quilometragem;
         this.opcionais = opcionais;
         this.ativo = true;
+        this.emprestado = false;
     }
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.carro")
@@ -184,6 +187,15 @@ public class Carro implements Serializable {
     public void setOpcionais(String opcionais) {
         this.opcionais = opcionais;
     }
+    @Column(name = "emprestado")
+    public boolean isEmprestado() {
+        return emprestado;
+    }
+
+    public void setEmprestado(boolean emprestado) {
+        this.emprestado = emprestado;
+    }
+    
     @Column(name = "ativo")
     public boolean isAtivo() {
         return ativo;
@@ -197,7 +209,7 @@ public class Carro implements Serializable {
     public String toString() {
         return "Carro [idCarro=" + getIdCarro() + ", placa=" + getPlaca() + ", tipoCambio=" + getTipoCambio() + ", modelo=" + getModelo()
                 + ", cor=" + getCor() + ", anoModelo=" + getAnoModelo() + ", chassi=" + getChassi() + ", combustivel=" + getCombustivel()
-                + ", quilometragem=" + getQuilometragem() + ", opcionais=" + getOpcionais() + "]";
+                + ", quilometragem=" + getQuilometragem() + ", opcionais=" + getOpcionais() + ", emprestado=" + isEmprestado() + ", ativo=" + isAtivo() + "]";
     }
 
 }
