@@ -1,5 +1,6 @@
 package controller;
 
+import database.DAOs.EmpregadoDAO;
 import database.DAOs.FuncionarioDAO;
 import database.DAOs.GerenteDAO;
 import java.net.URL;
@@ -21,6 +22,7 @@ import model.Caminho;
 import model.ChangeScreen;
 import model.Especificacoes;
 import model.Usuario;
+import model.entities.Empregado;
 import model.entities.Funcionario;
 import model.entities.Gerente;
 
@@ -32,6 +34,7 @@ public class TelaLoginController implements Initializable {
     private PasswordField campoSenha;
     @FXML
     private Label mensagemErro;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,9 +52,9 @@ public class TelaLoginController implements Initializable {
 
     @FXML
     private void cliqueBotaoEntrar(ActionEvent event) throws Exception {
-        FuncionarioDAO dao = new FuncionarioDAO();
-        List<Funcionario> fun = dao.all();
-        GerenteDAO dao1 = new GerenteDAO();
+        EmpregadoDAO dao = new EmpregadoDAO();
+        List<Empregado> fun = dao.all();
+        
         
         if (Usuario.login(campoLogin.getText(), campoSenha.getText())){
                 ChangeScreen change = new ChangeScreen();
