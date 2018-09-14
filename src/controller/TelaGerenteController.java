@@ -5,6 +5,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import database.DAOs.CarroDAO;
 import database.DAOs.ClienteDAO;
+import database.DAOs.SolicitaCarroDAO;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.Date;
@@ -81,14 +82,19 @@ public class TelaGerenteController implements Initializable {
       
         PdfWriter.getInstance(doc, new FileOutputStream("p.pdf"));
         doc.open();
-        CarroDAO dao = new CarroDAO();
-        List<Carro> car = dao.all();
+        SolicitaCarroDAO dao = new SolicitaCarroDAO();
+        List<SolicitaCarro> car = dao.allf();
         for(int x=0; x<car.size();x++){
-            doc.add(new Paragraph("Placa"+car.get(x).getPlaca()));
+            doc.add(new Paragraph("Carro: "+car.get(x).getCarro()));
+        }
+        SolicitaCarroDAO dao1 = new SolicitaCarroDAO();
+        List<SolicitaCarro> car1 = dao1.allf();
+        for(int x=0; x<car1.size();x++){
+            doc.add(new Paragraph("Cliente: "+car1.get(x).getCliente()));
         }
         doc.close();
         Alert a = new Alert(AlertType.CONFIRMATION);
-        a.setHeaderText("PDF Gerado con sucesso");
+        a.setHeaderText("PDF Gerado com sucesso");
         a.show();
        
         
