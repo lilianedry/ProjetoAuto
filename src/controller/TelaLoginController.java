@@ -60,25 +60,24 @@ public class TelaLoginController implements Initializable {
                 mainStage.show();
         }
         else{
-            if(fun == null){
-                for(int x =0; x<fun.size() ; x++){
-                    if (campoLogin.getText().equals(fun.get(x).getLogin()) && campoSenha.getText().equals(fun.get(x).getSenha())){
+            if(fun.isEmpty()){
+                mensagemErro.setVisible(true);
+                mensagemErro.setText("Login e/ou senha inválido(s)");
+            }
+            for(int x =0; x<fun.size() ; x++){
+                if (campoLogin.getText().equals(fun.get(x).getLogin()) && campoSenha.getText().equals(fun.get(x).getSenha())){
                     x = fun.size();
                     ChangeScreen change = new ChangeScreen();
 
                     Stage mainStage = change.change(event, Caminho.telaFunc, Especificacoes.getSoftwareNome(), true);
                     mainStage.show();
-                    }
-                    else {
-                        if(x == fun.size()-1){
-                        mensagemErro.setVisible(true);
-                        mensagemErro.setText("Login e/ou senha inválido(s)");
-                        }
+                }
+                else {
+                    if(x == fun.size()-1){
+                    mensagemErro.setVisible(true);
+                    mensagemErro.setText("Login e/ou senha inválido(s)");
                     }
                 }
-            }else {
-                mensagemErro.setVisible(true);
-                mensagemErro.setText("Login e/ou senha inválido(s)"); 
             }
         }
     }
