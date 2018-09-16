@@ -5,6 +5,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import database.DAOs.CarroDAO;
 import database.DAOs.ClienteDAO;
+import database.DAOs.SolicitaCarroDAO;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -22,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -62,7 +65,7 @@ public class TelaGerenteController implements Initializable {
     private TableView<SolicitaCarro> listaAluguel;
     
     private SolicitaCarro selecionado;
-
+    
     public void initialize(URL url, ResourceBundle rb) {
         initTable();        
         listaAluguel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
@@ -81,17 +84,32 @@ public class TelaGerenteController implements Initializable {
       
         PdfWriter.getInstance(doc, new FileOutputStream("p.pdf"));
         doc.open();
-        CarroDAO dao = new CarroDAO();
-        List<Carro> car = dao.all();
+        SolicitaCarroDAO dao = new SolicitaCarroDAO();
+        List<SolicitaCarro> car = dao.allf();
+        
+        doc.add(new Paragraph("                                     Relatorio dos Alugueis\n"));
+        doc.add(new Paragraph("  "));
         for(int x=0; x<car.size();x++){
-            doc.add(new Paragraph("Placa"+car.get(x).getPlaca()));
+            if(car.get(x).isAtivo() == false){
+            doc.add(new Paragraph("Data de Retirada: "+car.get(x).getDataEntrega()+
+                    "       Data de Entrega: "+car.get(x).getDataEntrega()+
+                    "       Valor do aluguel: "+car.get(x).getValor()));
+            doc.add(new Paragraph("Carro: "+car.get(x).getCarro().getIdCarro()+
+                    "       Placa: "+car.get(x).getCarro().getPlaca()+
+                    "       Modelo: "+car.get(x).getCarro().getModelo()+
+                    "       Chassi: "+car.get(x).getCarro().getChassi()));
+            doc.add(new Paragraph("Cliente: "+car.get(x).getCliente().getIdPessoa()+
+                    "       Nome: "+car.get(x).getCliente().getNome()+
+                    "       CPF: "+ car.get(x).getCliente().getCpf()+
+                    "       CNH: "+ car.get(x).getCliente().getCnh()));
+            doc.add(new Paragraph("---------------------------------------------------------------------"));
+            }
         }
+        
         doc.close();
         Alert a = new Alert(AlertType.CONFIRMATION);
-        a.setHeaderText("PDF Gerado con sucesso");
-        a.show();
-       
-        
+        a.setHeaderText("PDF Gerado com sucesso");
+        a.show();  
     }
 
     @FXML
@@ -148,5 +166,11 @@ public class TelaGerenteController implements Initializable {
 
     @FXML
     private void btPesquisa(ActionEvent event) {
+    }
+
+    @FXML
+    private void sairGer(ActionEvent event) {     
+        Platform.exit();
+        System.exit(0);
     }
 }

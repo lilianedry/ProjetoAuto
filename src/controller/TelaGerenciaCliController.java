@@ -7,6 +7,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -208,7 +209,7 @@ public class TelaGerenciaCliController implements Initializable {
 
     @FXML
     private void insereCli(ActionEvent event) {
-            if(selecionado != null){
+        if(selecionado != null){
             Cliente cli = new Cliente();
 
             cli.setNome(campoNome.getText()); 
@@ -258,8 +259,9 @@ public class TelaGerenciaCliController implements Initializable {
         }
         else{
             Cliente cli = new Cliente();
-
-            cli.setNome(campoNome.getText()); 
+            ClienteDAO dao = new ClienteDAO();
+            List<Cliente> fun = dao.all();
+            
             try {
                 if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
                 throw new IllegalArgumentException();
@@ -268,37 +270,50 @@ public class TelaGerenciaCliController implements Initializable {
                 return;
             }
             cli.setCpf(campoCPF.getText()); 
-            if(campoMasc.isSelected()){
-                cli.setSexo("M");
-            }
-            if(campoFem.isSelected()){
-                cli.setSexo("F");
-            }
-            cli.setRua(campoRua.getText());
-            cli.setNumCasa(campoNum.getText());
-            try {
-                if (campoRG.getText().length()>10)
-                    throw new IllegalArgumentException();
-            } catch (IllegalArgumentException e) {
-                Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
-                    return;
-            }
-            cli.setRg(campoRG.getText());        
-            cli.setBairro(campoBairro.getText());
-            cli.setCidade(campoCidade.getText());
-            cli.setEstado(campoEstado.getText());
-            cli.setEmail(campoEmail.getText());
-            cli.setTelefone(campoTel.getText());
-            cli.setCnh(campoCnh.getText());
-            cli.setAtivo(true);
-            LocalDate data = campoDataNasc.getValue();
-            Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            cli.setDataNascimento(nasc);
+            
+            for(int x=0; x<fun.size() ; x++){
+                
+                if (!campoCPF.getText().equals(fun.get(x).getCpf())){                    
+                    if(x == fun.size()-1){
+                        cli.setNome(campoNome.getText()); 
+                        if(campoMasc.isSelected()){
+                            cli.setSexo("M");
+                        }
+                        if(campoFem.isSelected()){
+                            cli.setSexo("F");
+                        }
+                        cli.setRua(campoRua.getText());
+                        cli.setNumCasa(campoNum.getText());
+                        try {
+                            if (campoRG.getText().length()>10)
+                                throw new IllegalArgumentException();
+                        } catch (IllegalArgumentException e) {
+                            Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
+                                return;
+                        }
+                        cli.setRg(campoRG.getText());        
+                        cli.setBairro(campoBairro.getText());
+                        cli.setCidade(campoCidade.getText());
+                        cli.setEstado(campoEstado.getText());
+                        cli.setEmail(campoEmail.getText());
+                        cli.setTelefone(campoTel.getText());
+                        cli.setCnh(campoCnh.getText());
+                        cli.setAtivo(true);
+                        LocalDate data = campoDataNasc.getValue();
+                        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                        cli.setDataNascimento(nasc);
 
-            ClienteDAO cliDAO = new ClienteDAO();
-            cliDAO.add(cli);
-            listaClientes.setItems(atualizaTabela());
-            Alertas.mostraAlertaInfo("Cadastro de Clientes", "Cadastro realizado com sucesso!");  
+                        ClienteDAO cliDAO = new ClienteDAO();
+                        cliDAO.add(cli);
+                        listaClientes.setItems(atualizaTabela());
+                        Alertas.mostraAlertaInfo("Cadastro de Clientes", "Cadastro realizado com sucesso!");   
+                    }
+                }                   
+                else{
+                    Alertas.mostraAlertaInfo("Cadastro de Clientes", "CPF já cadastrado!!");  
+                    break;                    
+                }
+            }
         }        
     }    
     
