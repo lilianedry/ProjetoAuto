@@ -3,20 +3,18 @@ package controller;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import database.DAOs.CarroDAO;
-import database.DAOs.ClienteDAO;
 import database.DAOs.SolicitaCarroDAO;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +22,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,8 +32,6 @@ import javafx.stage.Stage;
 import model.Caminho;
 import model.ChangeScreen;
 import model.Especificacoes;
-import model.entities.Carro;
-import model.entities.Cliente;
 import model.entities.relationships.SolicitaCarro;
 
 public class TelaGerenteController implements Initializable {
@@ -79,8 +76,7 @@ public class TelaGerenteController implements Initializable {
 
     @FXML
     private void geraRelatorio(ActionEvent event) throws Exception {
-        Document doc = new Document();
-        
+        Document doc = new Document();        
       
         PdfWriter.getInstance(doc, new FileOutputStream("p.pdf"));
         doc.open();
@@ -167,10 +163,17 @@ public class TelaGerenteController implements Initializable {
     @FXML
     private void btPesquisa(ActionEvent event) {
     }
-
+   
     @FXML
-    private void sairGer(ActionEvent event) {     
-        Platform.exit();
-        System.exit(0);
-    }
+    private void itemSair(ActionEvent event) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmação");
+        alert.setHeaderText("Tem certeza que deseja sair?");
+        alert.setContentText("Terá que logar novamente.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            System.exit(0);
+        } 
+        else { }
+    }   
 }
