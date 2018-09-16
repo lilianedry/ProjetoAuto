@@ -7,7 +7,7 @@ package database.DAOs;
 
 import database.HibernateUtil;
 import java.util.List;
-import model.entities.relationships.SolicitaCarro;
+import model.entities.relationships.GerenciaCliente;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,12 +18,12 @@ import org.hibernate.criterion.Example;
  *
  * @author Enigma
  */
-public class SolicitaCarroDAO {
+public class GerenciaClienteDAO {
 
     private SessionFactory connection;
     private Session session;
 
-    public SolicitaCarroDAO() {
+    public GerenciaClienteDAO() {
         
         connection = new HibernateUtil().getConnection();
        
@@ -31,10 +31,10 @@ public class SolicitaCarroDAO {
         
     }    
 
-    public boolean update(SolicitaCarro solicitacarro) {
+    public boolean update(GerenciaCliente gerenciaCliente) {
         try {
             Transaction tx = session.beginTransaction();
-            session.update(solicitacarro);
+            session.update(gerenciaCliente);
             tx.commit();
             return true;
         } catch (Exception ex) {
@@ -45,60 +45,60 @@ public class SolicitaCarroDAO {
         }
     }
 
-    public SolicitaCarro selectOne(int id) {
-        SolicitaCarro solicitacarro = null;
+    public GerenciaCliente selectOne(int id) {
+        GerenciaCliente gerenciaCliente = null;
         try {
-            solicitacarro = (SolicitaCarro) session.get(SolicitaCarro.class, id);
+            gerenciaCliente = (GerenciaCliente) session.get(GerenciaCliente.class, id);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             session.close();
         }
-        return solicitacarro;
+        return gerenciaCliente;
     }
 
-    public List<SolicitaCarro> all() {
-        List<SolicitaCarro> solicitacarros = null;
+    public List<GerenciaCliente> all() {
+        List<GerenciaCliente> gerenciaClientes = null;
         try {
             Transaction tx = session.beginTransaction();
-            solicitacarros = session.createQuery("from SolicitaCarro where ativo = true").list();
+            gerenciaClientes = session.createQuery("from GerenciaCliente where ativo = true").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             closeConnection();
         }
-        return solicitacarros;
+        return gerenciaClientes;
     }
     
-    public List<SolicitaCarro> allf() {
-        List<SolicitaCarro> solicitacarros = null;
+    public List<GerenciaCliente> allf() {
+        List<GerenciaCliente> gerenciaClientes = null;
         try {
             Transaction tx = session.beginTransaction();
-            solicitacarros = session.createQuery("from SolicitaCarro").list();
+            gerenciaClientes = session.createQuery("from GerenciaCliente").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             closeConnection();
         }
-        return solicitacarros;
+        return gerenciaClientes;
     }
     
-    public List<SolicitaCarro> selectParam(SolicitaCarro solicitacarro) {
-        List<SolicitaCarro> solicitacarros = null;
+    public List<GerenciaCliente> selectParam(GerenciaCliente gerenciaCliente) {
+        List<GerenciaCliente> gerenciaClientes = null;
         try {
-            Criteria crit = session.createCriteria(SolicitaCarro.class);
-            crit.add(Example.create(solicitacarro));
+            Criteria crit = session.createCriteria(GerenciaCliente.class);
+            crit.add(Example.create(gerenciaCliente));
             Transaction tx = session.beginTransaction();
-            solicitacarros = crit.list();
+            gerenciaClientes = crit.list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             closeConnection();
         }
-        return solicitacarros;
+        return gerenciaClientes;
     }
 
     public void closeConnection() {

@@ -7,7 +7,7 @@ package database.DAOs;
 
 import database.HibernateUtil;
 import java.util.List;
-import model.entities.relationships.SolicitaCarro;
+import model.entities.relationships.GerenciaCarro;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,12 +18,12 @@ import org.hibernate.criterion.Example;
  *
  * @author Enigma
  */
-public class SolicitaCarroDAO {
+public class GerenciaCarroDAO {
 
     private SessionFactory connection;
     private Session session;
 
-    public SolicitaCarroDAO() {
+    public GerenciaCarroDAO() {
         
         connection = new HibernateUtil().getConnection();
        
@@ -31,10 +31,10 @@ public class SolicitaCarroDAO {
         
     }    
 
-    public boolean update(SolicitaCarro solicitacarro) {
+    public boolean update(GerenciaCarro gerenciaCarro) {
         try {
             Transaction tx = session.beginTransaction();
-            session.update(solicitacarro);
+            session.update(gerenciaCarro);
             tx.commit();
             return true;
         } catch (Exception ex) {
@@ -45,60 +45,60 @@ public class SolicitaCarroDAO {
         }
     }
 
-    public SolicitaCarro selectOne(int id) {
-        SolicitaCarro solicitacarro = null;
+    public GerenciaCarro selectOne(int id) {
+        GerenciaCarro gerenciaCarro = null;
         try {
-            solicitacarro = (SolicitaCarro) session.get(SolicitaCarro.class, id);
+            gerenciaCarro = (GerenciaCarro) session.get(GerenciaCarro.class, id);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             session.close();
         }
-        return solicitacarro;
+        return gerenciaCarro;
     }
 
-    public List<SolicitaCarro> all() {
-        List<SolicitaCarro> solicitacarros = null;
+    public List<GerenciaCarro> all() {
+        List<GerenciaCarro> gerenciaCarros = null;
         try {
             Transaction tx = session.beginTransaction();
-            solicitacarros = session.createQuery("from SolicitaCarro where ativo = true").list();
+            gerenciaCarros = session.createQuery("from GerenciaCarro where ativo = true").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             closeConnection();
         }
-        return solicitacarros;
+        return gerenciaCarros;
     }
     
-    public List<SolicitaCarro> allf() {
-        List<SolicitaCarro> solicitacarros = null;
+    public List<GerenciaCarro> allf() {
+        List<GerenciaCarro> gerenciaCarros = null;
         try {
             Transaction tx = session.beginTransaction();
-            solicitacarros = session.createQuery("from SolicitaCarro").list();
+            gerenciaCarros = session.createQuery("from GerenciaCarro").list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             closeConnection();
         }
-        return solicitacarros;
+        return gerenciaCarros;
     }
     
-    public List<SolicitaCarro> selectParam(SolicitaCarro solicitacarro) {
-        List<SolicitaCarro> solicitacarros = null;
+    public List<GerenciaCarro> selectParam(GerenciaCarro gerenciaCarro) {
+        List<GerenciaCarro> gerenciaCarros = null;
         try {
-            Criteria crit = session.createCriteria(SolicitaCarro.class);
-            crit.add(Example.create(solicitacarro));
+            Criteria crit = session.createCriteria(GerenciaCarro.class);
+            crit.add(Example.create(gerenciaCarro));
             Transaction tx = session.beginTransaction();
-            solicitacarros = crit.list();
+            gerenciaCarros = crit.list();
             tx.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             closeConnection();
         }
-        return solicitacarros;
+        return gerenciaCarros;
     }
 
     public void closeConnection() {
