@@ -3,12 +3,14 @@ package controller;
 
 import controller.alerts.Alertas;
 import controller.verificadores.verCPF;
+import database.DAOs.ClienteDAO;
 import database.DAOs.FuncionarioDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -173,59 +175,71 @@ public class TelaGerenciaFuncController extends Pessoa implements Initializable 
         }
         
         else if(selecionado==null){
-        Empregado func = new Empregado();  
-        
-        func.setLogin(campoLogin.getText());
-        func.setSenha(campoSenha.getText());
-        func.setNome(campoNome.getText());
-        
-        try {
-            if (campoRG.getText().length()>10)
-                throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e) {
-            Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
-                return;
-        }
-        func.setRg(campoRG.getText());
-        func.setTelefone(campoTel.getText());
-        func.setRua(campoRua.getText());
-        func.setCidade(campoCidade.getText());        
-        func.setEstado(campoEstado.getText());
-        func.setBairro(campoBairro.getText());
-        func.setCargo(campoCargo.getText());   
-        func.setNumCasa(campoNumCasa.getText()); 
-        func.setSalario(campoSalario.getText()); 
-        func.setCargaHorSem(campoHoraSemana.getText());
-        func.setAtivo(true);
-               
-        try {
-            if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
-                    throw new IllegalArgumentException();
-	} catch (IllegalArgumentException e) {
-            Alertas.mostraAlertaInfo("Erro no campo CPF!", "Digite um CPF válido.");
-		return;
-	}
-        
-        func.setCpf(campoCPF.getText());
-        if(campoMasc.isSelected()){
-            func.setSexo("M");
-        }
-        if(campoFem.isSelected()){
-            func.setSexo("F");
-        }
-        LocalDate data = campoDataNasc.getValue();
-        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        func.setDataNascimento(nasc);
-        
-        LocalDate data2 = campoDataEnt.getValue();
-        Date entra = Date.from(data2.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        func.setDataEntrada(entra); 
-        
-        FuncionarioDAO FuncDAO = new FuncionarioDAO();
-        FuncDAO.add(func);
-       
-        listaFunc.setItems(atualizaTabela());
-        Alertas.mostraAlertaInfo("Cadastro de Funcionario", "Cadastro realizado com sucesso!");	
+            Empregado func = new Empregado(); 
+            FuncionarioDAO dao = new FuncionarioDAO();
+            List<Funcionario> fun = dao.all();
+
+            try {
+                if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
+                        throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                Alertas.mostraAlertaInfo("Erro no campo CPF!", "Digite um CPF válido.");
+                    return;
+            }
+
+            func.setCpf(campoCPF.getText());
+            
+            for(int x=0; x<fun.size() ; x++){                
+                if (!campoCPF.getText().equals(fun.get(x).getCpf())){                    
+                    if(x == fun.size()-1){
+                    func.setLogin(campoLogin.getText());
+                    func.setSenha(campoSenha.getText());
+                    func.setNome(campoNome.getText());
+
+                    try {
+                        if (campoRG.getText().length()>10)
+                            throw new IllegalArgumentException();
+                    } catch (IllegalArgumentException e) {
+                        Alertas.mostraAlertaInfo("Erro no campo RG!", "Digite um RG válido.");
+                            return;
+                    }
+                    func.setRg(campoRG.getText());
+                    func.setTelefone(campoTel.getText());
+                    func.setRua(campoRua.getText());
+                    func.setCidade(campoCidade.getText());        
+                    func.setEstado(campoEstado.getText());
+                    func.setBairro(campoBairro.getText());
+                    func.setCargo(campoCargo.getText());   
+                    func.setNumCasa(campoNumCasa.getText()); 
+                    func.setSalario(campoSalario.getText()); 
+                    func.setCargaHorSem(campoHoraSemana.getText());
+                    func.setAtivo(true);
+                    if(campoMasc.isSelected()){
+                        func.setSexo("M");
+                    }
+                    if(campoFem.isSelected()){
+                        func.setSexo("F");
+                    }
+                    LocalDate data = campoDataNasc.getValue();
+                    Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                    func.setDataNascimento(nasc);
+
+                    LocalDate data2 = campoDataEnt.getValue();
+                    Date entra = Date.from(data2.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                    func.setDataEntrada(entra); 
+
+                    FuncionarioDAO FuncDAO = new FuncionarioDAO();
+                    FuncDAO.add(func);
+
+                    listaFunc.setItems(atualizaTabela());
+                    Alertas.mostraAlertaInfo("Cadastro de Funcionario", "Cadastro realizado com sucesso!");	
+                    }
+                }
+                else{
+                    Alertas.mostraAlertaInfo("Cadastro de Funcionário", "CPF já cadastrado!!");  
+                    break;
+                }
+            }
         }
         else{
             

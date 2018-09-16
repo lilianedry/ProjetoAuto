@@ -59,27 +59,27 @@
                <children>
                   <Pane minWidth="300.0" prefHeight="666.0" prefWidth="348.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label layoutX="69.0" layoutY="276.0" text="Modelo:" />
+                        <Label layoutX="78.0" layoutY="276.0" text="Modelo:" />
                         <Label layoutX="354.0" layoutY="201.0" text="Câmbio:" />
                         <Label layoutX="55.0" layoutY="197.0" />
                         <Label layoutX="354.0" layoutY="166.0" text="Cor: " />
-                        <TextField fx:id="campoPlaca" layoutX="125.0" layoutY="162.0" prefHeight="25.0" prefWidth="200.0" promptText="AAA-0000" />
-                        <TextField fx:id="campoModelo" layoutX="123.0" layoutY="274.0" prefHeight="25.0" prefWidth="200.0" promptText="Unix" />
-                        <TextField fx:id="campoAno" layoutX="123.0" layoutY="236.0" prefHeight="25.0" prefWidth="200.0" promptText="2000" />
-                        <TextField fx:id="campoCor" layoutX="386.0" layoutY="162.0" prefHeight="25.0" prefWidth="218.0" promptText="Preto" />
-                        <Label layoutX="354.0" layoutY="237.0" text="Combustível:" />
-                        <TextField fx:id="campoCambio" layoutX="404.0" layoutY="198.0" minWidth="190.0" prefHeight="25.0" prefWidth="200.0" promptText="Automático" />
-                        <Label layoutX="72.0" layoutY="165.0" text="Placa:" />
-                        <Label layoutX="70.0" layoutY="240.0" text="Ano :" />
-                        <TextField fx:id="campoCombustivel" layoutX="429.0" layoutY="233.0" prefHeight="25.0" prefWidth="177.0" promptText="Litros..." />
-                        <Button fx:id="insereCarro" alignment="CENTER" contentDisplay="CENTER" layoutX="71.0" layoutY="495.0" minWidth="79.0" mnemonicParsing="false" onAction="#insereCarro" prefHeight="25.0" prefWidth="98.0" text="      Salvar" textAlignment="CENTER" />
-                        <Button fx:id="voltar" alignment="CENTER" layoutX="512.0" layoutY="495.0" minWidth="90.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="98.0" text="    Voltar" />
+                        <TextField fx:id="campoPlaca" layoutX="130.0" layoutY="162.0" prefHeight="25.0" prefWidth="200.0" promptText="AAA-0000" />
+                        <TextField fx:id="campoModelo" layoutX="128.0" layoutY="274.0" prefHeight="25.0" prefWidth="200.0" promptText="Unix" />
+                        <TextField fx:id="campoAno" layoutX="128.0" layoutY="236.0" prefHeight="25.0" prefWidth="200.0" promptText="2000" />
+                        <TextField fx:id="campoCor" layoutX="386.0" layoutY="162.0" prefHeight="25.0" prefWidth="200.0" promptText="Preto" />
+                        <Label layoutX="353.0" layoutY="237.0" text="Combustível:" />
+                        <TextField fx:id="campoCambio" layoutX="404.0" layoutY="198.0" minWidth="181.0" prefHeight="25.0" prefWidth="181.0" promptText="Automático" />
+                        <Label layoutX="81.0" layoutY="165.0" text="Placa:" />
+                        <Label layoutX="79.0" layoutY="240.0" text="Ano :" />
+                        <TextField fx:id="campoCombustivel" layoutX="429.0" layoutY="233.0" prefHeight="25.0" prefWidth="158.0" promptText="Litros..." />
+                        <Button fx:id="insereCarro" alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="496.0" minWidth="79.0" mnemonicParsing="false" onAction="#insereCarro" prefHeight="25.0" prefWidth="93.0" text="      Salvar" textAlignment="CENTER" />
+                        <Button fx:id="voltar" alignment="CENTER" layoutX="497.0" layoutY="495.0" minWidth="90.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="93.0" text="    Voltar" />
                         <Separator layoutX="699.0" layoutY="1.0" orientation="VERTICAL" prefHeight="666.0" prefWidth="16.0" />
-                        <Label layoutX="351.0" layoutY="276.0" text="Quilomentragem:" />
-                        <TextField fx:id="campoKm" layoutX="446.0" layoutY="272.0" prefHeight="25.0" prefWidth="159.0" promptText="Km..." />
-                        <TextField fx:id="campoChassi" layoutX="124.0" layoutY="199.0" prefHeight="25.0" prefWidth="200.0" promptText="A12" />
-                        <Label layoutX="68.0" layoutY="364.0" text="Opcional:" />
-                        <Label layoutX="70.0" layoutY="202.0" text="Chassi:" />
+                        <Label layoutX="353.0" layoutY="276.0" text="Quilomentragem:" />
+                        <TextField fx:id="campoKm" layoutX="446.0" layoutY="272.0" prefHeight="25.0" prefWidth="141.0" promptText="Km..." />
+                        <TextField fx:id="campoChassi" layoutX="129.0" layoutY="199.0" prefHeight="25.0" prefWidth="200.0" promptText="A12" />
+                        <Label layoutX="78.0" layoutY="353.0" text="Opcional:" />
+                        <Label layoutX="79.0" layoutY="202.0" text="Chassi:" />
                         <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" layoutX="290.0" layoutY="81.0" mnemonicParsing="true" text="Cadastrar Veículos" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                            <font>
                               <Font size="15.0" />
@@ -88,33 +88,33 @@
                               <ColorAdjust />
                            </effect>
                         </Label>
-                        <Button fx:id="editaCarro" alignment="CENTER" layoutX="218.0" layoutY="495.0" mnemonicParsing="false" onAction="#editaCarro" prefHeight="25.0" prefWidth="98.0" text="    Editar" textAlignment="CENTER" />
-                        <Button fx:id="removeCarro" alignment="CENTER" layoutX="374.0" layoutY="495.0" mnemonicParsing="false" onAction="#removeCarro" prefHeight="25.0" prefWidth="98.0" text="      Excluir" />
-                        <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="80.0" layoutY="497.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="editaCarro" alignment="CENTER" layoutX="218.0" layoutY="496.0" mnemonicParsing="false" onAction="#editaCarro" prefHeight="25.0" prefWidth="93.0" text="    Editar" textAlignment="CENTER" />
+                        <Button fx:id="removeCarro" alignment="CENTER" layoutX="359.0" layoutY="496.0" mnemonicParsing="false" onAction="#removeCarro" prefHeight="25.0" prefWidth="93.0" text="      Excluir" />
+                        <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="84.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/salvar.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="381.0" layoutY="497.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="366.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/excluir.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="521.0" layoutY="496.0" pickOnBounds="true">
+                        <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="501.0" layoutY="496.0" pickOnBounds="true">
                            <image>
                               <Image url="@Images/voltar.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="218.0" layoutY="497.0" pickOnBounds="true">
+                        <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="218.0" layoutY="498.0" pickOnBounds="true">
                            <image>
                               <Image url="@Images/edit-validated_40458.png" />
                            </image>
                         </ImageView>
-                        <TextArea fx:id="campoOpcional" layoutX="122.0" layoutY="363.0" prefHeight="73.0" prefWidth="488.0" promptText="Descrição do veículo..." />
-                        <TextField fx:id="campoCPF" layoutX="124.0" layoutY="311.0" prefHeight="25.0" prefWidth="200.0" />
-                        <Label layoutX="51.0" layoutY="315.0" text="CPF Cliente:" />
-                        <DatePicker fx:id="campoData" layoutX="434.0" layoutY="309.0" />
-                        <Label layoutX="368.0" layoutY="312.0" text="Data cede:" />
+                        <TextArea fx:id="campoOpcional" layoutX="129.0" layoutY="353.0" prefHeight="73.0" prefWidth="460.0" promptText="Descrição do veículo..." />
+                        <TextField fx:id="campoCPF" layoutX="127.0" layoutY="311.0" prefHeight="25.0" prefWidth="200.0" promptText="000.000.000-00" />
+                        <Label layoutX="79.0" layoutY="315.0" text="Cliente" />
+                        <DatePicker fx:id="campoData" layoutX="419.0" layoutY="309.0" prefHeight="25.0" prefWidth="168.0" promptText="00/00/0000" />
+                        <Label layoutX="356.0" layoutY="313.0" text="Data cede:" />
                      </children>
                   </Pane>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">

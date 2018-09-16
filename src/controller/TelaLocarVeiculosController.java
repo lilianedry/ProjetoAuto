@@ -12,7 +12,6 @@ import database.DAOs.SolicitaCarroDAO;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -37,7 +36,6 @@ import model.ChangeScreen;
 import model.Especificacoes;
 import model.entities.Carro;
 import model.entities.Cliente;
-import model.entities.Funcionario;
 import model.entities.relationships.SolicitaCarro;
 
 public class TelaLocarVeiculosController implements Initializable {
@@ -73,7 +71,7 @@ public class TelaLocarVeiculosController implements Initializable {
     private TextField campoValor;
     
     @FXML
-    private TableView<Cliente> listaAlunos;
+    private TableView<Cliente> listaClientes;
 
     @FXML
     private TableColumn<Cliente, String> colunaNome;
@@ -89,7 +87,7 @@ public class TelaLocarVeiculosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        initTable();
        
-       listaAlunos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+       listaClientes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                Cliente selecionado = (Cliente) newValue;  
@@ -104,45 +102,49 @@ public class TelaLocarVeiculosController implements Initializable {
 
     @FXML
     private void locarVeiculo(ActionEvent event) {
-    Cliente aux = new Cliente();
+        Cliente aux = new Cliente();
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> fun = dao.all();
         aux.setCpf(campoCPFCli.getText());
-        ClienteDAO cliDAO2 = new ClienteDAO();
-        System.out.println(aux);
-        Cliente cli = cliDAO2.selectParam(aux).get(0);
-     
-    Carro auxCar = new Carro();
-        auxCar.setPlaca(campoPlaca.getText());
-        CarroDAO carDAO = new CarroDAO();
-        Carro car = carDAO.selectParam(auxCar).get(0);
-        
-    SolicitaCarro sC = new SolicitaCarro();
-        sC.setCliente(cli);
-        sC.setCarro(car);
-        
-        LocalDate data = campoDataRetira.getValue();        
-        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        sC.setDataRetirada(nasc);
-        
-        //LocalDate data1 = campoDataEntrega.getValue();
-        //Date nasc1 = Date.from(data1.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        //sC.setDataEntrega(nasc1);
-        
-        LocalDate data2 = campoPrazoFinal.getValue();
-        Date nasc2 = Date.from(data2.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        sC.setPrazoFinal(nasc2);
-        
-        sC.setValor(campoValor.getText());
-        
-        cli.getSolicitaCarro().add(sC);
-        
-        ClienteDAO cliDAO3 = new ClienteDAO();
-        cliDAO3.update(cli); 
-        
-        
-        listaAlunos.setItems(atualizaTabela());
-        
-        Alertas.mostraAlertaInfo("Locação de Veículo", "Locação realizada com sucesso!");
-	
+        for(int x =0; x<fun.size() ; x++){
+            if (campoCPFCli.getText().equals(fun.get(x).getCpf())){
+                x = fun.size();
+                ClienteDAO cliDAO2 = new ClienteDAO();
+                System.out.println(aux);
+                Cliente cli = cliDAO2.selectParam(aux).get(0);
+                
+                Carro auxCar = new Carro();
+                auxCar.setPlaca(campoPlaca.getText());
+                CarroDAO carDAO = new CarroDAO();
+                Carro car = carDAO.selectParam(auxCar).get(0);
+
+                SolicitaCarro sC = new SolicitaCarro();
+                sC.setCliente(cli);
+                sC.setCarro(car);
+
+                LocalDate data = campoDataRetira.getValue();        
+                Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                sC.setDataRetirada(nasc);
+                
+                LocalDate data2 = campoPrazoFinal.getValue();
+                Date nasc2 = Date.from(data2.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                sC.setPrazoFinal(nasc2);
+
+                sC.setValor(campoValor.getText());
+
+                cli.getSolicitaCarro().add(sC);
+
+                ClienteDAO cliDAO3 = new ClienteDAO();
+                cliDAO3.update(cli);         
+
+                listaClientes.setItems(atualizaTabela());
+
+                Alertas.mostraAlertaInfo("Locação de Veículo", "Locação realizada com sucesso!");
+            }
+            else {                    
+                Alertas.mostraAlertaInfo("CPF não encontrado!", "Verifique se o cliente está cadastrado");
+            }
+        }
     }
 
     @FXML
@@ -154,7 +156,7 @@ public class TelaLocarVeiculosController implements Initializable {
         SolicitaCarroDAO dao= new SolicitaCarroDAO();
         dao.update(sele);
         
-        listaAlunos.setItems(atualizaTabela());
+        listaClientes.setItems(atualizaTabela());
         Alertas.mostraAlertaInfo("Devolução", "Devolução realizada com sucesso!");		
     }
 
@@ -185,7 +187,7 @@ public class TelaLocarVeiculosController implements Initializable {
 
     @FXML
     private void btPesquisa(ActionEvent event) {
-       listaAlunos.setItems(busca());
+       listaClientes.setItems(busca());
     }
     
     private ObservableList<Cliente> busca(){
@@ -201,7 +203,7 @@ public class TelaLocarVeiculosController implements Initializable {
     public void initTable(){
         colunaNome.setCellValueFactory(new PropertyValueFactory("nome"));
         colunaCPF.setCellValueFactory(new PropertyValueFactory("cpf"));
-        listaAlunos.setItems(atualizaTabela());
+        listaClientes.setItems(atualizaTabela());
     }
     
     public ObservableList<Cliente> atualizaTabela(){

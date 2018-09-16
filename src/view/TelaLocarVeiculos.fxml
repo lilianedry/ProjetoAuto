@@ -56,36 +56,41 @@
                <children>
                   <Pane minWidth="300.0" prefHeight="477.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label layoutX="94.0" layoutY="156.0" text="CPF do Cliente:" />
-                        <TextField fx:id="campoCPFCli" layoutX="183.0" layoutY="151.0" prefHeight="25.0" prefWidth="149.0" promptText="000.000.000-00" />
-                        <TextField fx:id="campoPlaca" layoutX="183.0" layoutY="196.0" promptText="000-ABCD" />
-                        <Label layoutX="94.0" layoutY="200.0" text="Placa do Carro:" />
-                        <Label layoutX="94.0" layoutY="246.0" text="Data Retirada:" />
-                        <DatePicker fx:id="campoDataRetira" layoutX="183.0" layoutY="243.0" prefHeight="25.0" prefWidth="149.0" promptText="00/00/0000" />
-                        <Label layoutX="354.0" layoutY="200.0" text="Data Entrega:" />
-                        <DatePicker fx:id="campoDataEntrega" layoutX="428.0" layoutY="196.0" prefHeight="25.0" prefWidth="149.0" promptText="00/00/0000" />
-                        <DatePicker fx:id="campoPrazoFinal" layoutX="426.0" layoutY="150.0" prefHeight="25.0" prefWidth="149.0" promptText="00/00/0000" />
-                        <Label layoutX="357.0" layoutY="153.0" text="Prazo Final:" />
-                        <Button fx:id="locarVeiculo" alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="409.0" minWidth="79.0" mnemonicParsing="false" onAction="#locarVeiculo" prefHeight="25.0" prefWidth="98.0" text="      Locar" textAlignment="CENTER" />
-                        <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="189.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
+                        <Label layoutX="90.0" layoutY="201.0" text="CPF do Cliente:" />
+                        <TextField fx:id="campoCPFCli" layoutX="179.0" layoutY="196.0" prefHeight="25.0" prefWidth="162.0" promptText="000.000.000-00" />
+                        <TextField fx:id="campoPlaca" layoutX="179.0" layoutY="241.0" prefHeight="25.0" prefWidth="162.0" promptText="000-ABCD" />
+                        <Label layoutX="90.0" layoutY="245.0" text="Placa do Carro:" />
+                        <Label layoutX="90.0" layoutY="291.0" text="Data Retirada:" />
+                        <DatePicker fx:id="campoDataRetira" layoutX="179.0" layoutY="288.0" prefHeight="25.0" prefWidth="162.0" promptText="00/00/0000" />
+                        <Label layoutX="369.0" layoutY="245.0" text="Data Entrega:" />
+                        <DatePicker fx:id="campoDataEntrega" layoutX="443.0" layoutY="241.0" prefHeight="25.0" prefWidth="162.0" promptText="00/00/0000" />
+                        <DatePicker fx:id="campoPrazoFinal" layoutX="441.0" layoutY="195.0" prefHeight="25.0" prefWidth="162.0" promptText="00/00/0000" />
+                        <Label layoutX="372.0" layoutY="198.0" text="Prazo Final:" />
+                        <Button fx:id="locarVeiculo" alignment="CENTER" contentDisplay="CENTER" layoutX="178.0" layoutY="408.0" minWidth="79.0" mnemonicParsing="false" onAction="#locarVeiculo" prefHeight="25.0" prefWidth="98.0" text="      Locar" textAlignment="CENTER" />
+                        <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="184.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/salvar.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="devolveVeiculo" alignment="CENTER" layoutX="332.0" layoutY="409.0" mnemonicParsing="false" onAction="#devolveVeiculo" prefHeight="25.0" prefWidth="98.0" text="        Devolver" />
-                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="337.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="devolveVeiculo" alignment="CENTER" layoutX="342.0" layoutY="408.0" mnemonicParsing="false" onAction="#devolveVeiculo" prefHeight="25.0" prefWidth="98.0" text="        Devolver" />
+                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="347.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/excluir.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="voltar" alignment="CENTER" layoutX="475.0" layoutY="409.0" minWidth="90.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="98.0" text="    Voltar" />
-                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="483.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="voltar" alignment="CENTER" layoutX="504.0" layoutY="408.0" minWidth="90.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="98.0" text="    Voltar" />
+                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="509.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/voltar.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="357.0" layoutY="247.0" text="Valor Total:" />
-                        <TextField fx:id="campoValor" layoutX="428.0" layoutY="243.0" prefHeight="25.0" prefWidth="149.0" promptText="000,00" />
+                        <Label layoutX="372.0" layoutY="292.0" text="Valor Total:" />
+                        <TextField fx:id="campoValor" layoutX="443.0" layoutY="288.0" prefHeight="25.0" prefWidth="162.0" promptText="000,00" />
+                        <Label layoutX="289.0" layoutY="85.0" text="Locação de Veículos">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -111,7 +116,7 @@
                               <Insets bottom="25.0" top="25.0" />
                            </VBox.margin>
                         </HBox>
-                        <TableView fx:id="listaAlunos" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="listaClientes" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="colunaNome" editable="false" prefWidth="75.0" text="Nome" />
                             <TableColumn fx:id="colunaCPF" editable="false" prefWidth="75.0" sortable="false" text="CPF" />
@@ -132,10 +137,5 @@
             </HBox>
          </children>
       </VBox>
-      <Label layoutX="262.0" layoutY="95.0" text="Locação de Veículos">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

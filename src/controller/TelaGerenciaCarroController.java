@@ -8,6 +8,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -34,7 +35,6 @@ import model.ChangeScreen;
 import model.Especificacoes;
 import model.entities.Carro;
 import model.entities.Cliente;
-import model.entities.Funcionario;
 
 public class TelaGerenciaCarroController implements Initializable{
     private static boolean janela;
@@ -129,50 +129,58 @@ public class TelaGerenciaCarroController implements Initializable{
 
             Alertas.mostraAlertaInfo("Edita Veículo", "Edição realizado com sucesso!");
        }
-       else{
+       else{            
             Carro car = new Carro();
-        
-            car.setPlaca(campoPlaca.getText());  
-            car.setCor(campoCor.getText());      
-            car.setChassi(campoChassi.getText());           
-            car.setTipoCambio(campoCambio.getText());
-            car.setAnoModelo(campoAno.getText()); 
-            car.setCombustivel(campoCombustivel.getText());  
-            car.setModelo(campoModelo.getText());  
-            car.setQuilometragem(campoKm.getText());            
-            car.setOpcionais(campoOpcional.getText());  
-            car.setAtivo(true);
+            CarroDAO dao = new CarroDAO();
+            List<Carro> fun = dao.all();
             
-    //        Cliente cli =new Cliente();
-    //        cli.setCpf(campoCPF.getText());
-    //        ClienteDAO dao = new ClienteDAO();
-    //        List<Cliente> cli1 = dao.selectParam(cli);
-    //           System.out.println(cli.getIdPessoa());
-    //       if(cli1 != null){
-    //           car.setCliente(cli);
-    //       }else{
-    //          Alertas.mostraAlertaInfo("NAO Cadastro de Veículo", "Cadastro realizado com sucesso!");
-    //       }
-       
-            Cliente aux = new Cliente();            
-            aux.setCpf(campoCPF.getText());
-            ClienteDAO cliDAO2 = new ClienteDAO();
-            System.out.println(aux);
-            Cliente cliSel = cliDAO2.selectParam(aux).get(0);
-            if(cliSel != null){
-                car.setCliente(cliSel);
-                System.out.println(cliSel);
-            }else{
-                System.out.println("Cliente não encontrado.");
-            }
-            LocalDate data = campoData.getValue();
-            Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            car.setDataCede(nasc);
+            car.setPlaca(campoPlaca.getText()); 
+            
+            for(int x=0; x<fun.size() ; x++){
+                if (!campoPlaca.getText().equals(fun.get(x).getPlaca())){  
+                    if(x == fun.size()-1){
+                        car.setCor(campoCor.getText());      
+                        car.setChassi(campoChassi.getText());           
+                        car.setTipoCambio(campoCambio.getText());
+                        car.setAnoModelo(campoAno.getText()); 
+                        car.setCombustivel(campoCombustivel.getText());  
+                        car.setModelo(campoModelo.getText());  
+                        car.setQuilometragem(campoKm.getText());            
+                        car.setOpcionais(campoOpcional.getText());  
+                        car.setAtivo(true);
 
-            CarroDAO carDAO = new CarroDAO();
-            carDAO.add(car);
-            listaVeiculos.setItems(atualizaTabela());
-            Alertas.mostraAlertaInfo("Cadastro de Veículo", "Cadastro realizado com sucesso!");
+                        Cliente aux = new Cliente(); 
+                        try {
+                            if (!(verCPF.isValidCPF(campoCPF.getText().trim())))
+                            throw new IllegalArgumentException();
+                        } catch (IllegalArgumentException e) {
+                            Alertas.mostraAlertaInfo("No campo CPF", "Digite um CPF válido.");
+                            return;
+                        }
+                        aux.setCpf(campoCPF.getText());
+                        ClienteDAO cliDAO2 = new ClienteDAO();                       
+                        Cliente cliSel = cliDAO2.selectParam(aux).get(0);
+                        if(cliSel != null){
+                            car.setCliente(cliSel);
+                            System.out.println(cliSel);
+                        }else{
+                            System.out.println("CPF NAO ENCONTRADO!");
+                        }
+                        LocalDate data = campoData.getValue();
+                        Date nasc = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                        car.setDataCede(nasc);
+
+                        CarroDAO carDAO = new CarroDAO();
+                        carDAO.add(car);
+                        listaVeiculos.setItems(atualizaTabela());
+                        Alertas.mostraAlertaInfo("Cadastro de Veículo", "Cadastro realizado com sucesso!");
+                    }                    
+                }
+                else{
+                    Alertas.mostraAlertaInfo("Cadastro de Veículo", "Veículo já cadastrado!!");  
+                    break;                    
+                }
+            }
         }
     }
 

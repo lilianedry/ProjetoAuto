@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -23,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -63,7 +65,7 @@ public class TelaGerenteController implements Initializable {
     private TableView<SolicitaCarro> listaAluguel;
     
     private SolicitaCarro selecionado;
-
+    
     public void initialize(URL url, ResourceBundle rb) {
         initTable();        
         listaAluguel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
@@ -107,9 +109,7 @@ public class TelaGerenteController implements Initializable {
         doc.close();
         Alert a = new Alert(AlertType.CONFIRMATION);
         a.setHeaderText("PDF Gerado com sucesso");
-        a.show();
-       
-        
+        a.show();  
     }
 
     @FXML
@@ -166,5 +166,11 @@ public class TelaGerenteController implements Initializable {
 
     @FXML
     private void btPesquisa(ActionEvent event) {
+    }
+
+    @FXML
+    private void sairGer(ActionEvent event) {     
+        Platform.exit();
+        System.exit(0);
     }
 }

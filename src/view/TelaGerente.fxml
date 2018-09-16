@@ -52,6 +52,7 @@
                         <MenuItem mnemonicParsing="false" text="Ajuda" />
                      </items>
                   </Menu>
+                  <Menu mnemonicParsing="false" onAction="#sairGer" text="Sair" />
                </menus>
             </MenuBar>
          </children>
@@ -62,65 +63,65 @@
                <children>
                   <Pane minWidth="300.0" prefHeight="477.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="gerenciaFunc" layoutX="95.0" layoutY="159.0" mnemonicParsing="false" onAction="#gerenciaFunc" prefHeight="117.0" prefWidth="147.0">
+                        <Button fx:id="gerenciaFunc" layoutX="95.0" layoutY="171.0" mnemonicParsing="false" onAction="#gerenciaFunc" prefHeight="105.0" prefWidth="138.0">
                            <graphic>
-                              <ImageView fitHeight="108.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="81.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Images/cliente.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button fx:id="gerarRelatorio" layoutX="97.0" layoutY="346.0" mnemonicParsing="false" onAction="#geraRelatorio" prefHeight="117.0" prefWidth="147.0">
+                        <Button fx:id="gerarRelatorio" layoutX="95.0" layoutY="345.0" mnemonicParsing="false" onAction="#geraRelatorio" prefHeight="105.0" prefWidth="138.0">
                            <graphic>
-                              <ImageView fitHeight="104.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="71.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Images/relatorio_icon.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Label layoutX="95.0" layoutY="285.0" prefHeight="21.0" prefWidth="147.0" text="Gerenciar Funcionário">
+                        <Label layoutX="91.0" layoutY="285.0" prefHeight="21.0" prefWidth="147.0" text="Gerenciar Funcionário">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="gerenciaCarro" layoutX="305.0" layoutY="159.0" mnemonicParsing="false" onAction="#gerenciaCarro" prefHeight="117.0" prefWidth="147.0">
+                        <Button fx:id="gerenciaCarro" layoutX="295.0" layoutY="171.0" mnemonicParsing="false" onAction="#gerenciaCarro" prefHeight="105.0" prefWidth="138.0">
                            <graphic>
-                              <ImageView fitHeight="98.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="68.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Images/cadVeiculo.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button fx:id="gerenciaCli" layoutX="504.0" layoutY="157.0" mnemonicParsing="false" onAction="#gerenciaCli" prefHeight="117.0" prefWidth="147.0">
+                        <Button fx:id="gerenciaCli" layoutX="494.0" layoutY="169.0" mnemonicParsing="false" onAction="#gerenciaCli" prefHeight="105.0" prefWidth="138.0">
                            <graphic>
-                              <ImageView fitHeight="100.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="76.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Images/clienteAdd.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Label layoutX="115.0" layoutY="470.0" prefHeight="17.0" prefWidth="110.0" text="Gerar Relatório">
+                        <Label layoutX="112.0" layoutY="457.0" prefHeight="17.0" prefWidth="110.0" text="Gerar Relatório">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="316.0" layoutY="287.0" prefHeight="17.0" prefWidth="122.0" text="Gerenciar Veículo">
+                        <Label layoutX="306.0" layoutY="287.0" prefHeight="17.0" prefWidth="122.0" text="Gerenciar Veículo">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="521.0" layoutY="284.0" text="Gerenciar Cliente">
+                        <Label layoutX="509.0" layoutY="284.0" text="Gerenciar Cliente">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="locarVeiculo" layoutX="304.0" layoutY="346.0" mnemonicParsing="false" onAction="#locarVeiculo" prefHeight="117.0" prefWidth="147.0" />
-                        <Label layoutX="325.0" layoutY="472.0" prefHeight="17.0" prefWidth="110.0" text="Locar Veículo">
+                        <Button fx:id="locarVeiculo" layoutX="293.0" layoutY="345.0" mnemonicParsing="false" onAction="#locarVeiculo" prefHeight="105.0" prefWidth="138.0" />
+                        <Label layoutX="316.0" layoutY="459.0" prefHeight="17.0" prefWidth="110.0" text="Locar Veículo">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="94.0" fitWidth="96.0" layoutX="330.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="86.0" fitWidth="91.0" layoutX="319.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/locar.png" />
                            </image>
