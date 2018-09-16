@@ -74,7 +74,7 @@ public class TelaFuncionarioController implements Initializable {
     private void locarVeiculo(ActionEvent event) throws Exception {
         ChangeScreen change = new ChangeScreen();
         TelaLocarVeiculosController locar = new  TelaLocarVeiculosController();
-        locar.setJanela(true);
+        locar.setJanela(false);
         Stage mainStage = change.change(event, Caminho.telaLocar, Especificacoes.getSoftwareNome(), true);
         mainStage.show();
     }
