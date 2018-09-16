@@ -84,14 +84,26 @@ public class TelaGerenteController implements Initializable {
         doc.open();
         SolicitaCarroDAO dao = new SolicitaCarroDAO();
         List<SolicitaCarro> car = dao.allf();
+        
+        doc.add(new Paragraph("                                     Relatorio dos Alugueis\n"));
+        doc.add(new Paragraph("  "));
         for(int x=0; x<car.size();x++){
-            doc.add(new Paragraph("Carro: "+car.get(x).getCarro()));
+            if(car.get(x).isAtivo() == false){
+            doc.add(new Paragraph("Data de Retirada: "+car.get(x).getDataEntrega()+
+                    "       Data de Entrega: "+car.get(x).getDataEntrega()+
+                    "       Valor do aluguel: "+car.get(x).getValor()));
+            doc.add(new Paragraph("Carro: "+car.get(x).getCarro().getIdCarro()+
+                    "       Placa: "+car.get(x).getCarro().getPlaca()+
+                    "       Modelo: "+car.get(x).getCarro().getModelo()+
+                    "       Chassi: "+car.get(x).getCarro().getChassi()));
+            doc.add(new Paragraph("Cliente: "+car.get(x).getCliente().getIdPessoa()+
+                    "       Nome: "+car.get(x).getCliente().getNome()+
+                    "       CPF: "+ car.get(x).getCliente().getCpf()+
+                    "       CNH: "+ car.get(x).getCliente().getCnh()));
+            doc.add(new Paragraph("---------------------------------------------------------------------"));
+            }
         }
-        SolicitaCarroDAO dao1 = new SolicitaCarroDAO();
-        List<SolicitaCarro> car1 = dao1.allf();
-        for(int x=0; x<car1.size();x++){
-            doc.add(new Paragraph("Cliente: "+car1.get(x).getCliente()));
-        }
+        
         doc.close();
         Alert a = new Alert(AlertType.CONFIRMATION);
         a.setHeaderText("PDF Gerado com sucesso");
