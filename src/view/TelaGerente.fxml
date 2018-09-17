@@ -50,9 +50,9 @@
                      <items>
                         <MenuItem mnemonicParsing="false" text="Sobre" />
                         <MenuItem mnemonicParsing="false" text="Ajuda" />
+                        <MenuItem mnemonicParsing="false" onAction="#itemSair" text="Sair" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" onAction="#sairGer" text="Sair" />
                </menus>
             </MenuBar>
          </children>

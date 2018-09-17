@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import controller.alerts.Alertas;
@@ -208,12 +203,10 @@ public class TelaLocarVeiculosController implements Initializable {
     
     public ObservableList<Cliente> atualizaTabela(){
         SolicitaCarroDAO dao = new SolicitaCarroDAO();
-       // List<Cliente> cli = new ArrayList<Cliente>();
         List<SolicitaCarro> soli = dao.all();
         for(int x=0; x<soli.size();x++){
             cliente.add(soli.get(x).getCliente());
         }
         return FXCollections.observableArrayList(cliente);
-    }
-    
+    }    
 }

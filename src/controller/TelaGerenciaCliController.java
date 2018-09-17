@@ -135,7 +135,7 @@ public class TelaGerenciaCliController implements Initializable {
                 Logger.getLogger(TelaGerenciaCarroController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-             ChangeScreen change = new ChangeScreen();
+            ChangeScreen change = new ChangeScreen();
 
             Stage mainStage;
             try {

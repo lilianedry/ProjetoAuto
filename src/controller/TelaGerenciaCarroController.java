@@ -286,6 +286,5 @@ public class TelaGerenciaCarroController implements Initializable{
             }
         }
         return funPesquisa;
-    }
-    
+    }    
 }
