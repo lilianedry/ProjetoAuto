@@ -125,8 +125,6 @@ public class TelaLocarVeiculosController implements Initializable {
                 Date nasc2 = Date.from(data2.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 sC.setPrazoFinal(nasc2);
 
-                sC.setValor(campoValor.getText());
-
                 cli.getSolicitaCarro().add(sC);
 
                 ClienteDAO cliDAO3 = new ClienteDAO();
@@ -150,6 +148,8 @@ public class TelaLocarVeiculosController implements Initializable {
         sele.setDataEntrega(nasc1);
         SolicitaCarroDAO dao= new SolicitaCarroDAO();
         dao.update(sele);
+        sele.setValor(campoValor.getText());
+
         
         listaClientes.setItems(atualizaTabela());
         Alertas.mostraAlertaInfo("Devolução", "Devolução realizada com sucesso!");		
